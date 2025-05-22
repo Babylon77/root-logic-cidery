@@ -5,11 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:github": "cross-env NODE_ENV=production next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next export",
-    "static": "next build && next export",
-    "build:github": "cross-env DEPLOY_TARGET=github next build"
+    "lint": "next lint"
   },
   "dependencies": {
     "chart.js": "^4.4.9",

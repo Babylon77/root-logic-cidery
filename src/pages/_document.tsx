@@ -8,7 +8,6 @@ export default function Document() {
         <meta name="description" content="Root Logic - Where Tradition Meets Innovation" />
       </Head>
       <body>
-        <script src="/fix-paths.js"></script>
         <Main />
         <NextScript />
       </body>
