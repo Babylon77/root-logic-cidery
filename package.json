@@ -1,12 +1,14 @@
 {
-  "name": "apple-farm",
+  "name": "root-logic-cidery",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export",
+    "static": "next build && next export"
   },
   "dependencies": {
     "chart.js": "^4.4.9",
