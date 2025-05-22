@@ -4,7 +4,10 @@ import OptimizedImage from '../components/OptimizedImage'
 
 export default function History() {
   return (
-    <Layout>
+    <Layout
+      title="Our History - Colonial Cider to Root Logic"
+      description="The story of our orchard's transformation from Colonial Cider to Root Logic Cidery."
+    >
       {/* Hero Section */}
       <section className="relative h-[40vh] hero-overlay">
         <OptimizedImage

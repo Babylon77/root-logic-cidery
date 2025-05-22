@@ -1,12 +1,15 @@
-import Image from 'next/image'
 import Layout from '../components/Layout'
+import OptimizedImage from '../components/OptimizedImage'
 
 export default function Products() {
   return (
-    <Layout>
+    <Layout
+      title="Our Cider Products - Root Logic Cidery"
+      description="Explore our lineup of craft hard ciders made from heritage apple varieties."
+    >
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/fermentation.jpg"
           alt="Our cider production"
           fill
@@ -26,7 +29,7 @@ export default function Products() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="relative h-[180px] w-[300px] mx-auto mb-8">
-              <Image
+              <OptimizedImage
                 src="/images/Root Logic 1.png"
                 alt="Root Logic Logo"
                 fill
@@ -49,7 +52,7 @@ export default function Products() {
           {/* Axon Dry */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/cider.jpg"
                 alt="Axon Dry Cider"
                 fill
@@ -85,7 +88,7 @@ export default function Products() {
           {/* Branch Circuit */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-1 md:order-2 relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/cider room 2.webp"
                 alt="Branch Circuit Cider"
                 fill
@@ -121,7 +124,7 @@ export default function Products() {
           {/* Ghost Root */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Bourbon_Aging_Barrel_1600x.jpg"
                 alt="Ghost Root Cider"
                 fill
@@ -157,7 +160,7 @@ export default function Products() {
           {/* Code Press */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-1 md:order-2 relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/apple press.jpg"
                 alt="Code Press Cider"
                 fill
@@ -193,7 +196,7 @@ export default function Products() {
           {/* Logic Loop */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Heritage Apples.jpg"
                 alt="Logic Loop Cider"
                 fill
@@ -229,7 +232,7 @@ export default function Products() {
           {/* System Fault */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-1 md:order-2 relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/cider room 3.webp"
                 alt="System Fault Cider"
                 fill
@@ -265,7 +268,7 @@ export default function Products() {
           {/* Ground Truth */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Apple cider donuts.jpg"
                 alt="Ground Truth Cider"
                 fill

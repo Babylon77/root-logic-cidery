@@ -5,7 +5,10 @@ import OptimizedImage from '../components/OptimizedImage'
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout 
+      title="Root Logic Cidery - Craft Hard Cider from Heritage Apples"
+      description="Craft hard cider made from organic heritage apple varieties grown in the heart of Sussex County, New Jersey."
+    >
       {/* Hero Section */}
       <section className="relative h-[70vh] hero-overlay">
         <OptimizedImage
