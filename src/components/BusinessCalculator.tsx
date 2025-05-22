@@ -442,12 +442,12 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     datasets: [{
       label: 'Annual Profit ($)',
       data: [
-        // Calculate profit at different yield levels
-        calculateProfitWithYield(results.totalApples * 0.7),
-        calculateProfitWithYield(results.totalApples * 0.85),
-        calculateProfitWithYield(results.totalApples),
-        calculateProfitWithYield(results.totalApples * 1.15),
-        calculateProfitWithYield(results.totalApples * 1.3)
+        // Calculate profit at different yield levels - normalize to more realistic values
+        Math.min(calculateProfitWithYield(results.totalBushels * 0.7), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 0.85), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 1.15), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 1.3), 1000000)
       ],
       backgroundColor: 'rgba(75, 192, 192, 0.6)',
       borderColor: 'rgba(75, 192, 192, 1)',
@@ -455,14 +455,20 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     }]
   }
 
-  function calculateProfitWithYield(yield_: number) {
-    // Calculate cider production from yield
-    const bushelsForCider = yield_ * (sliders.ciderYield / 100) * (sliders.productionEfficiency / 100)
+  function calculateProfitWithYield(bushels: number) {
+    // Calculate cider production from bushels
+    const bushelsForCider = bushels * (sliders.ciderYield / 100) * (sliders.productionEfficiency / 100)
     const ciderGallons = bushelsForCider * sliders.gallonsPerBushel
     
+    // Account for waste/spoilage
+    const netCiderGallons = ciderGallons * (1 - sliders.wasteSpoilage / 100)
+    
+    // Account for sales efficiency
+    const soldCiderGallons = netCiderGallons * (sliders.salesEfficiency / 100)
+    
     // Calculate direct sales vs wholesale
-    const directSalesGallons = ciderGallons * (sliders.directSalesPercent / 100)
-    const wholesaleGallons = ciderGallons - directSalesGallons
+    const directSalesGallons = soldCiderGallons * (sliders.directSalesPercent / 100)
+    const wholesaleGallons = soldCiderGallons - directSalesGallons
     
     // Calculate revenue from direct sales (higher margin)
     const pintsPerGallon = 8
@@ -476,26 +482,31 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     // Total cider revenue
     const ciderRevenue = directSalesRevenue + wholesaleRevenue
     
-    // Fresh apple sales
-    const freshApplePounds = yield_ * (1 - sliders.ciderYield / 100)
-    const freshAppleRevenue = freshApplePounds * 1.5
+    // Fresh apple sales - based on bushels not used for cider (accounting for production efficiency)
+    const freshAppleBushels = bushels * (1 - sliders.ciderYield / 100) * (sliders.productionEfficiency / 100) * (sliders.salesEfficiency / 100)
+    const freshAppleRevenue = freshAppleBushels * sliders.applesPerBushel * 0.25 // Assuming $0.25 per apple
     
-    // Other products revenue
+    // Add Airbnb revenue (fixed)
+    const abnbRevenue = sliders.abnbNights * sliders.abnbRate
+    
+    // Other products revenue (15% of apple products revenue)
     const otherProductsRevenue = (ciderRevenue + freshAppleRevenue) * 0.15
     
     // Total revenue
-    const totalRevenue = ciderRevenue + freshAppleRevenue + otherProductsRevenue
+    const totalRevenue = ciderRevenue + freshAppleRevenue + abnbRevenue + otherProductsRevenue
     
-    // Calculate specific expenses that vary with yield
-    const packagingCosts = ciderGallons * sliders.packagingCostPerGallon
-    const exciseTax = ciderGallons * sliders.exciseTaxPerGallon
+    // Calculate specific expenses that vary with production
+    const packagingCosts = soldCiderGallons * sliders.packagingCostPerGallon
+    const exciseTax = soldCiderGallons * sliders.exciseTaxPerGallon
     const distributionCosts = totalRevenue * (sliders.distributionCostPercent / 100)
     
     // Variable expenses (those that change with production)
     const variableExpenses = packagingCosts + exciseTax + distributionCosts
     
     // Fixed expenses (those that don't change with production)
-    const fixedExpenses = results.annualExpenses - results.packagingCosts - results.exciseTax - results.distributionCosts
+    const fixedExpenses = results.annualFixedCosts + sliders.utilityExpenses + 
+                         results.laborExpenses + sliders.maintenanceExpenses + 
+                         sliders.marketingExpenses + sliders.licensingCosts
     
     // Total expenses
     const totalExpenses = fixedExpenses + variableExpenses
@@ -1596,7 +1607,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     ticks: {
                       callback: function(value) {
                         if ((value as number) >= 1000) {
-                          return '$' + ((value as number)/1000) + 'k';
+                          return '$' + ((value as number)/1000).toLocaleString() + 'k';
                         }
                         return '$' + value;
                       }
