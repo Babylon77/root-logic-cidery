@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Apple Farm Color Theme - Refined */
+  --sky-blue: #B0E0E6;
+  --light-blue: #E6F7FF;
+  --sun-yellow: #FFD700;
+  --cloud-white: #FFFFFF;
+  --leaf-green: #4D8C57;
+  --apple-red: #CF4040;
+  --branch-brown: #8B4513;
+  --bark-brown: #5D4037;
+  --grass-green: #8BC34A;
+  --soil-brown: #A5804D;
+}
+
+/* Apply default styles */
+body {
+  background-color: var(--cloud-white);
+  color: #333;
+}
+
+/* Custom Background Classes */
+.bg-sky {
+  background-color: var(--sky-blue);
+}
+
+.bg-leaf {
+  background-color: var(--leaf-green);
+}
+
+.bg-grass {
+  background-color: var(--grass-green);
+}
+
+.bg-bark {
+  background-color: var(--bark-brown);
+}
+
+.bg-soil {
+  background-color: var(--soil-brown);
+}
+
+.bg-apple {
+  background-color: var(--apple-red);
+}
+
+/* Custom Button Classes */
+.btn-primary {
+  @apply inline-block bg-leaf-green hover:bg-green-700 text-white font-medium py-2 px-6 rounded-md transition duration-150 ease-in-out;
+}
+
+/* Section title styling */
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-gray-900 mb-8;
+}
+
+/* Refined Apple Farm Theme Structure */
+.accent-top-border {
+  border-top: 4px solid var(--leaf-green);
+}
+
+.accent-left-border {
+  border-left: 4px solid var(--grass-green);
+}
+
+.accent-box {
+  border-radius: 0.5rem;
+  border: 1px solid var(--leaf-green);
+  box-shadow: 0 4px 6px rgba(77, 140, 87, 0.1);
+}
+
+.accent-divider {
+  height: 3px;
+  background: linear-gradient(to right, var(--leaf-green), var(--grass-green), var(--light-blue));
+}
+
+/* Navigation styling - subtle */
+.nav-subtle {
+  background-color: white;
+  border-bottom: 1px solid rgba(77, 140, 87, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Footer styling - subtle */
+.footer-subtle {
+  background-color: #f9f9f9;
+  border-top: 4px solid var(--leaf-green);
+  color: #333;
+}
+
+/* Hero overlay with subtle color */
+.hero-overlay {
+  position: relative;
+}
+
+.hero-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(77, 140, 87, 0.3), rgba(176, 224, 230, 0.3));
+  z-index: 1;
+}
+
+.hero-overlay > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Feature card styling */
+.feature-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(77, 140, 87, 0.1);
+}
+
+.feature-card-header {
+  height: 6px;
+  background: linear-gradient(to right, var(--leaf-green), var(--grass-green));
+}
+
+/* Color definitions for Tailwind classes */
+@layer utilities {
+  .text-leaf-green {
+    color: var(--leaf-green);
+  }
+  
+  .text-apple-red {
+    color: var(--apple-red);
+  }
+  
+  .text-bark-brown {
+    color: var(--bark-brown);
+  }
+  
+  .bg-leaf-green {
+    background-color: var(--leaf-green);
+  }
+  
+  .bg-apple-red {
+    background-color: var(--apple-red);
+  }
+  
+  .bg-light-blue {
+    background-color: var(--light-blue);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-leaf-green text-white font-semibold rounded-lg shadow-md hover:bg-green-900 transition-colors duration-200;
+  }
+
+  .section-title {
+    @apply text-4xl font-bold text-gray-900 mb-8;
+  }
+} 
