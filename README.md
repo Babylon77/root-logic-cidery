@@ -10,6 +10,10 @@ Root Logic is a craft cidery website built with Next.js and React. This website 
 - Location information and nearby attractions
 - Team information
 
+## Website
+
+Visit our prototype website: [Root Logic Cidery](https://root-logic-cidery.netlify.app)
+
 ## Technology Stack
 
 - Next.js
