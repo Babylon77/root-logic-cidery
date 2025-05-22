@@ -104,16 +104,129 @@ export default function BusinessPlan() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Market Analysis</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Industry Trends</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                The craft cider industry has experienced significant growth over the past decade, with craft cider sales increasing by approximately 10-15% annually. Consumer preference is trending toward local, artisanal products with authentic stories and sustainable production methods.
-              </p>
-              <p className="text-lg text-gray-600">
-                The market for premium hard ciders continues to expand as consumers seek alternatives to beer and wine. Specialty ciders using heritage apple varieties and innovative flavor profiles are gaining popularity among craft beverage enthusiasts.
-              </p>
+          
+          {/* Market Overview Card */}
+          <div className="bg-green-50 p-8 rounded-lg mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Market Overview</h3>
+            <p className="text-lg text-gray-600 mb-6">
+              The U.S. cider market was valued at over $1.32 billion in 2022 and is projected to grow at a compound annual growth rate (CAGR) of 5.0% from 2025 to 2030. Hard cider is one of the fastest-growing segments of the alcohol industry, with a 73% annual production increase from 2008 to 2014, and continued growth since.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2">Market Value</h4>
+                <p className="text-3xl font-bold text-green-700 mb-2">$1.32B</p>
+                <p className="text-gray-600">U.S. cider market value in 2022</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2">Growth Rate</h4>
+                <p className="text-3xl font-bold text-green-700 mb-2">5.0%</p>
+                <p className="text-gray-600">Projected annual growth 2025-2030</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2">Consumer Growth</h4>
+                <p className="text-3xl font-bold text-green-700 mb-2">3.6×</p>
+                <p className="text-gray-600">Increase in cider drinkers 2008-2016</p>
+              </div>
             </div>
+            <p className="text-lg text-gray-600">
+              In 2021, cider generated $553.6 million in chain retail sales, with total revenue exceeding $1 billion when including on-premise sales. The number of hard cider drinkers grew from 6.8 million to 24.5 million between 2008 and 2016, with younger demographics (18–29 years old) consuming nearly three times more cider than older groups.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Regional Market Strength</h3>
+              <p className="text-lg text-gray-600 mb-6">
+                The Northeast, including New York, Vermont, Massachusetts, and New Hampshire, leads in premium cider penetration due to its apple-growing heritage and consumer preference for "farm-to-glass" narratives.
+              </p>
+              <p className="text-lg text-gray-600 mb-6">
+                New York and Vermont are particularly notable for their craft cider scenes, with producers like Eve's Cidery and Shacksbury Cider setting benchmarks for quality. Our location in Wantage, New Jersey positions us perfectly to capture this regional market.
+              </p>
+              <div className="bg-gray-50 p-6 rounded-lg mb-6">
+                <h4 className="font-bold text-gray-900 mb-3">Seasonal Opportunities</h4>
+                <p className="text-gray-600 mb-4">
+                  Seasonal consumption peaks in the Northeast during:
+                </p>
+                <ul className="list-disc pl-6 text-gray-600">
+                  <li className="mb-2">Summer (June–August): Crisp, refreshing varieties</li>
+                  <li>Late Fall to Early Winter: Spiced and barrel-aged options</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Consumer Preferences</h3>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 text-sm font-bold">1</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900">Health & Sustainability</h4>
+                    <p className="text-gray-600">Gen Z and Millennials prioritize gluten-free, natural, and sustainable products. Organic ciders are highly desirable as apples appear on the "dirty dozen" list for pesticide residues.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 text-sm font-bold">2</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900">Heritage Varieties</h4>
+                    <p className="text-gray-600">Growing demand for ciders made from heritage apple varieties like Dabinett and Northern Spy, with 15% year-over-year sales growth for these premium products.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 text-sm font-bold">3</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900">Local Appeal</h4>
+                    <p className="text-gray-600">Regional and local brands capture 54% of hard cider sales, as consumers value locally sourced products and authentic orchard stories.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 text-sm font-bold">4</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900">Innovative Flavors</h4>
+                    <p className="text-gray-600">68% of Millennials prefer adventurous flavor profiles, including elderflower, hibiscus, or co-ferments with berries or pears.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Competitive Advantage */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Root Logic's Competitive Advantage</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-3">Organic Certification</h4>
+                <p className="text-gray-600">
+                  Our organic growing practices align perfectly with consumer health consciousness and environmental concerns, commanding premium pricing and appealing to eco-conscious consumers.
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-3">Heritage Apple Varieties</h4>
+                <p className="text-gray-600">
+                  Our 20+ heritage varieties allow for complex blends that balance tannin, acidity, and sweetness—qualities that craft cider consumers seek and are willing to pay premium prices for.
+                </p>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-3">Northeast Location</h4>
+                <p className="text-gray-600">
+                  Our Wantage, NJ location capitalizes on the Northeast's strong cider tradition and provides access to major markets like New York City, just 60 miles away.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Distribution Strategy - Keep existing content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Distribution Channels</h3>
               <p className="text-lg text-gray-600 mb-6">
@@ -129,6 +242,30 @@ export default function BusinessPlan() {
               <p className="text-lg text-gray-600">
                 With our location just 60 miles from New York City, we have access to a large metropolitan market of potential customers and specialty retailers.
               </p>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Market Challenges</h3>
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Supply Constraints:</span> Our 18-acre orchard with heritage varieties gives us a competitive advantage by ensuring a consistent supply.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Economic Viability:</span> Heritage varieties may have lower yields but command premium prices that offset this challenge.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Competition:</span> Differentiating through organic certification, heritage varieties, and unique blends sets us apart.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Seasonal Variability:</span> We embrace the concept of "vintage quality" ciders, similar to wine vintages, as a marketing opportunity.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
