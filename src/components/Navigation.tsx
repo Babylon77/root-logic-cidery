@@ -32,6 +32,9 @@ export default function Navigation() {
             <Link href="/our-story" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
               Our Story
             </Link>
+            <Link href="/history" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
+              History
+            </Link>
             <Link href="/products" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
               Products
             </Link>
@@ -93,6 +96,9 @@ export default function Navigation() {
           </Link>
           <Link href="/our-story" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
             Our Story
+          </Link>
+          <Link href="/history" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
+            History
           </Link>
           <Link href="/products" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
             Products
