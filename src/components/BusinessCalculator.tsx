@@ -1576,6 +1576,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 plugins: {
                   legend: {
                     display: false
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function(context) {
+                        let value = context.raw;
+                        return 'Annual Profit: $' + value.toLocaleString();
+                      }
+                    }
                   }
                 },
                 scales: {
@@ -1584,6 +1592,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     title: {
                       display: true,
                       text: 'Annual Profit ($)'
+                    },
+                    ticks: {
+                      callback: function(value) {
+                        if (value >= 1000) {
+                          return '$' + (value/1000) + 'k';
+                        }
+                        return '$' + value;
+                      }
                     }
                   }
                 }
