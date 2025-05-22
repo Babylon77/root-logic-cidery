@@ -31,7 +31,10 @@ jobs:
         run: npm install
       
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
       
       - name: Build with Next.js
         run: npm run build
@@ -39,7 +42,10 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /root-logic-cidery
       
       - name: Create .nojekyll file
-        run: touch out/.nojekyll
+        run: |
+          touch out/.nojekyll
+          cp public/404.html out/404.html
+          cp public/index_fallback.html out/index_fallback.html
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
