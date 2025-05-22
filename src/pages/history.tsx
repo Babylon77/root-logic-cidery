@@ -104,6 +104,12 @@ export default function History() {
                 heritage apple varieties, and sustainable agriculture as we build upon this remarkable history.
               </p>
 
+              <p className="text-lg text-gray-600 mb-6">
+                As an organic heritage apple orchard, Root Logic is eligible for various agricultural grants and funding 
+                opportunities. Learn more about our <Link href="/business-plan#grants-funding" className="text-leaf-green font-semibold hover:underline">
+                funding strategy and available grants</Link> that support sustainable cideries.
+              </p>
+
               <div className="mt-8">
                 <a 
                   href="https://www.facebook.com/Colonialcider" 

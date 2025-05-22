@@ -457,6 +457,113 @@ export default function BusinessPlan() {
         </div>
       </section>
 
+      {/* Grants and Funding */}
+      <section className="py-16 bg-white" id="grants-funding">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="section-title text-center mb-12">Grants & Funding Opportunities</h2>
+          <p className="text-lg text-gray-600 text-center mb-8 max-w-4xl mx-auto">
+            As a sustainable agricultural business focused on heritage apple varieties and craft beverages, 
+            Root Logic is eligible for various grants and funding opportunities that support our mission
+            and growth objectives.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Available Grant Programs</h3>
+              <div className="space-y-8">
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">USDA Specialty Crop Block Grant</h4>
+                  <p className="text-gray-600 mb-4">
+                    Administered by the NJ Department of Agriculture, these grants support projects that enhance 
+                    the competitiveness of specialty crops like heritage apples used in our cider production.
+                  </p>
+                  <div className="flex items-center text-gray-700">
+                    <span className="font-semibold mr-2">Funding Range:</span> 
+                    <span>$10,000 - $100,000</span>
+                  </div>
+                </div>
+                
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">Value-Added Producer Grants (VAPG)</h4>
+                  <p className="text-gray-600 mb-4">
+                    This USDA program supports agricultural producers entering value-added activities like hard cider production,
+                    with funds for planning or working capital requirements.
+                  </p>
+                  <div className="flex items-center text-gray-700">
+                    <span className="font-semibold mr-2">Funding Range:</span> 
+                    <span>$75,000 - $250,000</span>
+                  </div>
+                </div>
+                
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">NJEDA Programs</h4>
+                  <p className="text-gray-600 mb-4">
+                    The New Jersey Economic Development Authority offers various support programs including 
+                    tax credits, grants, and low-interest loans for businesses in rural areas that create jobs 
+                    and invest in infrastructure.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Strategic Approach</h3>
+              <ul className="space-y-6">
+                <li className="flex">
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 font-bold">1</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-gray-900">Sustainable Practices</h4>
+                    <p className="text-gray-600">Our organic growing practices and heritage apple varieties align perfectly with grant priorities for sustainable agriculture and biodiversity preservation.</p>
+                  </div>
+                </li>
+                
+                <li className="flex">
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 font-bold">2</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-gray-900">Economic Impact</h4>
+                    <p className="text-gray-600">Our business creates rural jobs, attracts tourism, and supports local agriculture, strengthening our eligibility for economic development programs.</p>
+                  </div>
+                </li>
+                
+                <li className="flex">
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 font-bold">3</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-gray-900">Research & Innovation</h4>
+                    <p className="text-gray-600">We're pursuing partnerships with Rutgers University for research on heritage cider apples, making us eligible for research and education grants.</p>
+                  </div>
+                </li>
+                
+                <li className="flex">
+                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                    <span className="text-green-800 font-bold">4</span>
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-xl font-bold text-gray-900">Conservation Efforts</h4>
+                    <p className="text-gray-600">Our water management system and soil conservation practices qualify for environmental grants through NRCS and other conservation programs.</p>
+                  </div>
+                </li>
+              </ul>
+              
+              <div className="mt-8 p-6 border border-green-200 rounded-lg bg-green-50">
+                <h4 className="text-xl font-bold text-gray-900 mb-3">Key Resources</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><span className="font-medium">NJ Department of Agriculture:</span> www.nj.gov/agriculture</li>
+                  <li><span className="font-medium">USDA Rural Development NJ:</span> www.rd.usda.gov/nj</li>
+                  <li><span className="font-medium">NJ Economic Development Authority:</span> www.njeda.com</li>
+                  <li><span className="font-medium">Sustainable Agriculture Research:</span> www.northeastsare.org</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Conclusion */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
