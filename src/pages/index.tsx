@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import OptimizedImage from '../components/OptimizedImage'
 
 export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[70vh] hero-overlay">
-        <Image
+        <OptimizedImage
           src="/images/Apple Drone.jpg"
           alt="Aerial view of Root Logic"
           fill
@@ -46,7 +47,7 @@ export default function Home() {
             </div>
             <div className="relative h-[300px] md:h-[400px]">
               <div className="absolute inset-y-0 -right-6 w-6 bg-leaf-green"></div>
-              <Image
+              <OptimizedImage
                 src="/images/Heritage Apples.jpg"
                 alt="Our apple orchard"
                 fill
@@ -133,7 +134,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
               <div className="absolute inset-y-0 -left-6 w-6 bg-apple-red"></div>
-              <Image
+              <OptimizedImage
                 src="/images/cider.jpg"
                 alt="Our cider production"
                 fill
@@ -178,7 +179,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <Image
+          <OptimizedImage
             src="/images/Cider Tree.jpg"
             alt="Apple orchard background"
             fill

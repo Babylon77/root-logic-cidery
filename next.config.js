@@ -10,8 +10,12 @@ const nextConfig = {
   basePath: basePath,
   assetPrefix: basePath,
   images: {
-    unoptimized: true
+    unoptimized: true,
+    path: `${basePath}/_next/image`,
+    loader: 'default',
+    domains: ['localhost']
   },
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
