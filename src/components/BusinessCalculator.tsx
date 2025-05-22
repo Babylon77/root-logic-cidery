@@ -369,9 +369,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         data: [
           results.directSalesRevenue,
           results.wholesaleRevenue,
-          results.totalApples * (1 - sliders.ciderYield / 100) * 1.5,
+          // Fix fresh apple sales calculation to match the same pattern used in main calculator
+          Math.round(results.totalBushels * (1 - sliders.ciderYield / 100) * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100) * sliders.applesPerBushel * 0.25),
+          // Make sure other products revenue is exactly 15% of the two above
           (results.directSalesRevenue + results.wholesaleRevenue + 
-            results.totalApples * (1 - sliders.ciderYield / 100) * 1.5) * 0.15
+            Math.round(results.totalBushels * (1 - sliders.ciderYield / 100) * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100) * sliders.applesPerBushel * 0.25)) * 0.15
         ],
         backgroundColor: [
           'rgba(255, 159, 64, 0.6)', // amber for direct sales
