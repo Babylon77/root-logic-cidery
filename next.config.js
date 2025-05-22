@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// Set a constant basePath for GitHub Pages that will be used in both development and production
-const basePath = process.env.NODE_ENV === 'production' ? '/root-logic-cidery' : '';
+// Check if the deployment is for GitHub Pages specifically
+const isGitHubPages = process.env.GITHUB_ACTIONS === 'true' || process.env.DEPLOY_TARGET === 'github';
+
+// Only set basePath for GitHub Pages, leave it empty for Netlify
+const basePath = isGitHubPages ? '/root-logic-cidery' : '';
 
 const nextConfig = {
   output: 'export',
@@ -10,7 +13,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // This is critical for GitHub Pages - ensures trailing slashes on all URLs
+  // This is helpful for both GitHub Pages and Netlify
   trailingSlash: true,
 }
 

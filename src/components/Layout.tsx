@@ -17,6 +17,7 @@ export default function Layout({ children, title, description }: LayoutProps) {
       <Head>
         {title && <title>{title}</title>}
         {description && <meta name="description" content={description} />}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Navigation />
       <main className="flex-grow pt-16">{children}</main>
