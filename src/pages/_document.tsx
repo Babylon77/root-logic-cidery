@@ -6,9 +6,9 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Root Logic - Where Tradition Meets Innovation" />
-        <script src="/fix-paths.js" defer></script>
       </Head>
       <body>
+        <script src="/fix-paths.js"></script>
         <Main />
         <NextScript />
       </body>

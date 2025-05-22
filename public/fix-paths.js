@@ -1,58 +1,131 @@
 // This script helps fix image paths for GitHub Pages deployment
-// It creates an explicit copy of all images in the root-logic-cidery directory
+// It preemptively fixes all image paths by intercepting image loading
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Check if we're running on GitHub Pages
-  if (window.location.hostname === 'babylon77.github.io') {
-    console.log('Running on GitHub Pages - fixing image paths');
+(function() {
+  // Run immediately when script loads
+  console.log('Image path fixer initializing');
+  
+  // GitHub Pages specific configuration
+  const isGitHubPages = window.location.hostname === 'babylon77.github.io';
+  const basePath = '/root-logic-cidery';
+  
+  if (isGitHubPages) {
+    console.log('Running on GitHub Pages - applying image fixes');
     
-    // Fix all images preemptively rather than waiting for load errors
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      const originalSrc = img.getAttribute('src');
-      if (originalSrc && !originalSrc.includes('/root-logic-cidery/') && !originalSrc.startsWith('http')) {
-        // Add the base path to fix the image
-        const newSrc = '/root-logic-cidery' + (originalSrc.startsWith('/') ? '' : '/') + originalSrc;
-        console.log(`Fixing image path: ${originalSrc} → ${newSrc}`);
-        img.src = newSrc;
-      }
-    });
-    
-    // Also fix background images in CSS (look for elements with background-image style)
-    const elementsWithBackgroundImages = Array.from(document.querySelectorAll('*')).filter(el => {
-      const style = window.getComputedStyle(el);
-      return style.backgroundImage !== 'none' && style.backgroundImage.includes('url(');
-    });
-    
-    elementsWithBackgroundImages.forEach(el => {
-      const bgImage = window.getComputedStyle(el).backgroundImage;
-      if (bgImage.includes('url(') && !bgImage.includes('/root-logic-cidery/') && !bgImage.includes('http')) {
-        // Extract the URL from the background-image
-        const urlMatch = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
-        if (urlMatch && urlMatch[1]) {
-          const originalUrl = urlMatch[1];
-          const newUrl = '/root-logic-cidery' + (originalUrl.startsWith('/') ? '' : '/') + originalUrl;
-          console.log(`Fixing background image: ${originalUrl} → ${newUrl}`);
-          el.style.backgroundImage = `url('${newUrl}')`;
+    // 1. Intercept all image loading using a MutationObserver
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'src' && 
+            mutation.target.tagName === 'IMG') {
+          fixImageSrc(mutation.target);
         }
-      }
-    });
-    
-    // Handle images that load later or are added dynamically
-    window.addEventListener('load', function() {
-      // Re-run the fix for any images that might have been missed
-      const allImages = document.querySelectorAll('img');
-      allImages.forEach(img => {
-        if (img.naturalWidth === 0 && !img.src.includes('/root-logic-cidery/') && !img.src.startsWith('http')) {
-          const originalSrc = img.getAttribute('src');
-          if (originalSrc) {
-            // Add the base path to fix the image
-            const newSrc = '/root-logic-cidery' + (originalSrc.startsWith('/') ? '' : '/') + originalSrc;
-            console.log(`Fixing missed image path: ${originalSrc} → ${newSrc}`);
-            img.src = newSrc;
-          }
+        
+        if (mutation.addedNodes.length) {
+          mutation.addedNodes.forEach(function(node) {
+            // Check if the added node is an element
+            if (node.nodeType === 1) {
+              // Fix all images within the added node
+              const images = node.querySelectorAll ? node.querySelectorAll('img') : [];
+              Array.from(images).forEach(fixImageSrc);
+              
+              // If the node itself is an image, fix it
+              if (node.tagName === 'IMG') {
+                fixImageSrc(node);
+              }
+            }
+          });
         }
       });
     });
+    
+    // Start observing the entire document
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['src'],
+      childList: true,
+      subtree: true
+    });
+    
+    // 2. Fix all current images on page
+    function fixAllImages() {
+      const images = document.querySelectorAll('img');
+      images.forEach(fixImageSrc);
+      
+      // Fix CSS background images
+      fixCssBackgroundImages();
+    }
+    
+    // 3. Function to fix individual image src
+    function fixImageSrc(img) {
+      try {
+        const src = img.getAttribute('src');
+        if (!src) return;
+        
+        // Skip if already fixed or is absolute URL
+        if (src.includes(basePath) || src.startsWith('http') || src.startsWith('data:')) {
+          return;
+        }
+        
+        // Fix the path
+        const newSrc = basePath + (src.startsWith('/') ? src : '/' + src);
+        console.log(`Fixing image path: ${src} → ${newSrc}`);
+        img.setAttribute('src', newSrc);
+      } catch (e) {
+        console.warn('Error fixing image:', e);
+      }
+    }
+    
+    // 4. Fix CSS background images
+    function fixCssBackgroundImages() {
+      // Create a style element for our fixed URLs
+      const styleElement = document.createElement('style');
+      document.head.appendChild(styleElement);
+      
+      // Get all elements with computed style
+      const allElements = document.querySelectorAll('*');
+      let cssRules = [];
+      
+      allElements.forEach((el, index) => {
+        const style = window.getComputedStyle(el);
+        const bgImage = style.backgroundImage;
+        
+        if (bgImage && bgImage !== 'none' && bgImage.includes('url(') && 
+            !bgImage.includes(basePath) && !bgImage.includes('http')) {
+          
+          // Extract the URL
+          const urlMatch = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+          if (urlMatch && urlMatch[1]) {
+            const originalUrl = urlMatch[1];
+            // Fix the path
+            const newUrl = basePath + (originalUrl.startsWith('/') ? originalUrl : '/' + originalUrl);
+            
+            // Add a unique class to the element
+            const className = `gh-fixed-bg-${index}`;
+            el.classList.add(className);
+            
+            // Create a CSS rule for this element
+            cssRules.push(`.${className} { background-image: url("${newUrl}") !important; }`);
+            console.log(`Fixing background image: ${originalUrl} → ${newUrl}`);
+          }
+        }
+      });
+      
+      // Apply all rules at once
+      if (cssRules.length > 0) {
+        styleElement.textContent = cssRules.join('\n');
+      }
+    }
+    
+    // 5. Run on DOMContentLoaded and again on load to catch everything
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fixAllImages);
+    } else {
+      fixAllImages();
+    }
+    
+    window.addEventListener('load', fixAllImages);
+    
+    // 6. Expose a global function to fix images on demand
+    window.fixGithubPagesImages = fixAllImages;
   }
-}); 
+})(); 
