@@ -1581,7 +1581,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     callbacks: {
                       label: function(context) {
                         let value = context.raw;
-                        return 'Annual Profit: $' + value.toLocaleString();
+                        return 'Annual Profit: $' + (value as number).toLocaleString();
                       }
                     }
                   }
@@ -1595,8 +1595,8 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     },
                     ticks: {
                       callback: function(value) {
-                        if (value >= 1000) {
-                          return '$' + (value/1000) + 'k';
+                        if ((value as number) >= 1000) {
+                          return '$' + ((value as number)/1000) + 'k';
                         }
                         return '$' + value;
                       }
