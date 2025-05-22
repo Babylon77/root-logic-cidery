@@ -149,7 +149,7 @@ export default function History() {
 
                 <div className="relative h-[300px] md:h-[400px] mb-8">
                   <OptimizedImage
-                    src="/images/cider-room.webp"
+                    src="/images/cider room.webp"
                     alt="Cider production at Colonial Cider"
                     fill
                     className="object-cover rounded-lg"
