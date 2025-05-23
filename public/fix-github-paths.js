@@ -23,6 +23,12 @@
         const newSrc = `${GITHUB_BASE}${src.startsWith('/') ? src : `/${src}`}`;
         console.log(`Fixed image: ${src} → ${newSrc}`);
         img.setAttribute('src', newSrc);
+        // Also update the srcset if it exists
+        const srcset = img.getAttribute('srcset');
+        if (srcset) {
+          const newSrcset = srcset.replace(/(^|,\s*)(\/)([^,\s]*)/g, `$1${GITHUB_BASE}$2$3`);
+          img.setAttribute('srcset', newSrcset);
+        }
       }
     });
     
@@ -38,10 +44,37 @@
         if (match && match[1] && !match[1].startsWith('http')) {
           const originalUrl = match[1];
           const newUrl = `${GITHUB_BASE}${originalUrl.startsWith('/') ? originalUrl : `/${originalUrl}`}`;
+          console.log(`Fixed background image: ${originalUrl} → ${newUrl}`);
           el.style.backgroundImage = `url('${newUrl}')`;
         }
       }
     });
+    
+    // Fix any CSS rules that might contain image URLs
+    try {
+      for (let stylesheet of document.styleSheets) {
+        try {
+          for (let rule of stylesheet.cssRules || stylesheet.rules || []) {
+            if (rule.style && rule.style.backgroundImage) {
+              const bgImage = rule.style.backgroundImage;
+              if (bgImage.includes('url(') && !bgImage.includes(GITHUB_BASE)) {
+                const match = bgImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+                if (match && match[1] && !match[1].startsWith('http')) {
+                  const originalUrl = match[1];
+                  const newUrl = `${GITHUB_BASE}${originalUrl.startsWith('/') ? originalUrl : `/${originalUrl}`}`;
+                  rule.style.backgroundImage = `url('${newUrl}')`;
+                  console.log(`Fixed CSS background image: ${originalUrl} → ${newUrl}`);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          // Cross-origin stylesheets might cause security errors, skip them
+        }
+      }
+    } catch (e) {
+      console.warn('Could not access some stylesheets:', e);
+    }
   }
   
   // Fix links to prevent navigation issues
@@ -106,7 +139,7 @@
     console.log('GitHub Pages path fixing complete');
   }
 
-  // Run immediately
+  // Run immediately and repeatedly to catch all dynamic content
   runAllFixers();
   
   // Also run when DOM is fully loaded
@@ -117,8 +150,10 @@
   // Run again after everything is loaded
   window.addEventListener('load', function() {
     runAllFixers();
-    // Run once more after a delay to catch lazy-loaded content
+    // Run multiple times to catch lazy-loaded content
+    setTimeout(runAllFixers, 500);
     setTimeout(runAllFixers, 1000);
+    setTimeout(runAllFixers, 2000);
   });
   
   // Set up MutationObserver to handle dynamically added content
@@ -132,19 +167,27 @@
       }
       
       if (mutation.addedNodes.length) {
-        shouldFix = true;
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) { // Element node
+            // Check if it's an image or contains images
+            if (node.tagName === 'IMG' || node.querySelector && node.querySelector('img')) {
+              shouldFix = true;
+            }
+          }
+        });
       }
     });
     
     if (shouldFix) {
-      runAllFixers();
+      // Small delay to let the DOM settle
+      setTimeout(runAllFixers, 50);
     }
   });
   
   // Start observing the document with the configured parameters
   observer.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ['src', 'href'],
+    attributeFilter: ['src', 'href', 'srcset'],
     childList: true,
     subtree: true
   });

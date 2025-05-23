@@ -9,12 +9,16 @@ const basePath = isGitHubPages ? '/root-logic-cidery' : '';
 const nextConfig = {
   output: 'export',
   basePath: basePath,
-  assetPrefix: basePath,
+  assetPrefix: basePath ? `${basePath}/` : '',
   images: {
     unoptimized: true,
   },
   // This is helpful for both GitHub Pages and Netlify
   trailingSlash: true,
+  // Explicitly set the publicRuntimeConfig to help with public assets
+  publicRuntimeConfig: {
+    basePath: basePath,
+  },
 }
 
 module.exports = nextConfig 
