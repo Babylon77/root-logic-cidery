@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import Layout from '../components/Layout'
 
 export default function Contact() {
@@ -19,7 +19,7 @@ export default function Contact() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[40vh] md:h-[50vh]">
-        <Image
+        <OptimizedImage
           src="/images/farm ariel.webp"
           alt="Root Logic in winter"
           fill
@@ -185,7 +185,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Find Us</h2>
           <div className="relative h-[400px] md:h-[500px] w-full">
-            <Image
+            <OptimizedImage
               src="/images/ariel 4.webp"
               alt="Map of our location"
               fill

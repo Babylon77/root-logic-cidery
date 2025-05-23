@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import Layout from '../components/Layout'
 
 export default function OurStory() {
@@ -6,7 +6,7 @@ export default function OurStory() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/Franklin Apple.jpeg"
           alt="Our historic farmhouse"
           fill
@@ -28,14 +28,14 @@ export default function OurStory() {
             <div>
               <h2 className="section-title">Our Vision</h2>
               <p className="text-lg text-gray-600 mb-6">
-                The story of Root Logic begins in 2025, when Jason and Laney will purchase this established 25-acre orchard in Wantage, New Jersey. We're thrilled to become the new stewards of this special property that already boasts over 500 apple trees, many of heritage varieties perfectly suited to craft cider production.
+                The story of Root Logic begins in 2025, when Jason and Laney will purchase this established 12+-acre orchard in Wantage, New Jersey. We're thrilled to become the new stewards of this special property that already boasts over 1000 apple trees, with 200+ heritage varieties perfectly suited to craft cider production.
               </p>
               <p className="text-lg text-gray-600">
                 For our family, this farm represents a new chapter—a place where our children Caius, Macklin, and Elliana can connect with the land while we build on the solid foundation established by the previous owners. Together, we'll continue the legacy of sustainable farming while bringing our own unique vision to this thriving orchard.
               </p>
             </div>
             <div className="relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Trees.webp"
                 alt="Our apple orchard"
                 fill
@@ -51,7 +51,7 @@ export default function OurStory() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Apple cider donuts.jpg"
                 alt="Our cider production"
                 fill
@@ -105,7 +105,7 @@ export default function OurStory() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             <div className="text-center">
               <div className="relative h-64 w-64 mx-auto rounded-full overflow-hidden mb-6">
-                <Image
+                <OptimizedImage
                   src="/images/apple press.jpg"
                   alt="Jason - Future Owner & Orchard Manager"
                   fill
@@ -120,7 +120,7 @@ export default function OurStory() {
             </div>
             <div className="text-center">
               <div className="relative h-64 w-64 mx-auto rounded-full overflow-hidden mb-6">
-                <Image
+                <OptimizedImage
                   src="/images/Honey.webp"
                   alt="Laney - Future Cider Maker"
                   fill
@@ -135,7 +135,7 @@ export default function OurStory() {
             </div>
             <div className="text-center">
               <div className="relative h-64 w-64 mx-auto rounded-full overflow-hidden mb-6">
-                <Image
+                <OptimizedImage
                   src="/images/orchard 3.webp"
                   alt="The Children - Caius, Macklin, and Elliana"
                   fill

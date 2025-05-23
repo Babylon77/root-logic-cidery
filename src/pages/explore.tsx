@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import Layout from '../components/Layout'
 
 export default function Explore() {
@@ -6,7 +6,7 @@ export default function Explore() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/Apple Drone.jpg"
           alt="Our beautiful garden"
           fill
@@ -41,7 +41,7 @@ export default function Explore() {
               </ul>
             </div>
             <div className="relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Honey-bee.jpg"
                 alt="Our organic garden"
                 fill
@@ -57,7 +57,7 @@ export default function Explore() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/fermentation.jpg"
                 alt="Our historic barn"
                 fill
@@ -125,7 +125,7 @@ export default function Explore() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Farm Map</h2>
           <div className="relative h-[400px] md:h-[500px] w-full">
-            <Image
+            <OptimizedImage
               src="/images/ariel 3.webp"
               alt="Aerial view of our farm"
               fill

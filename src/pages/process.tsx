@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
@@ -7,7 +7,7 @@ export default function Process() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/Cider Making Process.webp"
           alt="Our cider production facility"
           fill
@@ -30,7 +30,7 @@ export default function Process() {
           {/* Step 1: Harvesting */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Cider Orchard.jpg"
                 alt="Apple harvesting"
                 fill
@@ -56,7 +56,7 @@ export default function Process() {
           {/* Step 2: Pressing */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-1 md:order-2 relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/apple press.jpg"
                 alt="Our apple press"
                 fill
@@ -82,7 +82,7 @@ export default function Process() {
           {/* Step 3: Fermentation */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/fermentation.jpg"
                 alt="Fermentation tanks"
                 fill
@@ -103,7 +103,7 @@ export default function Process() {
           {/* Step 4: Aging & Blending */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-1 md:order-2 relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/Bourbon_Aging_Barrel_1600x.jpg"
                 alt="Aging and blending"
                 fill
@@ -124,7 +124,7 @@ export default function Process() {
           {/* Step 5: Canning */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[300px] md:h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/canning.jpg"
                 alt="Canning line"
                 fill

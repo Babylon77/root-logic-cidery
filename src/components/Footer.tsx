@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import OptimizedImage from './OptimizedImage'
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="flex items-center mb-4">
-              <Image
+              <OptimizedImage
                 src="/images/Root Logic 1.png"
                 alt="Root Logic Logo"
                 width={40}

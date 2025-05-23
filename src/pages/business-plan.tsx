@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import { useState } from 'react'
 import Layout from '../components/Layout'
 import BusinessCalculator from '../components/BusinessCalculator'
@@ -30,7 +30,7 @@ export default function BusinessPlan() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/Heirloom Apples ID.jpg"
           alt="Our apple orchard"
           fill
@@ -73,7 +73,7 @@ export default function BusinessPlan() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/apple cider vinegar.webp"
                 alt="Our cider production facility"
                 fill
@@ -304,7 +304,7 @@ export default function BusinessPlan() {
               </p>
             </div>
             <div className="relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/orchard 2.webp"
                 alt="Our apple trees"
                 fill

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import OptimizedImage from './OptimizedImage'
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -13,7 +13,7 @@ export default function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <Image
+              <OptimizedImage
                 src="/images/Root Logic 1.png"
                 alt="Root Logic Logo"
                 width={40}

@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import OptimizedImage from '../components/OptimizedImage'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
@@ -7,7 +7,7 @@ export default function Stay() {
     <Layout>
       {/* Hero Section */}
       <section className="relative h-[50vh] md:h-[60vh]">
-        <Image
+        <OptimizedImage
           src="/images/farm ariel 5.webp"
           alt="Our historic farmhouse"
           fill
@@ -30,7 +30,7 @@ export default function Stay() {
           {/* Farmhouse */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative h-[400px]">
-              <Image
+              <OptimizedImage
                 src="/images/farmhouse.webp"
                 alt="Our historic farmhouse"
                 fill
@@ -96,7 +96,7 @@ export default function Stay() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
             <div>
               <div className="relative h-[250px] mb-6">
-                <Image
+                <OptimizedImage
                   src="/images/orchard 2.webp"
                   alt="Mountain Creek Ski Resort"
                   fill
@@ -121,7 +121,7 @@ export default function Stay() {
             </div>
             <div>
               <div className="relative h-[250px] mb-6">
-                <Image
+                <OptimizedImage
                   src="/images/barn.webp"
                   alt="Local attractions"
                   fill
