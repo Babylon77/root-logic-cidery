@@ -6,6 +6,8 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Root Logic - Where Tradition Meets Innovation" />
+        {/* This script only runs on GitHub Pages and fixes all paths */}
+        <script src="/fix-github-paths.js" />
       </Head>
       <body>
         <Main />

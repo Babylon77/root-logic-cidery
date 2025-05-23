@@ -1,9 +1,26 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Layout from '../components/Layout'
 import OptimizedImage from '../components/OptimizedImage'
 
 export default function Home() {
+  const router = useRouter();
+
+  // Handle GitHub Pages redirect from 404.html
+  useEffect(() => {
+    // Check if we have a redirect query parameter
+    const { redirect } = router.query;
+    if (redirect && typeof redirect === 'string') {
+      // Strip leading and trailing slashes and redirect
+      const path = redirect.replace(/^\/+|\/+$/g, '');
+      if (path) {
+        router.push('/' + path);
+      }
+    }
+  }, [router]);
+
   return (
     <Layout 
       title="Root Logic Cidery - Craft Hard Cider from Heritage Apples"
