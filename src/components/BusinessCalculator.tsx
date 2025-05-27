@@ -343,15 +343,17 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const remainingBushels = totalBushels * (sliders.productionEfficiency / 100) - bushelsForCider;
     const appleSalesBushels = remainingBushels * (appleSalesPercent / 100) * (sliders.salesEfficiency / 100);
     
-    // Different pricing for different sales channels
-    let applePrice = 0;
+    // Premium pricing for heritage organic cider apples to craft cideries
+    let applePricePerBushel = 0;
     if (sliders.implementationPhase === 1) {
-      applePrice = 2.50; // Selling to established cideries - higher price per bushel
+      applePricePerBushel = 45; // Premium price to craft cideries for heritage organic cider apples
+    } else if (sliders.implementationPhase === 2) {
+      applePricePerBushel = 35; // Still selling some to cideries, some direct
     } else {
-      applePrice = 1.50; // Direct sales to consumers - lower price per bushel
+      applePricePerBushel = 25; // Mostly direct sales, lower volume to cideries
     }
     
-    const freshAppleRevenue = appleSalesBushels * sliders.applesPerBushel * (applePrice / sliders.applesPerBushel);
+    const freshAppleRevenue = appleSalesBushels * applePricePerBushel;
     
     // 3. Airbnb revenue
     const abnbRevenue = sliders.abnbNights * sliders.abnbRate
@@ -362,20 +364,60 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     // Total revenue
     const annualRevenue = ciderRevenue + freshAppleRevenue + abnbRevenue + otherProductsRevenue
     
-    // Calculate specific expenses
+    // Calculate phase-specific expenses
     const packagingCosts = soldCiderGallons * sliders.packagingCostPerGallon
     const exciseTax = soldCiderGallons * sliders.exciseTaxPerGallon
-    const licensingCosts = sliders.licensingCosts
-    const distributionCosts = annualRevenue * (sliders.distributionCostPercent / 100)
     
-    // Calculate total expenses including new channel-specific costs
-    const calculatedLaborExpenses = sliders.laborHourlyRate * 
-      (sliders.orchardAcres * 500) * (1 - sliders.automationLevel / 100) // 500 hours per acre annually
+    // Scale expenses by phase
+    let phaseLicensingCosts = 0;
+    let phaseUtilityExpenses = 0;
+    let phaseMaintenanceExpenses = 0;
+    let phaseDistributionCostPercent = 0;
+    let laborHoursMultiplier = 1;
+    
+    switch(sliders.implementationPhase) {
+      case 1: // Minimal operations, mostly apple sales
+        phaseLicensingCosts = sliders.licensingCosts * 0.3; // Basic licenses only
+        phaseUtilityExpenses = sliders.utilityExpenses * 0.4; // Minimal facility use
+        phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.3; // Basic orchard maintenance
+        phaseDistributionCostPercent = 2; // Minimal distribution costs
+        laborHoursMultiplier = 0.6; // Reduced labor needs
+        break;
+      case 2: // Moderate operations
+        phaseLicensingCosts = sliders.licensingCosts * 0.7; // More licenses needed
+        phaseUtilityExpenses = sliders.utilityExpenses * 0.7; // Moderate facility use
+        phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.7; // More equipment to maintain
+        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.8; // Growing distribution
+        laborHoursMultiplier = 0.8; // Moderate labor needs
+        break;
+      case 3: // Full operations
+        phaseLicensingCosts = sliders.licensingCosts; // All licenses
+        phaseUtilityExpenses = sliders.utilityExpenses; // Full facility use
+        phaseMaintenanceExpenses = sliders.maintenanceExpenses; // Full maintenance
+        phaseDistributionCostPercent = sliders.distributionCostPercent; // Full distribution costs
+        laborHoursMultiplier = 1; // Full labor needs
+        break;
+    }
+    
+    const distributionCosts = annualRevenue * (phaseDistributionCostPercent / 100)
+    
+    // Calculate phase-adjusted labor expenses
+    const baseLaborHours = sliders.orchardAcres * 500; // Base hours per acre
+    const phaseLaborHours = baseLaborHours * laborHoursMultiplier * (1 - sliders.automationLevel / 100);
+    const calculatedLaborExpenses = phaseLaborHours * sliders.laborHourlyRate;
+    
     const calculatedMarketingExpenses = annualRevenue * (sliders.marketingBudgetPercent / 100)
-    const annualExpenses = sliders.utilityExpenses + calculatedLaborExpenses + 
-      sliders.maintenanceExpenses + calculatedMarketingExpenses + annualFixedCosts +
-      packagingCosts + exciseTax + licensingCosts + distributionCosts +
-      slottingFees + promotionalAllowances + salesRepCommissions + workingCapitalCost
+    
+    // Phase-adjusted channel costs (only apply to wholesale operations)
+    const phaseSlottingFees = sliders.implementationPhase >= 2 ? slottingFees : 0;
+    const phasePromotionalAllowances = sliders.implementationPhase >= 2 ? promotionalAllowances : 0;
+    const phaseSalesRepCommissions = sliders.implementationPhase >= 2 ? salesRepCommissions : 0;
+    const phaseWorkingCapitalCost = workingCapitalCost * (sliders.implementationPhase / 3); // Scale with phase
+    
+    const annualExpenses = phaseUtilityExpenses + calculatedLaborExpenses + 
+      phaseMaintenanceExpenses + calculatedMarketingExpenses + annualFixedCosts +
+      packagingCosts + exciseTax + phaseLicensingCosts + distributionCosts +
+      phaseSlottingFees + phasePromotionalAllowances + phaseSalesRepCommissions + phaseWorkingCapitalCost
     
     // Calculate profit and ROI
     const annualProfit = annualRevenue - annualExpenses
@@ -393,7 +435,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const gallonsLost = ciderGallons - soldCiderGallons
     
     // Calculate labor hours breakdown
-    const totalLaborHours = calculatedLaborExpenses / sliders.laborHourlyRate
+    const totalLaborHours = phaseLaborHours
     
     // Calculate hours by type
     const farmLaborHours = totalLaborHours * (sliders.farmLaborPercent / 100)
@@ -441,7 +483,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       ciderGallons: Math.round(netCiderGallons),
       packagingCosts: Math.round(packagingCosts),
       exciseTax: Math.round(exciseTax),
-      licensingCosts: licensingCosts,
+      licensingCosts: Math.round(phaseLicensingCosts),
       pintEquivalent: Math.round(pintEquivalent),
       costPerPint: Math.round(costPerPint * 100) / 100,
       revenuePerPint: Math.round(revenuePerPint * 100) / 100,
@@ -530,14 +572,16 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           results.exciseTax,
           results.licensingCosts,
           results.distributionCosts,
-          sliders.utilityExpenses,
+          // Calculate phase-adjusted utility expenses
+          Math.round(sliders.utilityExpenses * (sliders.implementationPhase === 1 ? 0.4 : sliders.implementationPhase === 2 ? 0.7 : 1)),
           results.laborExpenses,
-          sliders.maintenanceExpenses,
+          // Calculate phase-adjusted maintenance expenses  
+          Math.round(sliders.maintenanceExpenses * (sliders.implementationPhase === 1 ? 0.3 : sliders.implementationPhase === 2 ? 0.7 : 1)),
           results.marketingExpenses,
-          // Calculate total channel costs
-          Math.round(sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers + 
-                    results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100),
-          Math.round(results.annualRevenue * sliders.workingCapitalPercent / 100 * 0.06)
+          // Calculate phase-adjusted channel costs
+          Math.round((sliders.implementationPhase >= 2 ? sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers : 0) + 
+                    (sliders.implementationPhase >= 2 ? results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100 : 0)),
+          Math.round(results.annualRevenue * sliders.workingCapitalPercent / 100 * 0.06 * (sliders.implementationPhase / 3))
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',   // red
@@ -968,7 +1012,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               })()}
             </p>
             <p className="text-xs text-gray-400 mt-1">
-              {sliders.implementationPhase === 1 ? 'Sold to established cideries' : 'Direct sales to consumers'}
+              {sliders.implementationPhase === 1 ? `$45/bushel to craft cideries` : 
+               sliders.implementationPhase === 2 ? `$35/bushel mixed sales` : 
+               `$25/bushel direct sales`}
             </p>
           </div>
         </div>
