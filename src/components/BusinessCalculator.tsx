@@ -1001,14 +1001,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                   <h4 className="font-medium text-gray-800 mb-2">Step 3: Convert to 16oz Cans</h4>
                   <div className="grid grid-cols-3 gap-2 text-sm">
                     <div className="font-medium">Theoretical Gallons</div>
-                    <div className="col-span-2">{results.ciderGallons.toLocaleString()} gallons</div>
+                    <div className="col-span-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel).toLocaleString()} gallons</div>
                     
                     <div className="font-medium">Cans per Gallon</div>
                     <div className="col-span-2">{sliders.cansPerGallon} 16oz cans</div>
                     
                     <div className="font-medium">Total Cans</div>
                     <div className="col-span-2 font-bold">
-                      {results.totalCanEquivalent.toLocaleString()} cans
+                      {Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.cansPerGallon).toLocaleString()} cans
                     </div>
                   </div>
                   <div className="mt-2 text-xs text-gray-500">
