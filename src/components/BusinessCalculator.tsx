@@ -112,10 +112,10 @@ const DEFAULT_VALUES = {
   retailSalesPercent: 45, // percentage sold through liquor stores/grocery (medium margin)
   restaurantBarSalesPercent: 20, // percentage sold to restaurants/bars (lowest margin)
   
-  // Channel-specific pricing (increased for better margins)
-  taproomPintPrice: 7, // per pint in taproom (premium pricing)
-  retailWholesalePrice: 15, // per gallon wholesale to retailers (increased)
-  restaurantWholesalePrice: 13, // per gallon wholesale to restaurants/bars (increased)
+  // Channel-specific pricing (realistic craft cider pricing)
+  taproomPintPrice: 8, // per pint in taproom ($8/pint = $64/gallon)
+  retailWholesalePrice: 18, // per gallon wholesale to retailers (allows $15 retail 4-pack with retailer margin)
+  restaurantWholesalePrice: 22, // per gallon wholesale to restaurants/bars (allows $8/pint with bar margin)
   
   // Channel-specific costs (adjusted to more realistic levels for small cidery)
   slottingFeesPerSKU: 500, // annual slotting fees per product per major retailer (reduced)
