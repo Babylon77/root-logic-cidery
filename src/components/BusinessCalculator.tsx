@@ -138,15 +138,15 @@ const DEFAULT_VALUES = {
   phase1CapitalInvestment: 45000, // Basic equipment: small press, fermentation tanks
   
   // Phase 2 (Years 2-4): Expansion & Distribution
-  phase2CiderGallons: 2500, // More conservative ramp up to maintain profitability
-  phase2AppleSalesPercent: 70, // Still selling majority of apples for cash flow
+  phase2CiderGallons: 2000, // Conservative ramp up to maintain profitability
+  phase2AppleSalesPercent: 75, // Keep more apple sales for cash flow
   phase2TaproomDays: 104, // 2 days/week open
   phase2DistributionAccounts: 15, // Local restaurants and bottle shops
   phase2CapitalInvestment: 85000, // Expanded equipment, packaging line
   
   // Phase 3 (Years 5+): Full Operations
-  phase3CiderGallons: 6000, // More realistic full capacity that maintains margins
-  phase3AppleSalesPercent: 40, // Keep significant apple sales for cash flow
+  phase3CiderGallons: 4500, // Balanced capacity that maintains margins
+  phase3AppleSalesPercent: 55, // Keep majority apple sales for cash flow
   phase3TaproomDays: 312, // 6 days/week open
   phase3DistributionAccounts: 75, // Regional distribution NJ/PA/NY
   phase3CapitalInvestment: 125000, // Taproom expansion, full automation
@@ -404,21 +404,21 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         phaseUtilityExpenses = sliders.utilityExpenses * 0.4; // Minimal facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.3; // Basic orchard maintenance
         phaseDistributionCostPercent = 2; // Minimal distribution costs
-        laborHoursMultiplier = 0.6; // Reduced labor needs
+        laborHoursMultiplier = 0.65; // Reduced labor needs
         break;
       case 2: // Moderate operations
         phaseLicensingCosts = sliders.licensingCosts * 0.7; // More licenses needed
         phaseUtilityExpenses = sliders.utilityExpenses * 0.7; // Moderate facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.7; // More equipment to maintain
-        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.8; // Growing distribution
-        laborHoursMultiplier = 0.8; // Moderate labor needs
+        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.6; // Growing distribution but efficient
+        laborHoursMultiplier = 0.75; // More moderate labor increase
         break;
       case 3: // Full operations
         phaseLicensingCosts = sliders.licensingCosts; // All licenses
         phaseUtilityExpenses = sliders.utilityExpenses; // Full facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses; // Full maintenance
-        phaseDistributionCostPercent = sliders.distributionCostPercent; // Full distribution costs
-        laborHoursMultiplier = 1; // Full labor needs
+        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.8; // Efficient distribution
+        laborHoursMultiplier = 0.85; // Efficient operations with automation
         break;
     }
     
@@ -429,7 +429,20 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const phaseLaborHours = baseLaborHours * laborHoursMultiplier * (1 - sliders.automationLevel / 100);
     const calculatedLaborExpenses = phaseLaborHours * sliders.laborHourlyRate;
     
-    const calculatedMarketingExpenses = annualRevenue * (sliders.marketingBudgetPercent / 100)
+    // Marketing should be more fixed, not scale linearly with revenue
+    let baseMarketingBudget = 0;
+    switch(sliders.implementationPhase) {
+      case 1:
+        baseMarketingBudget = 15000; // Fixed budget for brand building
+        break;
+      case 2:
+        baseMarketingBudget = 25000; // Moderate increase for expansion
+        break;
+      case 3:
+        baseMarketingBudget = 35000; // Higher but not proportional to revenue
+        break;
+    }
+    const calculatedMarketingExpenses = baseMarketingBudget;
     
     // Phase-adjusted channel costs (only apply to wholesale operations)
     const phaseSlottingFees = sliders.implementationPhase >= 2 ? slottingFees : 0;
@@ -2539,6 +2552,171 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               </p>
             </div>
           )}
+        </div>
+      </div>
+      
+      {/* Detailed Financial Analysis - DEBUG MODE */}
+      <div className="mt-8 bg-red-50 p-6 rounded-lg border border-red-200">
+        <h3 className="text-xl font-bold text-red-800 mb-4">🔍 Detailed Financial Analysis (Debug Mode)</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Phase 1 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 1 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                <span className="font-mono">
+                  {sliders.implementationPhase === 1 ? 
+                    `$${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}` : 
+                    `$${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22)).toLocaleString()}`
+                  }
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Apple Revenue:</span>
+                <span className="font-mono">
+                  ${Math.round(results.totalBushels * 0.85 * 0.85 * 0.9 * 45).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                  ${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + 
+                    results.totalBushels * 0.85 * 0.85 * 0.9 * 45 + 
+                    (750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + results.totalBushels * 0.85 * 0.85 * 0.9 * 45) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round((750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + 
+                      results.totalBushels * 0.85 * 0.85 * 0.9 * 45 + 
+                      (750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + results.totalBushels * 0.85 * 0.85 * 0.9 * 45) * 0.15) * 0.08).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (60%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round(results.totalBushels * 500 * 0.6 * 0.6 * 18).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Fixed Costs:</span>
+                  <span className="font-mono text-red-600">-${results.annualFixedCosts.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Phase 2 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 2 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                <span className="font-mono">
+                  ${Math.round(2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22)).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Apple Revenue:</span>
+                <span className="font-mono">
+                  ${Math.round((results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                  ${Math.round(2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + 
+                    (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35 + 
+                    (2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round((2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + 
+                      (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35 + 
+                      (2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35) * 0.15) * 0.08).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (80%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round(results.totalBushels * 500 * 0.8 * 0.6 * 18).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Channel Costs:</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round(500 * 2 * 3 + (2500 * 0.95 * 0.9 * (0.4 * 18 + 0.15 * 22)) * (8 + 3) / 100).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Phase 3 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 3 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                <span className="font-mono">
+                  ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22)).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Apple Revenue:</span>
+                <span className="font-mono">
+                  ${Math.round((results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                  ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + 
+                    (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25 + 
+                    (6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round((6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + 
+                      (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25 + 
+                      (6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25) * 0.15) * 0.08).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (100%):</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round(results.totalBushels * 500 * 1.0 * 0.6 * 18).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Channel Costs:</span>
+                  <span className="font-mono text-red-600">
+                    -${Math.round(500 * 2 * 3 + (6000 * 0.95 * 0.9 * (0.45 * 18 + 0.2 * 22)) * (8 + 3) / 100).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-6 bg-yellow-100 p-4 rounded-lg">
+          <h4 className="font-bold text-yellow-800 mb-2">🚨 Key Issues Identified:</h4>
+          <ul className="text-sm text-yellow-700 space-y-1">
+            <li><strong>Marketing costs scale with revenue:</strong> Phase 3 pays ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) * 1.15 * 0.08).toLocaleString()} vs Phase 1's ${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) * 1.15 * 0.08).toLocaleString()}</li>
+            <li><strong>Labor scales up faster than revenue:</strong> 100% vs 60% labor but revenue doesn't triple</li>
+            <li><strong>Apple revenue drops dramatically:</strong> From ${Math.round(results.totalBushels * 0.85 * 0.85 * 0.9 * 45).toLocaleString()} to ${Math.round((results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25).toLocaleString()}</li>
+            <li><strong>Channel costs appear in Phase 2+:</strong> Adding significant overhead</li>
+          </ul>
         </div>
       </div>
       
