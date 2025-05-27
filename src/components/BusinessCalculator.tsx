@@ -1647,6 +1647,8 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             <p className="text-sm text-gray-500">Profit per pint: ${results.profitPerPint.toFixed(2)}</p>
           </div>
         </div>
+          </div>
+        </div>
       </div>
       
       {/* Marketing Strategy */}
