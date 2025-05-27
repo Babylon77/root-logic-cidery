@@ -1372,44 +1372,137 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* Charts and Analysis */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue Sources</h3>
-          <div className="h-64">
-            <Pie 
-              data={revenueData} 
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: 'bottom',
-                  }
-                }
-              }} 
-            />
+              {/* Detailed Expense Flow Analysis */}
+        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Expense Flow Analysis</h3>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Expense Waterfall */}
+            <div>
+              <h4 className="font-medium text-gray-700 mb-4">Expense Categories (Phase {sliders.implementationPhase})</h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-red-50 rounded">
+                  <span className="text-sm font-medium">Fixed Costs (Mortgage, Taxes, Insurance)</span>
+                  <span className="font-bold text-red-600">${results.annualFixedCosts.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-orange-50 rounded">
+                  <span className="text-sm font-medium">Labor (Family + Hired Help)</span>
+                  <span className="font-bold text-orange-600">${results.laborExpenses.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-yellow-50 rounded">
+                  <span className="text-sm font-medium">Production (Packaging + Excise Tax)</span>
+                  <span className="font-bold text-yellow-600">${Math.round(results.packagingCosts + results.exciseTax).toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
+                  <span className="text-sm font-medium">Operations (Utilities + Maintenance)</span>
+                  <span className="font-bold text-blue-600">
+                    ${Math.round(
+                      (sliders.implementationPhase === 1 ? sliders.utilityExpenses * 0.4 : 
+                       sliders.implementationPhase === 2 ? sliders.utilityExpenses * 0.7 : 
+                       sliders.utilityExpenses) +
+                      (sliders.implementationPhase === 1 ? sliders.maintenanceExpenses * 0.3 : 
+                       sliders.implementationPhase === 2 ? sliders.maintenanceExpenses * 0.7 : 
+                       sliders.maintenanceExpenses)
+                    ).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-purple-50 rounded">
+                  <span className="text-sm font-medium">Marketing (DIY + Paid)</span>
+                  <span className="font-bold text-purple-600">${results.marketingExpenses.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-green-50 rounded">
+                  <span className="text-sm font-medium">Self-Distribution</span>
+                  <span className="font-bold text-green-600">${results.distributionCosts.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                  <span className="text-sm font-medium">Licensing & Permits</span>
+                  <span className="font-bold text-gray-600">${results.licensingCosts.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-pink-50 rounded">
+                  <span className="text-sm font-medium">Channel Costs (Minimal w/ Self-Dist)</span>
+                  <span className="font-bold text-pink-600">
+                    ${Math.round(
+                      (sliders.implementationPhase >= 3 ? sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers * 0.3 : 0) + 
+                      (sliders.implementationPhase >= 3 ? results.wholesaleRevenue * (sliders.promotionalAllowancePercent * 0.2) / 100 : 0)
+                    ).toLocaleString()}
+                  </span>
+                </div>
+                <div className="border-t-2 border-gray-300 pt-3 flex justify-between items-center p-3 bg-gray-100 rounded font-bold">
+                  <span>Total Annual Expenses</span>
+                  <span className="text-red-700">${results.annualExpenses.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Phase Scaling Explanation */}
+            <div>
+              <h4 className="font-medium text-gray-700 mb-4">How Expenses Scale by Phase</h4>
+              <div className="space-y-4">
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h5 className="font-medium text-gray-800 mb-2">Phase 1 (Current: {sliders.implementationPhase === 1 ? 'Active' : 'Inactive'})</h5>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Utilities: 40% of full capacity (${Math.round(sliders.utilityExpenses * 0.4).toLocaleString()})</li>
+                    <li>• Maintenance: 30% of full capacity (${Math.round(sliders.maintenanceExpenses * 0.3).toLocaleString()})</li>
+                    <li>• Labor: 65% efficiency with family help</li>
+                    <li>• Distribution: 0.5% (minimal self-delivery)</li>
+                    <li>• No channel costs (direct sales only)</li>
+                  </ul>
+                </div>
+                
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h5 className="font-medium text-gray-800 mb-2">Phase 2 (Current: {sliders.implementationPhase === 2 ? 'Active' : 'Inactive'})</h5>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Utilities: 70% of full capacity (${Math.round(sliders.utilityExpenses * 0.7).toLocaleString()})</li>
+                    <li>• Maintenance: 70% of full capacity (${Math.round(sliders.maintenanceExpenses * 0.7).toLocaleString()})</li>
+                    <li>• Labor: 75% efficiency with some hired help</li>
+                    <li>• Distribution: 1.5% (regular delivery routes)</li>
+                    <li>• Minimal channel costs for local accounts</li>
+                  </ul>
+                </div>
+                
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h5 className="font-medium text-gray-800 mb-2">Phase 3 (Current: {sliders.implementationPhase === 3 ? 'Active' : 'Inactive'})</h5>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Utilities: 100% of full capacity (${sliders.utilityExpenses.toLocaleString()})</li>
+                    <li>• Maintenance: 100% of full capacity (${sliders.maintenanceExpenses.toLocaleString()})</li>
+                    <li>• Labor: 85% efficiency with automation</li>
+                    <li>• Distribution: 2.5% (regional delivery operation)</li>
+                    <li>• Some channel costs for major retail chains</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Cost Per Unit Analysis */}
+          <div className="mt-6 bg-gray-50 p-4 rounded-lg">
+            <h4 className="font-medium text-gray-800 mb-3">Cost Per Unit Analysis</h4>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="text-center">
+                <p className="text-sm text-gray-600">Cost per Gallon</p>
+                <p className="text-lg font-bold text-gray-800">
+                  ${(results.annualExpenses / Math.max(results.ciderGallons, 1)).toFixed(2)}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-600">Cost per Pint</p>
+                <p className="text-lg font-bold text-gray-800">${results.costPerPint.toFixed(2)}</p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-600">Cost per Bushel</p>
+                <p className="text-lg font-bold text-gray-800">
+                  ${(results.annualExpenses / Math.max(results.totalBushels * (sliders.productionEfficiency/100), 1)).toFixed(2)}
+                </p>
+              </div>
+              <div className="text-center">
+                <p className="text-sm text-gray-600">Fixed Cost Coverage</p>
+                <p className="text-lg font-bold text-gray-800">
+                  {((results.annualFixedCosts / results.annualRevenue) * 100).toFixed(1)}%
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Expense Categories</h3>
-          <div className="h-64">
-            <Pie 
-              data={expensesData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }}
-            />
-          </div>
-        </div>
-      </div>
 
       {/* Detailed Analysis Sections */}
       
@@ -2951,45 +3044,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* Charts and Graphs */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Key Performance Charts */}
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">        
         <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue Breakdown</h3>
-          <div className="h-64">
-            <Pie 
-              data={revenueData} 
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: 'bottom',
-                  }
-                }
-              }} 
-            />
-          </div>
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Expenses Breakdown</h3>
-          <div className="h-64">
-            <Pie 
-              data={expensesData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }}
-            />
-          </div>
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Profit Sensitivity to Apple Yield</h3>
           <div className="h-64">
             <Bar 
@@ -3029,6 +3086,43 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 }
               }}
             />
+          </div>
+        </div>
+        
+        <div className="bg-white p-6 rounded-lg shadow">
+          <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue vs Expense Comparison</h3>
+          <div className="h-64 flex items-center justify-center">
+            <div className="grid grid-cols-2 gap-8 w-full max-w-md">
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-2xl font-bold text-green-600">
+                    ${Math.round(results.annualRevenue / 1000)}k
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-gray-700">Revenue</p>
+                <p className="text-xs text-gray-500">Annual Income</p>
+              </div>
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-2">
+                  <span className="text-2xl font-bold text-red-600">
+                    ${Math.round(results.annualExpenses / 1000)}k
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-gray-700">Expenses</p>
+                <p className="text-xs text-gray-500">Annual Costs</p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-lg font-bold">
+              Net Profit: 
+              <span className={`ml-2 ${results.annualProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${results.annualProfit.toLocaleString()}
+              </span>
+            </p>
+            <p className="text-sm text-gray-500">
+              {((results.annualProfit / results.annualRevenue) * 100).toFixed(1)}% profit margin
+            </p>
           </div>
         </div>
       </div>
