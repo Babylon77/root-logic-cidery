@@ -1508,12 +1508,17 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <p className="text-sm text-gray-600">Apple Cost per Bushel</p>
                 <p className="text-lg font-bold text-gray-800">
                   ${(() => {
-                    // Calculate apple production costs (orchard operations)
+                    // Calculate incremental cost of growing apples (variable costs only)
+                    // Orchard labor: farm operations + harvest (but not fixed overhead)
                     const orchardLaborCost = results.laborExpenses * ((sliders.farmLaborPercent + sliders.harvestLaborPercent) / 100);
-                    const orchardOverhead = results.annualFixedCosts * 0.95; // Most fixed costs are for the orchard/property
-                    const orchardMarketing = results.marketingExpenses * 0.3; // Some marketing for apple sales
                     
-                    const totalAppleCosts = orchardLaborCost + orchardOverhead + orchardMarketing;
+                    // Variable orchard costs: fertilizer, spraying, fuel, etc. (estimate $500/acre)
+                    const variableOrchardCosts = sliders.orchardAcres * 500;
+                    
+                    // Small portion of marketing for apple sales
+                    const appleMarketing = results.marketingExpenses * 0.2;
+                    
+                    const totalAppleCosts = orchardLaborCost + variableOrchardCosts + appleMarketing;
                     const effectiveBushels = results.totalBushels * (sliders.productionEfficiency/100);
                     return (totalAppleCosts / Math.max(effectiveBushels, 1)).toFixed(2);
                   })()}
