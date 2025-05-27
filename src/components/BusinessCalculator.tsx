@@ -1479,25 +1479,41 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             <h4 className="font-medium text-gray-800 mb-3">Cost Per Unit Analysis</h4>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="text-center">
-                <p className="text-sm text-gray-600">Cost per Gallon</p>
+                <p className="text-sm text-gray-600">Cider Cost per Gallon</p>
                 <p className="text-lg font-bold text-gray-800">
-                  ${(results.annualExpenses / Math.max(results.ciderGallons, 1)).toFixed(2)}
+                  ${(() => {
+                    // Calculate cider-specific costs (production + packaging + excise + portion of overhead)
+                    const ciderSpecificCosts = results.packagingCosts + results.exciseTax + 
+                      (results.laborExpenses * 0.4) + // 40% of labor for cider production
+                      (results.annualFixedCosts * 0.3); // 30% of fixed costs allocated to cider
+                    return (ciderSpecificCosts / Math.max(results.ciderGallons, 1)).toFixed(2);
+                  })()}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">Cost per Pint</p>
-                <p className="text-lg font-bold text-gray-800">${results.costPerPint.toFixed(2)}</p>
+                <p className="text-sm text-gray-600">Cider Profit per Pint</p>
+                <p className="text-lg font-bold text-gray-800">${results.profitPerPint.toFixed(2)}</p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">Cost per Bushel</p>
+                <p className="text-sm text-gray-600">Apple Cost per Bushel</p>
                 <p className="text-lg font-bold text-gray-800">
-                  ${(results.annualExpenses / Math.max(results.totalBushels * (sliders.productionEfficiency/100), 1)).toFixed(2)}
+                  ${(() => {
+                    // Calculate apple-specific costs (orchard labor + portion of overhead)
+                    const appleSpecificCosts = (results.laborExpenses * 0.6) + // 60% of labor for apple production
+                      (results.annualFixedCosts * 0.7) + // 70% of fixed costs allocated to apple operations
+                      results.marketingExpenses + results.distributionCosts;
+                    const effectiveBushels = results.totalBushels * (sliders.productionEfficiency/100);
+                    return (appleSpecificCosts / Math.max(effectiveBushels, 1)).toFixed(2);
+                  })()}
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-sm text-gray-600">Fixed Cost Coverage</p>
+                <p className="text-sm text-gray-600">Break-even Revenue</p>
                 <p className="text-lg font-bold text-gray-800">
-                  {((results.annualFixedCosts / results.annualRevenue) * 100).toFixed(1)}%
+                  ${Math.round(results.annualExpenses / 1000)}k
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {((results.annualExpenses / results.annualRevenue) * 100).toFixed(1)}% of current revenue
                 </p>
               </div>
             </div>
