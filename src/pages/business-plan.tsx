@@ -839,6 +839,10 @@ export default function BusinessPlan() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Implementation Timeline</h2>
+          <p className="text-lg text-gray-600 text-center mb-8 max-w-4xl mx-auto">
+            Our business implementation follows a strategic 3-phase approach that aligns with our financial projections and market development strategy. Each phase builds upon the previous one, ensuring sustainable growth and profitability.
+          </p>
+          
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-800"></div>
             <div className="space-y-12">
@@ -846,8 +850,13 @@ export default function BusinessPlan() {
               <div className="relative pl-8 md:pl-0">
                 <div className="md:grid md:grid-cols-5 md:gap-8">
                   <div className="md:col-span-2 md:text-right md:pr-8">
-                    <h3 className="text-2xl font-bold text-gray-900">Phase 1: Foundation</h3>
-                    <p className="text-gray-500">Months 1-6</p>
+                    <h3 className="text-2xl font-bold text-gray-900">Phase 1: Brand Building</h3>
+                    <p className="text-gray-500">Year 1</p>
+                    <div className="mt-2 text-sm text-green-600">
+                      <p>750 gallons cider production</p>
+                      <p>85% apple sales to cideries</p>
+                      <p>Monthly barn events</p>
+                    </div>
                   </div>
                   <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 mt-3 md:mt-1">
                     <div className="h-8 w-8 rounded-full bg-green-800 border-4 border-white flex items-center justify-center">
@@ -856,13 +865,20 @@ export default function BusinessPlan() {
                   </div>
                   <div className="md:col-span-3 pt-3 md:pt-0 md:pl-8">
                     <div className="bg-white p-6 rounded-lg shadow-md">
+                      <h4 className="font-bold text-gray-900 mb-3">Foundation & Market Entry</h4>
                       <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                        <li>Acquire property and assess orchard condition</li>
-                        <li>Set up production facility and equipment</li>
-                        <li>Obtain necessary licenses and permits</li>
-                        <li>Develop initial product recipes</li>
-                        <li>Establish branding and packaging design</li>
+                        <li>Establish production facility and obtain all necessary licenses</li>
+                        <li>Launch initial cider production (750 gallons annually)</li>
+                        <li>Sell 85% of apple harvest to established craft cideries at premium prices</li>
+                        <li>Begin direct-to-consumer sales through farmers markets and on-site events</li>
+                        <li>Develop brand identity and establish digital presence</li>
+                        <li>Host monthly barn events to build local customer base</li>
                       </ul>
+                      <div className="mt-4 p-3 bg-green-50 rounded-lg">
+                        <p className="text-sm text-green-800">
+                          <strong>Investment:</strong> $45,000 capital | <strong>Focus:</strong> Cash flow positive through apple sales while building cider brand
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -872,8 +888,13 @@ export default function BusinessPlan() {
               <div className="relative pl-8 md:pl-0">
                 <div className="md:grid md:grid-cols-5 md:gap-8">
                   <div className="md:col-span-2 md:text-right md:pr-8">
-                    <h3 className="text-2xl font-bold text-gray-900">Phase 2: Market Entry</h3>
-                    <p className="text-gray-500">Months 7-12</p>
+                    <h3 className="text-2xl font-bold text-gray-900">Phase 2: Market Expansion</h3>
+                    <p className="text-gray-500">Years 2-4</p>
+                    <div className="mt-2 text-sm text-blue-600">
+                      <p>2,500 gallons cider production</p>
+                      <p>70% apple sales</p>
+                      <p>Regular taproom operations</p>
+                    </div>
                   </div>
                   <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 mt-3 md:mt-1">
                     <div className="h-8 w-8 rounded-full bg-green-800 border-4 border-white flex items-center justify-center">
@@ -882,13 +903,20 @@ export default function BusinessPlan() {
                   </div>
                   <div className="md:col-span-3 pt-3 md:pt-0 md:pl-8">
                     <div className="bg-white p-6 rounded-lg shadow-md">
+                      <h4 className="font-bold text-gray-900 mb-3">Growth & Distribution</h4>
                       <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                        <li>First harvest and production run</li>
-                        <li>Launch online store and initial product line</li>
-                        <li>Establish presence at farmers markets</li>
-                        <li>Begin outreach to potential wholesale accounts</li>
-                        <li>Implement digital marketing strategy</li>
+                        <li>Scale cider production to 2,500 gallons annually</li>
+                        <li>Establish regular taproom operations (104 days per year)</li>
+                        <li>Develop wholesale distribution network (15 retail accounts)</li>
+                        <li>Continue premium apple sales (70% of harvest) to maintain cash flow</li>
+                        <li>Expand product line with seasonal and specialty ciders</li>
+                        <li>Implement comprehensive digital marketing strategy</li>
                       </ul>
+                      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                        <p className="text-sm text-blue-800">
+                          <strong>Investment:</strong> $85,000 capital | <strong>Focus:</strong> Balanced growth between direct sales and wholesale distribution
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -898,8 +926,13 @@ export default function BusinessPlan() {
               <div className="relative pl-8 md:pl-0">
                 <div className="md:grid md:grid-cols-5 md:gap-8">
                   <div className="md:col-span-2 md:text-right md:pr-8">
-                    <h3 className="text-2xl font-bold text-gray-900">Phase 3: Growth</h3>
-                    <p className="text-gray-500">Year 2</p>
+                    <h3 className="text-2xl font-bold text-gray-900">Phase 3: Regional Leadership</h3>
+                    <p className="text-gray-500">Years 5+</p>
+                    <div className="mt-2 text-sm text-purple-600">
+                      <p>6,000 gallons cider production</p>
+                      <p>40% apple sales</p>
+                      <p>Full taproom operations</p>
+                    </div>
                   </div>
                   <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 mt-3 md:mt-1">
                     <div className="h-8 w-8 rounded-full bg-green-800 border-4 border-white flex items-center justify-center">
@@ -908,43 +941,79 @@ export default function BusinessPlan() {
                   </div>
                   <div className="md:col-span-3 pt-3 md:pt-0 md:pl-8">
                     <div className="bg-white p-6 rounded-lg shadow-md">
+                      <h4 className="font-bold text-gray-900 mb-3">Full Operations & Destination Status</h4>
                       <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                        <li>Expand product line with seasonal and limited editions</li>
-                        <li>Increase wholesale distribution</li>
-                        <li>Enhance online presence and direct sales</li>
-                        <li>Optimize production processes</li>
-                        <li>Begin planning for tasting room development</li>
+                        <li>Achieve full production capacity (6,000 gallons annually)</li>
+                        <li>Operate expanded taproom year-round (312 days per year)</li>
+                        <li>Establish regional distribution network (75+ accounts)</li>
+                        <li>Develop agritourism experiences and event hosting capabilities</li>
+                        <li>Launch premium limited-edition and barrel-aged cider lines</li>
+                        <li>Achieve regional brand recognition and destination status</li>
                       </ul>
+                      <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+                        <p className="text-sm text-purple-800">
+                          <strong>Investment:</strong> $125,000 capital | <strong>Focus:</strong> Premium positioning and destination agritourism
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Phase 4 */}
-              <div className="relative pl-8 md:pl-0">
-                <div className="md:grid md:grid-cols-5 md:gap-8">
-                  <div className="md:col-span-2 md:text-right md:pr-8">
-                    <h3 className="text-2xl font-bold text-gray-900">Phase 4: Expansion</h3>
-                    <p className="text-gray-500">Years 3-5</p>
-                  </div>
-                  <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 mt-3 md:mt-1">
-                    <div className="h-8 w-8 rounded-full bg-green-800 border-4 border-white flex items-center justify-center">
-                      <span className="text-white font-bold">4</span>
-                    </div>
-                  </div>
-                  <div className="md:col-span-3 pt-3 md:pt-0 md:pl-8">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
-                      <ul className="list-disc pl-5 text-gray-600 space-y-2">
-                        <li>Develop and open on-site tasting room</li>
-                        <li>Expand distribution to neighboring states</li>
-                        <li>Increase production capacity</li>
-                        <li>Establish agritourism components</li>
-                        <li>Develop farm stay accommodations</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </div>
+          </div>
+          
+          {/* Phase Comparison Summary */}
+          <div className="mt-16 bg-gray-50 p-8 rounded-lg">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Phase Comparison Summary</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-300">
+                    <th className="text-left py-3 px-4 font-bold text-gray-900">Metric</th>
+                    <th className="text-center py-3 px-4 font-bold text-green-700">Phase 1</th>
+                    <th className="text-center py-3 px-4 font-bold text-blue-700">Phase 2</th>
+                    <th className="text-center py-3 px-4 font-bold text-purple-700">Phase 3</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-600">
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 px-4 font-medium">Cider Production</td>
+                    <td className="text-center py-3 px-4">750 gallons</td>
+                    <td className="text-center py-3 px-4">2,500 gallons</td>
+                    <td className="text-center py-3 px-4">6,000 gallons</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 px-4 font-medium">Apple Sales</td>
+                    <td className="text-center py-3 px-4">85% of harvest</td>
+                    <td className="text-center py-3 px-4">70% of harvest</td>
+                    <td className="text-center py-3 px-4">40% of harvest</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 px-4 font-medium">Taproom Operations</td>
+                    <td className="text-center py-3 px-4">Monthly events</td>
+                    <td className="text-center py-3 px-4">104 days/year</td>
+                    <td className="text-center py-3 px-4">312 days/year</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 px-4 font-medium">Wholesale Accounts</td>
+                    <td className="text-center py-3 px-4">0</td>
+                    <td className="text-center py-3 px-4">15 accounts</td>
+                    <td className="text-center py-3 px-4">75+ accounts</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-3 px-4 font-medium">Capital Investment</td>
+                    <td className="text-center py-3 px-4">$45,000</td>
+                    <td className="text-center py-3 px-4">$85,000</td>
+                    <td className="text-center py-3 px-4">$125,000</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-medium">Primary Focus</td>
+                    <td className="text-center py-3 px-4">Brand building</td>
+                    <td className="text-center py-3 px-4">Market expansion</td>
+                    <td className="text-center py-3 px-4">Regional leadership</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

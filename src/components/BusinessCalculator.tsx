@@ -1941,240 +1941,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* Marketing Strategy */}
-      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Marketing Strategy & Brand Positioning</h3>
-        
-        {/* Core Brand Positioning */}
-        <div className="mb-8 bg-white p-6 rounded-lg shadow">
-          <h4 className="text-lg font-bold text-gray-800 mb-4">Core Brand Positioning</h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <div className="border border-green-200 rounded-lg p-4 bg-green-50">
-                <h5 className="font-medium text-green-800 mb-2">🍎 Heritage Apple Story</h5>
-                <p className="text-sm text-green-700">
-                  "Crafted from heritage apple varieties that have been grown in this region for generations. 
-                  Each sip connects you to the authentic flavors that built America's cider tradition."
-                </p>
-                <ul className="text-xs text-green-600 mt-2 space-y-1">
-                  <li>• Emphasize historical apple varieties</li>
-                  <li>• Connect to local agricultural heritage</li>
-                  <li>• Differentiate from mass-produced ciders</li>
-                </ul>
-              </div>
-              
-              <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
-                <h5 className="font-medium text-blue-800 mb-2">🌱 Organic & Sustainable</h5>
-                <p className="text-sm text-blue-700">
-                  "Organically grown, sustainably farmed. Our apples are cultivated without synthetic pesticides, 
-                  creating pure, clean ciders that are better for you and the environment."
-                </p>
-                <ul className="text-xs text-blue-600 mt-2 space-y-1">
-                  <li>• Highlight organic certification</li>
-                  <li>• Emphasize environmental stewardship</li>
-                  <li>• Appeal to health-conscious consumers</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="border border-purple-200 rounded-lg p-4 bg-purple-50">
-                <h5 className="font-medium text-purple-800 mb-2">🍷 Dry & Sophisticated</h5>
-                <p className="text-sm text-purple-700">
-                  "Not your typical sweet cider. Our dry, complex ciders offer wine-like sophistication 
-                  with the refreshing character of premium apples. For those who appreciate nuanced flavors."
-                </p>
-                <ul className="text-xs text-purple-600 mt-2 space-y-1">
-                  <li>• Position against overly sweet mass market</li>
-                  <li>• Target sophisticated palates</li>
-                  <li>• Emphasize complexity and craftsmanship</li>
-                </ul>
-              </div>
-              
-              <div className="border border-orange-200 rounded-lg p-4 bg-orange-50">
-                <h5 className="font-medium text-orange-800 mb-2">💪 Health Benefits</h5>
-                <p className="text-sm text-orange-700">
-                  "Naturally gluten-free with antioxidants from real apples. Lower in alcohol than wine, 
-                  with probiotics from natural fermentation. A healthier choice for mindful drinkers."
-                </p>
-                <ul className="text-xs text-orange-600 mt-2 space-y-1">
-                  <li>• Gluten-free alternative to beer</li>
-                  <li>• Lower alcohol than wine/spirits</li>
-                  <li>• Natural antioxidants and probiotics</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Phase-Specific Marketing Strategy */}
-        <div className="mb-8 bg-white p-6 rounded-lg shadow">
-          <h4 className="text-lg font-bold text-gray-800 mb-4">Phase-Specific Marketing Strategy</h4>
-          
-          {sliders.implementationPhase === 1 && (
-            <div className="space-y-4">
-              <h5 className="font-medium text-blue-600">Phase 1: Brand Building & Local Awareness</h5>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Grassroots Marketing</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Monthly barn events with tastings</li>
-                    <li>• Farmers market presence (24 events/year)</li>
-                    <li>• Local food blogger outreach</li>
-                    <li>• Community event sponsorships</li>
-                    <li>• Word-of-mouth referral program</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Digital Foundation</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Professional website with story</li>
-                    <li>• Instagram showcasing farm life</li>
-                    <li>• Facebook for event promotion</li>
-                    <li>• Google My Business optimization</li>
-                    <li>• Email newsletter signup</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">PR & Storytelling</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Local newspaper features</li>
-                    <li>• Heritage apple education content</li>
-                    <li>• Farm-to-glass story videos</li>
-                    <li>• Organic certification PR</li>
-                    <li>• Founder story development</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-          
-          {sliders.implementationPhase === 2 && (
-            <div className="space-y-4">
-              <h5 className="font-medium text-blue-600">Phase 2: Market Expansion & Distribution Support</h5>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Trade Marketing</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• In-store tastings and demos</li>
-                    <li>• Point-of-sale materials</li>
-                    <li>• Bartender education programs</li>
-                    <li>• Menu placement incentives</li>
-                    <li>• Seasonal promotional campaigns</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Digital Growth</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Targeted social media advertising</li>
-                    <li>• Influencer partnerships</li>
-                    <li>• SEO content marketing</li>
-                    <li>• Email marketing automation</li>
-                    <li>• Online ordering system</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Experience Marketing</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Regular taproom events</li>
-                    <li>• Cider education classes</li>
-                    <li>• Food pairing experiences</li>
-                    <li>• Harvest participation events</li>
-                    <li>• Private group bookings</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-          
-          {sliders.implementationPhase === 3 && (
-            <div className="space-y-4">
-              <h5 className="font-medium text-blue-600">Phase 3: Regional Brand Leadership</h5>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Regional Expansion</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Multi-state distribution support</li>
-                    <li>• Regional trade show presence</li>
-                    <li>• Distributor relationship management</li>
-                    <li>• Chain account development</li>
-                    <li>• Regional media campaigns</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Premium Positioning</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Premium packaging design</li>
-                    <li>• Limited edition releases</li>
-                    <li>• Awards and competition entries</li>
-                    <li>• Sommelier education programs</li>
-                    <li>• High-end restaurant placement</li>
-                  </ul>
-                </div>
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h6 className="font-medium text-gray-800">Destination Marketing</h6>
-                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
-                    <li>• Tourism board partnerships</li>
-                    <li>• Agritourism experiences</li>
-                    <li>• Wedding and event venue</li>
-                    <li>• Cider trail participation</li>
-                    <li>• Regional food festivals</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-        
-        {/* Marketing Budget Allocation */}
-        <div className="mb-8 bg-white p-6 rounded-lg shadow">
-          <h4 className="text-lg font-bold text-gray-800 mb-4">Marketing Budget Allocation</h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Marketing Budget: {sliders.marketingBudgetPercent}% of Revenue
-              </label>
-              <input
-                type="range"
-                min="1"
-                max="8"
-                step="0.5"
-                name="marketingBudgetPercent"
-                value={sliders.marketingBudgetPercent}
-                onChange={handleSliderChange}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Working Capital: {sliders.workingCapitalPercent}% of revenue
-                <InfoBox title="Working Capital">
-                  <p>Cost of financing inventory and accounts receivable.</p>
-                  <ul className="list-disc pl-4 mt-1 space-y-1">
-                    <li>Inventory financing costs</li>
-                    <li>30-60 day payment terms</li>
-                    <li>Assumes 6% interest rate</li>
-                  </ul>
-                </InfoBox>
-              </label>
-              <input
-                type="range"
-                min="3"
-                max="15"
-                step="1"
-                name="workingCapitalPercent"
-                value={sliders.workingCapitalPercent}
-                onChange={handleSliderChange}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Self-Distribution Advantage */}
       <div className="mt-8 bg-green-50 p-6 rounded-lg border border-green-200">
         <h3 className="text-xl font-bold text-green-800 mb-4">🚚 Self-Distribution Advantage (NJ Plenary Winery License)</h3>
@@ -2365,7 +2131,31 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 style={{width: '100%'}}
               ></div>
             </div>
-            <p className="text-sm text-gray-500 mt-1">Calculated from Marketing Strategy section ({sliders.marketingBudgetPercent}% of revenue)</p>
+            <p className="text-sm text-gray-500 mt-1">Fixed budget based on implementation phase</p>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Working Capital: {sliders.workingCapitalPercent}% of revenue
+              <InfoBox title="Working Capital">
+                <p>Cost of financing inventory and accounts receivable.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Inventory financing costs</li>
+                  <li>30-60 day payment terms</li>
+                  <li>Assumes 6% interest rate</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="3"
+              max="15"
+              step="1"
+              name="workingCapitalPercent"
+              value={sliders.workingCapitalPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
           </div>
         </div>
       </div>
