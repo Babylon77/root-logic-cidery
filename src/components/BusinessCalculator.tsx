@@ -2990,6 +2990,80 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
+      {/* Market Research & Resources */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-6">Market Research & Supporting Documents</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+            <h4 className="text-lg font-bold text-blue-800 mb-3">📊 Market Analysis Reports</h4>
+            <p className="text-sm text-gray-600 mb-4">
+              Comprehensive market research and analysis supporting this business plan, including buyer analysis, 
+              wholesale market conditions, and location-specific opportunities.
+            </p>
+            <div className="space-y-2">
+              <a 
+                href="/resources/Organic Heirloom Apple Cidery Buyers_.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-sm text-blue-600 hover:text-blue-800 hover:underline"
+              >
+                📄 Organic Heirloom Apple Cidery Buyers Analysis
+              </a>
+              <a 
+                href="/resources/Market Report_ Wholesale Heirloom Cider Apples in NJ, NY, PA, and CT.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-sm text-blue-600 hover:text-blue-800 hover:underline"
+              >
+                📄 Wholesale Heirloom Cider Apples Market Report
+              </a>
+              <a 
+                href="/resources/Launching a Cidery at 25 Clove Road, Wantage, NJ_ Location and Market Analysis.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block text-sm text-blue-600 hover:text-blue-800 hover:underline"
+              >
+                📄 Location & Market Analysis for 25 Clove Road
+              </a>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+            <h4 className="text-lg font-bold text-green-800 mb-3">🎯 Key Market Insights</h4>
+            <ul className="text-sm text-gray-700 space-y-2">
+              <li>• Strong demand for heritage organic cider apples in tri-state area</li>
+              <li>• Premium pricing opportunities for craft cideries ($25-45/bushel)</li>
+              <li>• Growing consumer preference for dry, sophisticated ciders</li>
+              <li>• Established distribution networks in NJ/NY/PA markets</li>
+              <li>• Favorable location for agritourism and direct sales</li>
+              <li>• Self-distribution advantages with NJ Plenary Winery license</li>
+            </ul>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
+            <h4 className="text-lg font-bold text-purple-800 mb-3">📈 Competitive Advantages</h4>
+            <ul className="text-sm text-gray-700 space-y-2">
+              <li>• Heritage apple varieties with unique flavor profiles</li>
+              <li>• Organic certification and sustainable practices</li>
+              <li>• Vertical integration from orchard to bottle</li>
+              <li>• Strategic location in Sussex County wine/cider region</li>
+              <li>• Cost advantages through self-distribution</li>
+              <li>• Dual revenue streams (apples + cider)</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="mt-6 bg-blue-50 p-4 rounded-lg">
+          <h5 className="font-medium text-blue-800 mb-2">📋 Research Methodology</h5>
+          <p className="text-sm text-blue-700">
+            These reports were developed using comprehensive market analysis including competitor research, 
+            buyer interviews, pricing studies, and location-specific demographic analysis. The data supports 
+            the financial projections and strategic assumptions used in this business plan.
+          </p>
+        </div>
+      </div>
+
       {/* Phase Comparison Table */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Phase Progression Comparison</h3>
