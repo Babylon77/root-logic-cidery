@@ -112,10 +112,10 @@ const DEFAULT_VALUES = {
   retailSalesPercent: 45, // percentage sold through liquor stores/grocery (medium margin)
   restaurantBarSalesPercent: 20, // percentage sold to restaurants/bars (lowest margin)
   
-  // Channel-specific pricing
-  taproomPintPrice: 6, // per pint in taproom
-  retailWholesalePrice: 12, // per gallon wholesale to retailers
-  restaurantWholesalePrice: 10, // per gallon wholesale to restaurants/bars
+  // Channel-specific pricing (increased for better margins)
+  taproomPintPrice: 7, // per pint in taproom (premium pricing)
+  retailWholesalePrice: 15, // per gallon wholesale to retailers (increased)
+  restaurantWholesalePrice: 13, // per gallon wholesale to restaurants/bars (increased)
   
   // Channel-specific costs (adjusted to more realistic levels for small cidery)
   slottingFeesPerSKU: 500, // annual slotting fees per product per major retailer (reduced)
@@ -138,15 +138,15 @@ const DEFAULT_VALUES = {
   phase1CapitalInvestment: 45000, // Basic equipment: small press, fermentation tanks
   
   // Phase 2 (Years 2-4): Expansion & Distribution
-  phase2CiderGallons: 3500, // Ramp up production
-  phase2AppleSalesPercent: 60, // Still selling significant apples
+  phase2CiderGallons: 2500, // More conservative ramp up to maintain profitability
+  phase2AppleSalesPercent: 70, // Still selling majority of apples for cash flow
   phase2TaproomDays: 104, // 2 days/week open
   phase2DistributionAccounts: 15, // Local restaurants and bottle shops
   phase2CapitalInvestment: 85000, // Expanded equipment, packaging line
   
   // Phase 3 (Years 5+): Full Operations
-  phase3CiderGallons: 12000, // Near full orchard capacity
-  phase3AppleSalesPercent: 15, // Minimal apple sales
+  phase3CiderGallons: 6000, // More realistic full capacity that maintains margins
+  phase3AppleSalesPercent: 40, // Keep significant apple sales for cash flow
   phase3TaproomDays: 312, // 6 days/week open
   phase3DistributionAccounts: 75, // Regional distribution NJ/PA/NY
   phase3CapitalInvestment: 125000, // Taproom expansion, full automation
@@ -318,10 +318,33 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const soldCiderGallons = netCiderGallons * (sliders.salesEfficiency / 100)
     const soldCans = netCans * (sliders.salesEfficiency / 100)
     
-    // Calculate sales by channel
-    const taproomGallons = soldCiderGallons * (sliders.taproomSalesPercent / 100)
-    const retailGallons = soldCiderGallons * (sliders.retailSalesPercent / 100)
-    const restaurantGallons = soldCiderGallons * (sliders.restaurantBarSalesPercent / 100)
+    // Calculate sales by channel with phase-specific mix optimization
+    let phaseTaproomPercent = sliders.taproomSalesPercent;
+    let phaseRetailPercent = sliders.retailSalesPercent;
+    let phaseRestaurantPercent = sliders.restaurantBarSalesPercent;
+    
+    // Optimize sales mix by phase for better margins
+    switch(sliders.implementationPhase) {
+      case 1: // Focus on highest margin channels
+        phaseTaproomPercent = 60; // Higher taproom focus
+        phaseRetailPercent = 30;
+        phaseRestaurantPercent = 10;
+        break;
+      case 2: // Balanced growth
+        phaseTaproomPercent = 45;
+        phaseRetailPercent = 40;
+        phaseRestaurantPercent = 15;
+        break;
+      case 3: // Full distribution but maintain margins
+        phaseTaproomPercent = 35;
+        phaseRetailPercent = 45;
+        phaseRestaurantPercent = 20;
+        break;
+    }
+    
+    const taproomGallons = soldCiderGallons * (phaseTaproomPercent / 100)
+    const retailGallons = soldCiderGallons * (phaseRetailPercent / 100)
+    const restaurantGallons = soldCiderGallons * (phaseRestaurantPercent / 100)
     
     // Calculate revenue by channel
     const pintsPerGallon = 8
@@ -2359,6 +2382,229 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             </div>
             <p className="text-sm text-gray-500 mt-1">Calculated from Marketing Strategy section ({sliders.marketingBudgetPercent}% of revenue)</p>
           </div>
+        </div>
+      </div>
+      
+      {/* Phase-Specific Financial Summary */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Phase {sliders.implementationPhase} Financial Summary</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Revenue Breakdown */}
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h4 className="text-lg font-bold text-gray-800 mb-4">Revenue Sources</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Cider Sales</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Apple Sales</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${(() => {
+                    const remainingBushels = results.totalBushels * (sliders.productionEfficiency / 100) - (results.ciderGallons / sliders.gallonsPerBushel);
+                    const appleSalesPercent = sliders.implementationPhase === 1 ? sliders.phase1AppleSalesPercent : 
+                                            sliders.implementationPhase === 2 ? sliders.phase2AppleSalesPercent : 
+                                            sliders.phase3AppleSalesPercent;
+                    const appleSalesBushels = remainingBushels * (appleSalesPercent / 100) * (sliders.salesEfficiency / 100);
+                    const applePricePerBushel = sliders.implementationPhase === 1 ? 45 : 
+                                              sliders.implementationPhase === 2 ? 35 : 25;
+                    return Math.round(appleSalesBushels * applePricePerBushel).toLocaleString();
+                  })()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Other Products</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${Math.round((results.directSalesRevenue + results.wholesaleRevenue) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-2 flex justify-between items-center">
+                <span className="font-bold text-gray-800">Total Revenue</span>
+                <span className="font-bold text-green-600">${results.annualRevenue.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Expense Breakdown */}
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h4 className="text-lg font-bold text-gray-800 mb-4">Major Expenses</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Fixed Costs (Mortgage, etc.)</span>
+                <span className="text-sm font-bold text-red-600">${results.annualFixedCosts.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Labor</span>
+                <span className="text-sm font-bold text-red-600">${results.laborExpenses.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Marketing</span>
+                <span className="text-sm font-bold text-red-600">${results.marketingExpenses.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Production Costs</span>
+                <span className="text-sm font-bold text-red-600">
+                  ${Math.round(results.packagingCosts + results.exciseTax + results.licensingCosts).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Other Operating</span>
+                <span className="text-sm font-bold text-red-600">
+                  ${Math.round(results.annualExpenses - results.annualFixedCosts - results.laborExpenses - results.marketingExpenses - results.packagingCosts - results.exciseTax - results.licensingCosts).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-2 flex justify-between items-center">
+                <span className="font-bold text-gray-800">Total Expenses</span>
+                <span className="font-bold text-red-600">${results.annualExpenses.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Profit Summary */}
+        <div className="mt-6 bg-white p-6 rounded-lg shadow">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <h5 className="text-sm font-medium text-gray-500 mb-2">Annual Profit</h5>
+              <p className={`text-3xl font-bold ${results.annualProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${results.annualProfit.toLocaleString()}
+              </p>
+              <p className="text-sm text-gray-500 mt-1">
+                {((results.annualProfit / results.annualRevenue) * 100).toFixed(1)}% margin
+              </p>
+            </div>
+            <div className="text-center">
+              <h5 className="text-sm font-medium text-gray-500 mb-2">Return on Investment</h5>
+              <p className={`text-3xl font-bold ${results.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {results.roi}%
+              </p>
+              <p className="text-sm text-gray-500 mt-1">Annual ROI</p>
+            </div>
+            <div className="text-center">
+              <h5 className="text-sm font-medium text-gray-500 mb-2">Monthly Cash Flow</h5>
+              <p className={`text-3xl font-bold ${results.annualProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${Math.round(results.annualProfit / 12).toLocaleString()}
+              </p>
+              <p className="text-sm text-gray-500 mt-1">After all expenses</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Phase Progression Insights */}
+        <div className="mt-6 bg-blue-50 p-6 rounded-lg">
+          <h4 className="text-lg font-bold text-blue-800 mb-4">Phase Strategy Insights</h4>
+          
+          {sliders.implementationPhase === 1 && (
+            <div className="space-y-3">
+              <p className="text-sm text-blue-700">
+                <strong>Focus:</strong> High-margin apple sales to craft cideries fund brand building and initial cider production.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Key Metrics:</strong> Selling {Math.round(results.totalBushels * 0.85 * 0.85)} bushels at $45/bushel = 
+                ${Math.round(results.totalBushels * 0.85 * 0.85 * 45).toLocaleString()} apple revenue.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Next Phase:</strong> Use profits to invest in expanded cider production equipment and taproom improvements.
+              </p>
+            </div>
+          )}
+          
+          {sliders.implementationPhase === 2 && (
+            <div className="space-y-3">
+              <p className="text-sm text-blue-700">
+                <strong>Focus:</strong> Balanced approach with growing cider sales while maintaining profitable apple sales.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Key Metrics:</strong> {sliders.phase2CiderGallons} gallons cider + {Math.round(results.totalBushels * 0.6 * 0.9)} bushels apples at $35/bushel.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Next Phase:</strong> Scale cider production to full capacity and expand regional distribution.
+              </p>
+            </div>
+          )}
+          
+          {sliders.implementationPhase === 3 && (
+            <div className="space-y-3">
+              <p className="text-sm text-blue-700">
+                <strong>Focus:</strong> Full cider operations with premium positioning and regional distribution.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Key Metrics:</strong> {sliders.phase3CiderGallons} gallons cider production with minimal apple sales for maximum value-add.
+              </p>
+              <p className="text-sm text-blue-700">
+                <strong>Optimization:</strong> Focus on premium pricing, efficiency improvements, and market expansion.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {/* Phase Comparison Table */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Phase Progression Comparison</h3>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th className="px-4 py-2">Metric</th>
+                <th className="px-4 py-2 text-center">Phase 1<br/>Brand Building</th>
+                <th className="px-4 py-2 text-center">Phase 2<br/>Expansion</th>
+                <th className="px-4 py-2 text-center">Phase 3<br/>Full Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Cider Production</td>
+                <td className="px-4 py-2 text-center">{sliders.phase1CiderGallons} gallons</td>
+                <td className="px-4 py-2 text-center">{sliders.phase2CiderGallons} gallons</td>
+                <td className="px-4 py-2 text-center">{sliders.phase3CiderGallons} gallons</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Apple Sales</td>
+                <td className="px-4 py-2 text-center">{sliders.phase1AppleSalesPercent}% @ $45/bu</td>
+                <td className="px-4 py-2 text-center">{sliders.phase2AppleSalesPercent}% @ $35/bu</td>
+                <td className="px-4 py-2 text-center">{sliders.phase3AppleSalesPercent}% @ $25/bu</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Taproom Focus</td>
+                <td className="px-4 py-2 text-center">60% of cider sales</td>
+                <td className="px-4 py-2 text-center">45% of cider sales</td>
+                <td className="px-4 py-2 text-center">35% of cider sales</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Capital Investment</td>
+                <td className="px-4 py-2 text-center">${sliders.phase1CapitalInvestment.toLocaleString()}</td>
+                <td className="px-4 py-2 text-center">${sliders.phase2CapitalInvestment.toLocaleString()}</td>
+                <td className="px-4 py-2 text-center">${sliders.phase3CapitalInvestment.toLocaleString()}</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Operating Intensity</td>
+                <td className="px-4 py-2 text-center">Low (60% labor)</td>
+                <td className="px-4 py-2 text-center">Medium (80% labor)</td>
+                <td className="px-4 py-2 text-center">High (100% labor)</td>
+              </tr>
+              <tr className="bg-gray-100 font-medium">
+                <td className="px-4 py-2">Expected Profit Trend</td>
+                <td className="px-4 py-2 text-center text-green-600">High apple margins</td>
+                <td className="px-4 py-2 text-center text-blue-600">Balanced growth</td>
+                <td className="px-4 py-2 text-center text-purple-600">Premium cider focus</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="mt-4 bg-yellow-50 p-4 rounded-lg">
+          <h4 className="font-medium text-yellow-800 mb-2">💡 Progression Strategy</h4>
+          <p className="text-sm text-yellow-700">
+            The model is designed so profits should <strong>increase</strong> with each phase by: 
+            (1) maintaining profitable apple sales longer, (2) optimizing cider sales mix toward higher-margin channels, 
+            and (3) achieving economies of scale. If Phase 2 or 3 show lower profits, consider adjusting production targets 
+            or pricing to maintain the upward trajectory.
+          </p>
         </div>
       </div>
       
