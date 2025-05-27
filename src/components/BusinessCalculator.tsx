@@ -1482,17 +1482,20 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <p className="text-sm text-gray-600">Cider Cost per Gallon</p>
                 <p className="text-lg font-bold text-gray-800">
                   ${(() => {
-                    // Calculate cider-specific costs based on revenue proportion
-                    const ciderRevenue = results.directSalesRevenue + results.wholesaleRevenue;
-                    const ciderRevenuePercent = ciderRevenue / Math.max(results.annualRevenue, 1);
-                    
-                    // Direct cider costs
+                    // Calculate ONLY the incremental costs of making cider (what it costs to turn apples into cider)
+                    // Direct cider costs (packaging + excise tax)
                     const directCiderCosts = results.packagingCosts + results.exciseTax;
                     
-                    // Allocated overhead based on revenue proportion (more realistic)
-                    const allocatedOverhead = (results.laborExpenses + results.annualFixedCosts + results.marketingExpenses) * ciderRevenuePercent;
+                    // Incremental labor: only the hours spent pressing, fermenting, packaging
+                    // Estimate 0.5 hours per gallon (pressing is efficient, fermentation is passive)
+                    const ciderProductionHours = results.ciderGallons * 0.5;
+                    const incrementalLaborCost = ciderProductionHours * sliders.laborHourlyRate;
                     
-                    const totalCiderCosts = directCiderCosts + allocatedOverhead;
+                    // Minimal equipment depreciation for cider-specific equipment
+                    const ciderEquipmentCost = 15000; // Press, fermentation tanks, packaging equipment
+                    const ciderEquipmentDepreciation = ciderEquipmentCost / 10; // 10 year life
+                    
+                    const totalCiderCosts = directCiderCosts + incrementalLaborCost + ciderEquipmentDepreciation;
                     return (totalCiderCosts / Math.max(results.ciderGallons, 1)).toFixed(2);
                   })()}
                 </p>
@@ -1505,15 +1508,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <p className="text-sm text-gray-600">Apple Cost per Bushel</p>
                 <p className="text-lg font-bold text-gray-800">
                   ${(() => {
-                    // Calculate apple-specific costs based on revenue proportion
-                    const ciderRevenue = results.directSalesRevenue + results.wholesaleRevenue;
-                    const appleRevenuePercent = 1 - (ciderRevenue / Math.max(results.annualRevenue, 1));
+                    // Calculate apple production costs (orchard operations)
+                    const orchardLaborCost = results.laborExpenses * ((sliders.farmLaborPercent + sliders.harvestLaborPercent) / 100);
+                    const orchardOverhead = results.annualFixedCosts * 0.95; // Most fixed costs are for the orchard/property
+                    const orchardMarketing = results.marketingExpenses * 0.3; // Some marketing for apple sales
                     
-                    // Allocated overhead based on revenue proportion
-                    const allocatedOverhead = (results.laborExpenses + results.annualFixedCosts + results.marketingExpenses + results.distributionCosts) * appleRevenuePercent;
-                    
+                    const totalAppleCosts = orchardLaborCost + orchardOverhead + orchardMarketing;
                     const effectiveBushels = results.totalBushels * (sliders.productionEfficiency/100);
-                    return (allocatedOverhead / Math.max(effectiveBushels, 1)).toFixed(2);
+                    return (totalAppleCosts / Math.max(effectiveBushels, 1)).toFixed(2);
                   })()}
                 </p>
               </div>
