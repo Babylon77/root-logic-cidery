@@ -2138,217 +2138,39 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               </label>
               <input
                 type="range"
-                min="5"
-                max="15"
-                step="1"
+                min="1"
+                max="8"
+                step="0.5"
                 name="marketingBudgetPercent"
                 value={sliders.marketingBudgetPercent}
                 onChange={handleSliderChange}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
-              <p className="text-sm text-gray-500 mt-1">
-                Annual budget: ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100).toLocaleString()}
-              </p>
             </div>
             
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-700">Digital Marketing</span>
-                <span className="text-sm text-gray-600">{sliders.digitalMarketingPercent}%</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-700">Events & Tastings</span>
-                <span className="text-sm text-gray-600">{sliders.eventMarketingPercent}%</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-700">Trade Marketing</span>
-                <span className="text-sm text-gray-600">{sliders.tradingMarketingPercent}%</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-700">PR & Content</span>
-                <span className="text-sm text-gray-600">{sliders.prMarketingPercent}%</span>
-              </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Working Capital: {sliders.workingCapitalPercent}% of revenue
+                <InfoBox title="Working Capital">
+                  <p>Cost of financing inventory and accounts receivable.</p>
+                  <ul className="list-disc pl-4 mt-1 space-y-1">
+                    <li>Inventory financing costs</li>
+                    <li>30-60 day payment terms</li>
+                    <li>Assumes 6% interest rate</li>
+                  </ul>
+                </InfoBox>
+              </label>
+              <input
+                type="range"
+                min="3"
+                max="15"
+                step="1"
+                name="workingCapitalPercent"
+                value={sliders.workingCapitalPercent}
+                onChange={handleSliderChange}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              />
             </div>
-          </div>
-          
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h6 className="font-medium text-blue-800">Digital Marketing</h6>
-              <p className="text-lg font-bold text-blue-900">
-                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.digitalMarketingPercent / 100).toLocaleString()}
-              </p>
-              <p className="text-xs text-blue-600">Social media, SEO, email</p>
-            </div>
-            <div className="bg-green-50 p-4 rounded-lg">
-              <h6 className="font-medium text-green-800">Events & Tastings</h6>
-              <p className="text-lg font-bold text-green-900">
-                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.eventMarketingPercent / 100).toLocaleString()}
-              </p>
-              <p className="text-xs text-green-600">Farmers markets, demos</p>
-            </div>
-            <div className="bg-purple-50 p-4 rounded-lg">
-              <h6 className="font-medium text-purple-800">Trade Marketing</h6>
-              <p className="text-lg font-bold text-purple-900">
-                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.tradingMarketingPercent / 100).toLocaleString()}
-              </p>
-              <p className="text-xs text-purple-600">POS, incentives, training</p>
-            </div>
-            <div className="bg-orange-50 p-4 rounded-lg">
-              <h6 className="font-medium text-orange-800">PR & Content</h6>
-              <p className="text-lg font-bold text-orange-900">
-                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.prMarketingPercent / 100).toLocaleString()}
-              </p>
-              <p className="text-xs text-orange-600">Stories, media, content</p>
-            </div>
-          </div>
-        </div>
-        
-        {/* Key Marketing Tactics for Sales Velocity */}
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h4 className="text-lg font-bold text-gray-800 mb-4">Key Tactics for Sales Velocity</h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-amber-200 rounded-lg p-4 bg-amber-50">
-              <h5 className="font-medium text-amber-800 mb-3">🏪 Shelf Velocity Drivers</h5>
-              <ul className="text-sm text-amber-700 space-y-2">
-                <li><strong>Eye-catching packaging:</strong> Heritage-inspired design that stands out</li>
-                <li><strong>Shelf talkers:</strong> "Dry, not sweet" messaging at point of sale</li>
-                <li><strong>Staff education:</strong> Train store staff on taste profile differences</li>
-                <li><strong>Cross-merchandising:</strong> Place near craft beer, not sweet ciders</li>
-                <li><strong>Sampling programs:</strong> Let taste drive the sale</li>
-                <li><strong>Seasonal displays:</strong> Harvest themes, local pride positioning</li>
-              </ul>
-            </div>
-            
-            <div className="border border-teal-200 rounded-lg p-4 bg-teal-50">
-              <h5 className="font-medium text-teal-800 mb-3">🍺 Bar & Restaurant Flow</h5>
-              <ul className="text-sm text-teal-700 space-y-2">
-                <li><strong>Bartender incentives:</strong> Spiffs for recommending our cider</li>
-                <li><strong>Menu positioning:</strong> In craft beer section, not wine/cocktails</li>
-                <li><strong>Glassware program:</strong> Proper glassware enhances experience</li>
-                <li><strong>Food pairing suggestions:</strong> Specific menu item pairings</li>
-                <li><strong>Happy hour features:</strong> Special pricing during key hours</li>
-                <li><strong>Tap handle design:</strong> Heritage apple imagery, local pride</li>
-              </ul>
-            </div>
-            
-            <div className="border border-green-200 rounded-lg p-4 bg-green-50">
-              <h5 className="font-medium text-green-800 mb-3">🏡 Taproom Traffic Drivers</h5>
-              <ul className="text-sm text-green-700 space-y-2">
-                <li><strong>Educational experiences:</strong> Cider vs beer/wine tastings</li>
-                <li><strong>Instagram moments:</strong> Scenic views, harvest activities</li>
-                <li><strong>Local partnerships:</strong> Food trucks, live music, artisans</li>
-                <li><strong>Seasonal events:</strong> Harvest festivals, apple picking</li>
-                <li><strong>Corporate groups:</strong> Team building, private events</li>
-                <li><strong>Loyalty program:</strong> Rewards for repeat visits and referrals</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Channel-Specific Costs */}
-      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Channel-Specific Costs</h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Slotting Fees per SKU: ${sliders.slottingFeesPerSKU.toLocaleString()}
-              <InfoBox title="Slotting Fees">
-                <p>Fees paid to retailers for shelf space placement.</p>
-                <ul className="list-disc pl-4 mt-1 space-y-1">
-                  <li>$500-5000 per SKU per major retailer</li>
-                  <li>Required for grocery and liquor store placement</li>
-                  <li>Annual or one-time fees</li>
-                </ul>
-              </InfoBox>
-            </label>
-            <input
-              type="range"
-              min="500"
-              max="5000"
-              step="250"
-              name="slottingFeesPerSKU"
-              value={sliders.slottingFeesPerSKU}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              Total: ${(sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers).toLocaleString()}
-            </p>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Promotional Allowances: {sliders.promotionalAllowancePercent}%
-              <InfoBox title="Promotional Allowances">
-                <p>Marketing support paid to retailers and distributors.</p>
-                <ul className="list-disc pl-4 mt-1 space-y-1">
-                  <li>10-20% of wholesale revenue</li>
-                  <li>Covers in-store displays, advertising</li>
-                  <li>Required for competitive placement</li>
-                </ul>
-              </InfoBox>
-            </label>
-            <input
-              type="range"
-              min="5"
-              max="25"
-              step="1"
-              name="promotionalAllowancePercent"
-              value={sliders.promotionalAllowancePercent}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Sales Rep Commission: {sliders.salesRepCommissionPercent}%
-              <InfoBox title="Sales Rep Commission">
-                <p>Commission paid to sales representatives.</p>
-                <ul className="list-disc pl-4 mt-1 space-y-1">
-                  <li>3-8% of wholesale sales</li>
-                  <li>Required for restaurant/bar sales</li>
-                  <li>May include distributor rep fees</li>
-                </ul>
-              </InfoBox>
-            </label>
-            <input
-              type="range"
-              min="2"
-              max="10"
-              step="0.5"
-              name="salesRepCommissionPercent"
-              value={sliders.salesRepCommissionPercent}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Working Capital: {sliders.workingCapitalPercent}% of revenue
-              <InfoBox title="Working Capital">
-                <p>Cost of financing inventory and accounts receivable.</p>
-                <ul className="list-disc pl-4 mt-1 space-y-1">
-                  <li>Inventory financing costs</li>
-                  <li>30-60 day payment terms</li>
-                  <li>Assumes 6% interest rate</li>
-                </ul>
-              </InfoBox>
-            </label>
-            <input
-              type="range"
-              min="3"
-              max="15"
-              step="1"
-              name="workingCapitalPercent"
-              value={sliders.workingCapitalPercent}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
           </div>
         </div>
       </div>

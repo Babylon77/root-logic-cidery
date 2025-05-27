@@ -315,10 +315,10 @@ export default function BusinessPlan() {
         </div>
       </section>
 
-      {/* Marketing Strategy */}
+      {/* Comprehensive Marketing Strategy */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-12">Marketing Strategy & Market Research</h2>
+          <h2 className="section-title text-center mb-12">Marketing Strategy</h2>
           
           {/* Market Research Foundation */}
           <div className="mb-16">
@@ -367,7 +367,7 @@ export default function BusinessPlan() {
                     Detailed analysis of wholesale market opportunities, distribution channels, and pricing strategies for craft cider products.
                   </p>
                   <a 
-                    href="/resources/Wholesale Market for Craft Cider_ Opportunities and Strategies.pdf" 
+                    href="/resources/Market Report_ Wholesale Heirloom Cider Apples in NJ, NY, PA, and CT.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-700 hover:text-blue-800 font-medium"
@@ -493,26 +493,343 @@ export default function BusinessPlan() {
             </div>
           </div>
           
-          {/* Marketing Strategy Implementation */}
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Strategy Implementation</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Brand Identity</h3>
-              <p className="text-gray-600">
-                Our branding emphasizes our heritage apple varieties, sustainable farming practices, and the unique terroir of our orchard. Our packaging features clean, rustic design elements that communicate both tradition and quality.
-              </p>
+          {/* Brand Positioning & Strategy */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Brand Positioning & Strategy</h3>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Core Brand Identity</h4>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h5 className="font-bold text-gray-900 mb-2">Heritage Apple Story</h5>
+                    <p className="text-gray-600 text-sm">Our 20+ heritage varieties tell the story of American apple heritage, connecting consumers to agricultural history and authentic flavors lost in commercial production.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <h5 className="font-bold text-gray-900 mb-2">Organic & Sustainable</h5>
+                    <p className="text-gray-600 text-sm">Certified organic practices and sustainable farming methods appeal to environmentally conscious consumers willing to pay premium prices.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h5 className="font-bold text-gray-900 mb-2">Dry & Sophisticated</h5>
+                    <p className="text-gray-600 text-sm">Complex, dry ciders that compete with wine rather than sweet commercial ciders, targeting sophisticated palates and food pairing opportunities.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-orange-500 pl-4">
+                    <h5 className="font-bold text-gray-900 mb-2">Health Benefits</h5>
+                    <p className="text-gray-600 text-sm">Naturally gluten-free, lower alcohol content than wine, and antioxidant properties from heritage apples appeal to health-conscious consumers.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Competitive Positioning</h4>
+                <div className="space-y-4">
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-green-800 mb-2">vs. Commercial Ciders</h5>
+                    <p className="text-gray-700 text-sm">Premium pricing justified by organic heritage apples, complex flavors, and artisanal production methods vs. mass-produced sweet ciders.</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-blue-800 mb-2">vs. Craft Beer</h5>
+                    <p className="text-gray-700 text-sm">Naturally gluten-free alternative with lower alcohol content, appealing to health-conscious craft beverage consumers seeking variety.</p>
+                  </div>
+                  
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-purple-800 mb-2">vs. Wine</h5>
+                    <p className="text-gray-700 text-sm">More approachable price point with food-friendly acidity and unique terroir expression, positioned as "American wine alternative."</p>
+                  </div>
+                  
+                  <div className="bg-orange-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-orange-800 mb-2">vs. Local Cideries</h5>
+                    <p className="text-gray-700 text-sm">Differentiated by heritage variety focus, organic certification, and integrated agritourism experience with farm stays and tours.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Distribution Strategy</h3>
-              <p className="text-gray-600">
-                We will focus on establishing strong relationships with specialty retailers, craft beer pubs, and farmers markets. Our online store will feature subscription options and seasonal releases to build a loyal direct customer base.
-              </p>
+          </div>
+          
+          {/* Distribution & Sales Strategy */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Distribution & Sales Strategy</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mb-6 mx-auto">
+                  <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 text-center mb-4">Direct-to-Consumer</h4>
+                <ul className="text-gray-600 space-y-2 mb-6">
+                  <li>• On-site tasting room & farm store</li>
+                  <li>• Farmers markets (3-5 locations)</li>
+                  <li>• Online sales & subscription boxes</li>
+                  <li>• Farm events & private tastings</li>
+                  <li>• Agritourism integration</li>
+                </ul>
+                <div className="text-center">
+                  <span className="text-2xl font-bold text-green-600">35-60%</span>
+                  <p className="text-sm text-gray-500">of total sales</p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-6 mx-auto">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H9m0 0H5m0 0h2M7 7h10M7 11h10M7 15h10" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 text-center mb-4">Retail Wholesale</h4>
+                <ul className="text-gray-600 space-y-2 mb-6">
+                  <li>• Specialty liquor stores</li>
+                  <li>• Whole Foods & premium grocers</li>
+                  <li>• Wine shops with craft beer sections</li>
+                  <li>• Local co-ops & farm stores</li>
+                  <li>• Self-distribution advantage</li>
+                </ul>
+                <div className="text-center">
+                  <span className="text-2xl font-bold text-blue-600">30-45%</span>
+                  <p className="text-sm text-gray-500">of total sales</p>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center mb-6 mx-auto">
+                  <svg className="h-6 w-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 text-center mb-4">On-Premise</h4>
+                <ul className="text-gray-600 space-y-2 mb-6">
+                  <li>• Craft beer bars & gastropubs</li>
+                  <li>• Farm-to-table restaurants</li>
+                  <li>• Wine bars with cider programs</li>
+                  <li>• Event venues & catering</li>
+                  <li>• Seasonal tap accounts</li>
+                </ul>
+                <div className="text-center">
+                  <span className="text-2xl font-bold text-purple-600">10-20%</span>
+                  <p className="text-sm text-gray-500">of total sales</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Digital Marketing</h3>
-              <p className="text-gray-600">
-                Our digital strategy includes content marketing highlighting our production process, social media engagement, email marketing for limited releases, and partnerships with influencers in the craft beverage space to extend our reach.
-              </p>
+            
+            {/* Sales Velocity Tactics */}
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <h4 className="text-xl font-bold text-gray-900 mb-6 text-center">Key Sales Velocity Tactics</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center mb-4 mx-auto">
+                    <svg className="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h5 className="font-bold text-gray-900 mb-2">Shelf Placement</h5>
+                  <p className="text-gray-600 text-sm">Premium positioning in craft beer coolers, end-cap displays, and cross-merchandising with local products.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="h-16 w-16 rounded-full bg-blue-100 flex items-center justify-center mb-4 mx-auto">
+                    <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    </svg>
+                  </div>
+                  <h5 className="font-bold text-gray-900 mb-2">Staff Education</h5>
+                  <p className="text-gray-600 text-sm">Training programs for retail staff and bartenders on heritage varieties, tasting notes, and food pairings.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="h-16 w-16 rounded-full bg-purple-100 flex items-center justify-center mb-4 mx-auto">
+                    <svg className="h-8 w-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 0v1m-2 0V6a2 2 0 00-2 0v1m2 0V9.5m0 0v3m0-3h3m-3 0h-3" />
+                    </svg>
+                  </div>
+                  <h5 className="font-bold text-gray-900 mb-2">Sampling Programs</h5>
+                  <p className="text-gray-600 text-sm">In-store tastings, festival participation, and targeted sampling at farmers markets and events.</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="h-16 w-16 rounded-full bg-orange-100 flex items-center justify-center mb-4 mx-auto">
+                    <svg className="h-8 w-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h5 className="font-bold text-gray-900 mb-2">Seasonal Promotions</h5>
+                  <p className="text-gray-600 text-sm">Limited releases, harvest celebrations, and holiday-themed marketing to drive trial and repeat purchases.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Digital Marketing Strategy */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Digital Marketing Strategy</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Content Marketing</h4>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <svg className="h-4 w-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h5 className="font-bold text-gray-900">Heritage Apple Stories</h5>
+                      <p className="text-gray-600 text-sm">Blog posts and videos about the history and characteristics of each heritage variety we grow.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <svg className="h-4 w-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h5 className="font-bold text-gray-900">Production Process</h5>
+                      <p className="text-gray-600 text-sm">Behind-the-scenes content showing organic farming practices and artisanal cider-making process.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <svg className="h-4 w-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h5 className="font-bold text-gray-900">Food Pairing Guides</h5>
+                      <p className="text-gray-600 text-sm">Educational content on pairing our ciders with food, targeting food enthusiasts and restaurants.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                      <svg className="h-4 w-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <h5 className="font-bold text-gray-900">Seasonal Updates</h5>
+                      <p className="text-gray-600 text-sm">Regular updates on orchard activities, harvest progress, and seasonal product releases.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h4 className="text-xl font-bold text-gray-900 mb-6">Digital Channels</h4>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-blue-800 mb-2">Website & SEO</h5>
+                    <p className="text-gray-700 text-sm">Professional website with e-commerce, blog, and local SEO optimization for "craft cider NJ" and related terms.</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-green-800 mb-2">Social Media</h5>
+                    <p className="text-gray-700 text-sm">Instagram and Facebook for visual storytelling, TikTok for younger demographics, LinkedIn for B2B connections.</p>
+                  </div>
+                  
+                  <div className="bg-purple-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-purple-800 mb-2">Email Marketing</h5>
+                    <p className="text-gray-700 text-sm">Newsletter with harvest updates, new releases, and exclusive offers for direct customers and trade accounts.</p>
+                  </div>
+                  
+                  <div className="bg-orange-50 p-4 rounded-lg">
+                    <h5 className="font-bold text-orange-800 mb-2">Influencer Partnerships</h5>
+                    <p className="text-gray-700 text-sm">Collaborations with local food bloggers, craft beverage influencers, and farm-to-table advocates.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Phase-Specific Implementation */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">Phase-Specific Marketing Implementation</h3>
+            
+            <div className="space-y-8">
+              <div className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-green-500">
+                <h4 className="text-xl font-bold text-green-800 mb-4">Phase 1: Brand Building & Local Awareness (Year 1)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Focus Areas</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Establish brand identity and packaging</li>
+                      <li>• Build local customer base through farmers markets</li>
+                      <li>• Create foundational digital presence</li>
+                      <li>• Develop relationships with local media</li>
+                      <li>• Focus on direct-to-consumer sales (60%)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Budget: $3,000 (DIY Approach)</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Basic website development: $1,000</li>
+                      <li>• Business cards & signage: $500</li>
+                      <li>• Farmers market fees: $800</li>
+                      <li>• Social media tools: $300</li>
+                      <li>• Photography & content: $400</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-blue-500">
+                <h4 className="text-xl font-bold text-blue-800 mb-4">Phase 2: Market Expansion (Years 2-4)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Focus Areas</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Expand to wholesale accounts (15 locations)</li>
+                      <li>• Develop tasting room operations</li>
+                      <li>• Increase digital marketing presence</li>
+                      <li>• Participate in regional events and festivals</li>
+                      <li>• Balance direct (45%) and wholesale (40%) sales</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Budget: $6,000 (Strategic Growth)</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Paid social media advertising: $2,000</li>
+                      <li>• Trade show participation: $1,500</li>
+                      <li>• Professional photography: $800</li>
+                      <li>• Print materials & signage: $1,000</li>
+                      <li>• Website enhancements: $700</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-purple-500">
+                <h4 className="text-xl font-bold text-purple-800 mb-4">Phase 3: Regional Brand Leadership (Years 5+)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Focus Areas</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Expand to 75+ wholesale accounts</li>
+                      <li>• Develop destination agritourism</li>
+                      <li>• Launch premium limited releases</li>
+                      <li>• Build regional brand recognition</li>
+                      <li>• Optimize retail (45%) and on-premise (20%) mix</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Budget: $10,000 (Professional Marketing)</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Digital advertising campaigns: $3,500</li>
+                      <li>• Trade marketing & promotions: $2,500</li>
+                      <li>• Event sponsorships: $2,000</li>
+                      <li>• Professional PR services: $1,500</li>
+                      <li>• Content creation & video: $500</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
