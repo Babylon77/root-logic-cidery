@@ -89,22 +89,22 @@ const DEFAULT_VALUES = {
   directSalesPercent: 40, // percentage of sales direct to consumer
   abnbNights: 0, // nights per year - initially zero
   abnbRate: 250, // per night
-  utilityExpenses: 12000, // annual
-  laborExpenses: 65000, // annual base labor (reduced to avoid double-counting with calculated labor)
-  maintenanceExpenses: 15000, // annual
+  utilityExpenses: 8000, // annual (lean operation)
+  laborExpenses: 35000, // annual base labor (heavy family labor, minimal hired help)
+  maintenanceExpenses: 8000, // annual (lean operation, DIY maintenance)
   marketingExpenses: 18000, // annual
-  equipmentCost: 165000, // Total for production and packaging equipment
+  equipmentCost: 120000, // Total for production and packaging equipment (lean setup)
   equipmentLifespan: 10, // years for depreciation
   productionEfficiency: 85, // percentage of theoretical yield actually achieved
   salesEfficiency: 90, // percentage of product actually sold
   wasteSpoilage: 5, // percentage of product lost to waste/spoilage
-  additionalCapitalExpenses: 70000, // renovations, initial inventory, etc.
+  additionalCapitalExpenses: 45000, // renovations, initial inventory, etc. (lean setup)
   additionalCapitalLifespan: 5, // years to amortize additional capital expenses
   farmLaborPercent: 40, // percentage of total labor
   harvestLaborPercent: 25, // percentage of total labor
   productionLaborPercent: 20, // percentage of total labor
   salesAdminPercent: 15, // percentage of total labor
-  laborHourlyRate: 18, // average hourly rate for farm labor
+  laborHourlyRate: 12, // family labor rate (lower than hired help)
   automationLevel: 40, // percentage of automation vs manual labor
   
   // New Sales Mix Model
@@ -152,7 +152,7 @@ const DEFAULT_VALUES = {
   phase3CapitalInvestment: 125000, // Taproom expansion, full automation
   
   // Marketing Strategy Parameters
-  marketingBudgetPercent: 8, // percentage of revenue for marketing
+  marketingBudgetPercent: 3, // percentage of revenue for marketing (lean DIY operation)
   brandingInvestment: 15000, // initial branding and design investment
   digitalMarketingPercent: 35, // percentage of marketing budget for digital
   eventMarketingPercent: 25, // percentage for events and tastings
@@ -422,17 +422,17 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const phaseLaborHours = baseLaborHours * laborHoursMultiplier * (1 - sliders.automationLevel / 100);
     const calculatedLaborExpenses = phaseLaborHours * sliders.laborHourlyRate;
     
-    // Marketing should be more fixed, not scale linearly with revenue
+    // Marketing for lean family operation - mostly DIY with minimal paid advertising
     let baseMarketingBudget = 0;
     switch(sliders.implementationPhase) {
       case 1:
-        baseMarketingBudget = 15000; // Fixed budget for brand building
+        baseMarketingBudget = 3000; // Basic website, business cards, farmers market fees
         break;
       case 2:
-        baseMarketingBudget = 25000; // Moderate increase for expansion
+        baseMarketingBudget = 6000; // Add some paid social media, signage, events
         break;
       case 3:
-        baseMarketingBudget = 35000; // Higher but not proportional to revenue
+        baseMarketingBudget = 10000; // Professional photography, expanded advertising
         break;
     }
     const calculatedMarketingExpenses = baseMarketingBudget;
@@ -2584,13 +2584,13 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                                         -$15,000
+                                         -$3,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (60%):</span>
                   <span className="font-mono text-red-600">
-                                         -${Math.round(results.totalBushels * 500 * 0.65 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.65 * 0.6 * 12).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -2629,13 +2629,13 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                                         -$25,000
+                                         -$6,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (80%):</span>
                   <span className="font-mono text-red-600">
-                                         -${Math.round(results.totalBushels * 500 * 0.75 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.75 * 0.6 * 12).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -2676,13 +2676,13 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                                         -$35,000
+                                         -$10,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (100%):</span>
                   <span className="font-mono text-red-600">
-                                         -${Math.round(results.totalBushels * 500 * 0.85 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.85 * 0.6 * 12).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -2750,6 +2750,40 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               </div>
                              <div className="mt-2 text-xs text-blue-700">
                  <strong>Fixed:</strong> Now selling ALL remaining apples in every phase for maximum revenue!
+               </div>
+             </div>
+             
+             <div className="mt-4 bg-green-100 p-3 rounded-lg">
+               <h5 className="font-medium text-green-800 mb-2">💰 Lean Marketing Budget Breakdown:</h5>
+               <div className="grid grid-cols-3 gap-4 text-xs">
+                 <div>
+                   <h6 className="font-medium">Phase 1 ($3k)</h6>
+                   <div>• Website setup: $800</div>
+                   <div>• Business cards/signage: $400</div>
+                   <div>• Farmers market fees: $600</div>
+                   <div>• Social media tools: $300</div>
+                   <div>• Photography/content: $500</div>
+                   <div>• Misc/events: $400</div>
+                 </div>
+                 <div>
+                   <h6 className="font-medium">Phase 2 ($6k)</h6>
+                   <div>• Phase 1 costs: $3k</div>
+                   <div>• Paid social ads: $1,200</div>
+                   <div>• Professional signage: $800</div>
+                   <div>• Event sponsorships: $600</div>
+                   <div>• Print materials: $400</div>
+                 </div>
+                 <div>
+                   <h6 className="font-medium">Phase 3 ($10k)</h6>
+                   <div>• Phase 2 costs: $6k</div>
+                   <div>• Professional photos: $1,500</div>
+                   <div>• Expanded advertising: $1,500</div>
+                   <div>• Trade show/events: $1,000</div>
+                 </div>
+               </div>
+               <div className="mt-2 text-xs text-green-700">
+                 <strong>Note:</strong> Heavy DIY approach - you're doing website, social media, content creation yourself. 
+                 These are just out-of-pocket costs for tools, materials, and advertising.
                </div>
             </div>
          </div>
