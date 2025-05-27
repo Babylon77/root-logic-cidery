@@ -2674,7 +2674,22 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       
       {/* Detailed Financial Analysis - DEBUG MODE */}
       <div className="mt-8 bg-red-50 p-6 rounded-lg border border-red-200">
-        <h3 className="text-xl font-bold text-red-800 mb-4">🔍 Detailed Financial Analysis (Debug Mode)</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-xl font-bold text-red-800">🔍 Detailed Financial Analysis (Debug Mode)</h3>
+          <button
+            onClick={() => {
+              const section = document.getElementById('debugMode');
+              if (section) {
+                section.classList.toggle('hidden');
+              }
+            }}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
+          >
+            Toggle Debug Details
+          </button>
+        </div>
+        
+        <div id="debugMode" className="hidden">
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Phase 1 Calculation */}
@@ -2936,9 +2951,10 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               <div className="mt-2 text-xs text-green-700">
                 <strong>Key Advantage:</strong> NJ Plenary Winery license allows self-distribution up to 50,000 gallons for just $100/year. 
                 This eliminates distributor markups (28-35%), sales rep commissions (3-8%), and most channel fees.
-              </div>
-            </div>
+                           </div>
+           </div>
          </div>
+        </div>
       </div>
       
       {/* Phase Comparison Table */}
