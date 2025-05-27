@@ -113,9 +113,9 @@ const DEFAULT_VALUES = {
   restaurantBarSalesPercent: 20, // percentage sold to restaurants/bars (lowest margin)
   
   // Channel-specific pricing (realistic craft cider pricing)
-  taproomPintPrice: 8, // per pint in taproom ($8/pint = $64/gallon)
-  retailWholesalePrice: 18, // per gallon wholesale to retailers (allows $15 retail 4-pack with retailer margin)
-  restaurantWholesalePrice: 22, // per gallon wholesale to restaurants/bars (allows $8/pint with bar margin)
+  taproomPintPrice: 9, // per pint in taproom ($9/pint = $72/gallon)
+  retailWholesalePrice: 20, // per gallon wholesale to retailers (allows $16 retail 4-pack with retailer margin)
+  restaurantWholesalePrice: 25, // per gallon wholesale to restaurants/bars (allows $9/pint with bar margin)
   
   // Channel-specific costs (adjusted to more realistic levels for small cidery)
   slottingFeesPerSKU: 500, // annual slotting fees per product per major retailer (reduced)
@@ -367,13 +367,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const appleSalesBushels = remainingBushels * (appleSalesPercent / 100) * (sliders.salesEfficiency / 100);
     
     // Premium pricing for heritage organic cider apples to craft cideries
+    // Keep apple pricing high to maintain revenue as we shift to cider
     let applePricePerBushel = 0;
     if (sliders.implementationPhase === 1) {
       applePricePerBushel = 45; // Premium price to craft cideries for heritage organic cider apples
     } else if (sliders.implementationPhase === 2) {
-      applePricePerBushel = 35; // Still selling some to cideries, some direct
+      applePricePerBushel = 42; // Still premium pricing, slight discount for volume
     } else {
-      applePricePerBushel = 25; // Mostly direct sales, lower volume to cideries
+      applePricePerBushel = 38; // Maintain premium pricing even for direct sales
     }
     
     const freshAppleRevenue = appleSalesBushels * applePricePerBushel;
@@ -2566,11 +2567,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             <div className="text-xs space-y-1">
               <div className="flex justify-between">
                 <span>Cider Revenue:</span>
-                <span className="font-mono">
-                  {sliders.implementationPhase === 1 ? 
-                    `$${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}` : 
-                    `$${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22)).toLocaleString()}`
-                  }
+                                 <span className="font-mono">
+                   {sliders.implementationPhase === 1 ? 
+                     `$${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}` : 
+                     `$${Math.round(750 * 0.95 * 0.9 * (0.6 * 9 * 8 + 0.3 * 20 + 0.1 * 25)).toLocaleString()}`
+                   }
                 </span>
               </div>
               <div className="flex justify-between">
@@ -2582,24 +2583,22 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               <div className="flex justify-between">
                 <span>Total Revenue:</span>
                 <span className="font-mono font-bold">
-                  ${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + 
-                    results.totalBushels * 0.85 * 0.85 * 0.9 * 45 + 
-                    (750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + results.totalBushels * 0.85 * 0.85 * 0.9 * 45) * 0.15).toLocaleString()}
+                                     ${Math.round(750 * 0.95 * 0.9 * (0.6 * 9 * 8 + 0.3 * 20 + 0.1 * 25) + 
+                     results.totalBushels * 0.85 * 0.85 * 0.9 * 45 + 
+                     (750 * 0.95 * 0.9 * (0.6 * 9 * 8 + 0.3 * 20 + 0.1 * 25) + results.totalBushels * 0.85 * 0.85 * 0.9 * 45) * 0.15).toLocaleString()}
                 </span>
               </div>
               <div className="border-t pt-1 mt-2">
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round((750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + 
-                      results.totalBushels * 0.85 * 0.85 * 0.9 * 45 + 
-                      (750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) + results.totalBushels * 0.85 * 0.85 * 0.9 * 45) * 0.15) * 0.08).toLocaleString()}
+                                         -$15,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (60%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round(results.totalBushels * 500 * 0.6 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.65 * 0.6 * 18).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -2617,42 +2616,40 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               <div className="flex justify-between">
                 <span>Cider Revenue:</span>
                 <span className="font-mono">
-                  ${Math.round(2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22)).toLocaleString()}
+                                     ${Math.round(2000 * 0.95 * 0.9 * (0.45 * 9 * 8 + 0.4 * 20 + 0.15 * 25)).toLocaleString()}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Apple Revenue:</span>
                 <span className="font-mono">
-                  ${Math.round((results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35).toLocaleString()}
+                                     ${Math.round((results.totalBushels * 0.85 - 2000/3.1) * 0.75 * 0.9 * 42).toLocaleString()}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Total Revenue:</span>
                 <span className="font-mono font-bold">
-                  ${Math.round(2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + 
-                    (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35 + 
-                    (2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35) * 0.15).toLocaleString()}
+                                     ${Math.round(2000 * 0.95 * 0.9 * (0.45 * 9 * 8 + 0.4 * 20 + 0.15 * 25) + 
+                     (results.totalBushels * 0.85 - 2000/3.1) * 0.75 * 0.9 * 42 + 
+                     (2000 * 0.95 * 0.9 * (0.45 * 9 * 8 + 0.4 * 20 + 0.15 * 25) + (results.totalBushels * 0.85 - 2000/3.1) * 0.75 * 0.9 * 42) * 0.15).toLocaleString()}
                 </span>
               </div>
               <div className="border-t pt-1 mt-2">
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round((2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + 
-                      (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35 + 
-                      (2500 * 0.95 * 0.9 * (0.45 * 8 * 8 + 0.4 * 18 + 0.15 * 22) + (results.totalBushels * 0.85 - 2500/3.1) * 0.7 * 0.9 * 35) * 0.15) * 0.08).toLocaleString()}
+                                         -$25,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (80%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round(results.totalBushels * 500 * 0.8 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.75 * 0.6 * 18).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Channel Costs:</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round(500 * 2 * 3 + (2500 * 0.95 * 0.9 * (0.4 * 18 + 0.15 * 22)) * (8 + 3) / 100).toLocaleString()}
+                                         -${Math.round(500 * 2 * 3 + (2000 * 0.95 * 0.9 * (0.4 * 20 + 0.15 * 25)) * (8 + 3) / 100).toLocaleString()}
                   </span>
                 </div>
               </div>
@@ -2666,42 +2663,40 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               <div className="flex justify-between">
                 <span>Cider Revenue:</span>
                 <span className="font-mono">
-                  ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22)).toLocaleString()}
+                                     ${Math.round(4500 * 0.95 * 0.9 * (0.35 * 9 * 8 + 0.45 * 20 + 0.2 * 25)).toLocaleString()}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Apple Revenue:</span>
                 <span className="font-mono">
-                  ${Math.round((results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25).toLocaleString()}
+                                     ${Math.round((results.totalBushels * 0.85 - 4500/3.1) * 0.55 * 0.9 * 38).toLocaleString()}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span>Total Revenue:</span>
                 <span className="font-mono font-bold">
-                  ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + 
-                    (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25 + 
-                    (6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25) * 0.15).toLocaleString()}
+                                     ${Math.round(4500 * 0.95 * 0.9 * (0.35 * 9 * 8 + 0.45 * 20 + 0.2 * 25) + 
+                     (results.totalBushels * 0.85 - 4500/3.1) * 0.55 * 0.9 * 38 + 
+                     (4500 * 0.95 * 0.9 * (0.35 * 9 * 8 + 0.45 * 20 + 0.2 * 25) + (results.totalBushels * 0.85 - 4500/3.1) * 0.55 * 0.9 * 38) * 0.15).toLocaleString()}
                 </span>
               </div>
               <div className="border-t pt-1 mt-2">
                 <div className="flex justify-between">
                   <span>Marketing (8%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round((6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + 
-                      (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25 + 
-                      (6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) + (results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25) * 0.15) * 0.08).toLocaleString()}
+                                         -$35,000
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Labor (100%):</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round(results.totalBushels * 500 * 1.0 * 0.6 * 18).toLocaleString()}
+                                         -${Math.round(results.totalBushels * 500 * 0.85 * 0.6 * 18).toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Channel Costs:</span>
                   <span className="font-mono text-red-600">
-                    -${Math.round(500 * 2 * 3 + (6000 * 0.95 * 0.9 * (0.45 * 18 + 0.2 * 22)) * (8 + 3) / 100).toLocaleString()}
+                                         -${Math.round(500 * 2 * 3 + (4500 * 0.95 * 0.9 * (0.45 * 20 + 0.2 * 25)) * (8 + 3) / 100).toLocaleString()}
                   </span>
                 </div>
               </div>
@@ -2709,15 +2704,33 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           </div>
         </div>
         
-        <div className="mt-6 bg-yellow-100 p-4 rounded-lg">
-          <h4 className="font-bold text-yellow-800 mb-2">🚨 Key Issues Identified:</h4>
-          <ul className="text-sm text-yellow-700 space-y-1">
-            <li><strong>Marketing costs scale with revenue:</strong> Phase 3 pays ${Math.round(6000 * 0.95 * 0.9 * (0.35 * 8 * 8 + 0.45 * 18 + 0.2 * 22) * 1.15 * 0.08).toLocaleString()} vs Phase 1's ${Math.round(750 * 0.95 * 0.9 * (0.6 * 8 * 8 + 0.3 * 18 + 0.1 * 22) * 1.15 * 0.08).toLocaleString()}</li>
-            <li><strong>Labor scales up faster than revenue:</strong> 100% vs 60% labor but revenue doesn't triple</li>
-            <li><strong>Apple revenue drops dramatically:</strong> From ${Math.round(results.totalBushels * 0.85 * 0.85 * 0.9 * 45).toLocaleString()} to ${Math.round((results.totalBushels * 0.85 - 6000/3.1) * 0.4 * 0.9 * 25).toLocaleString()}</li>
-            <li><strong>Channel costs appear in Phase 2+:</strong> Adding significant overhead</li>
-          </ul>
-        </div>
+                 <div className="mt-6 bg-yellow-100 p-4 rounded-lg">
+           <h4 className="font-bold text-yellow-800 mb-2">📊 Revenue Analysis by Phase:</h4>
+                       <div className="grid grid-cols-3 gap-4 text-xs">
+              <div>
+                <h5 className="font-medium">Phase 1</h5>
+                <div>Cider: 750 gal × $58 avg = $43k</div>
+                <div>Apples: ~1,400 bu × 85% × $45 = $53k</div>
+                <div><strong>Total: ~$96k + 15% other = $110k</strong></div>
+              </div>
+              <div>
+                <h5 className="font-medium">Phase 2</h5>
+                <div>Cider: 2,000 gal × $62 avg = $124k</div>
+                <div>Apples: ~850 bu × 75% × $42 = $27k</div>
+                <div><strong>Total: ~$151k + 15% other = $174k</strong></div>
+              </div>
+              <div>
+                <h5 className="font-medium">Phase 3</h5>
+                <div>Cider: 4,500 gal × $65 avg = $293k</div>
+                <div>Apples: ~200 bu × 55% × $38 = $4k</div>
+                <div><strong>Total: ~$297k + 15% other = $342k</strong></div>
+              </div>
+            </div>
+           <div className="mt-3 text-sm text-yellow-700">
+             <strong>Key Insight:</strong> Revenue should increase dramatically as we shift from apple sales to higher-value cider production. 
+             The value-add from processing apples into cider should more than compensate for reduced apple sales volume.
+           </div>
+         </div>
       </div>
       
       {/* Phase Comparison Table */}
