@@ -84,8 +84,8 @@ const DEFAULT_VALUES = {
   gallonsPerBushel: 3.1, // gallons of cider per bushel
   packagingCostPerGallon: 2.75, // bottles, cans, labels, etc. (reduced)
   exciseTaxPerGallon: 1.07, // federal excise tax on hard cider
-  licensingCosts: 3500, // annual licensing fees
-  distributionCostPercent: 8, // percentage of revenue for distribution costs (reduced for small cidery)
+  licensingCosts: 3600, // annual licensing fees (includes $100 self-distribution permit)
+  distributionCostPercent: 2, // percentage of revenue for distribution costs (self-distribution with Plenary Winery license)
   directSalesPercent: 40, // percentage of sales direct to consumer
   abnbNights: 0, // nights per year - initially zero
   abnbRate: 250, // per night
@@ -394,21 +394,21 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         phaseLicensingCosts = sliders.licensingCosts * 0.3; // Basic licenses only
         phaseUtilityExpenses = sliders.utilityExpenses * 0.4; // Minimal facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.3; // Basic orchard maintenance
-        phaseDistributionCostPercent = 2; // Minimal distribution costs
+        phaseDistributionCostPercent = 0.5; // Minimal self-distribution costs (gas, vehicle wear)
         laborHoursMultiplier = 0.65; // Reduced labor needs
         break;
       case 2: // Moderate operations
         phaseLicensingCosts = sliders.licensingCosts * 0.7; // More licenses needed
         phaseUtilityExpenses = sliders.utilityExpenses * 0.7; // Moderate facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses * 0.7; // More equipment to maintain
-        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.6; // Growing distribution but efficient
+        phaseDistributionCostPercent = 1.5; // Self-distribution with more accounts (gas, time, vehicle)
         laborHoursMultiplier = 0.75; // More moderate labor increase
         break;
       case 3: // Full operations
         phaseLicensingCosts = sliders.licensingCosts; // All licenses
         phaseUtilityExpenses = sliders.utilityExpenses; // Full facility use
         phaseMaintenanceExpenses = sliders.maintenanceExpenses; // Full maintenance
-        phaseDistributionCostPercent = sliders.distributionCostPercent * 0.8; // Efficient distribution
+        phaseDistributionCostPercent = 2.5; // Full self-distribution operation (may need delivery vehicle/staff)
         laborHoursMultiplier = 0.85; // Efficient operations with automation
         break;
     }
@@ -435,11 +435,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     }
     const calculatedMarketingExpenses = baseMarketingBudget;
     
-    // Phase-adjusted channel costs (only apply to wholesale operations)
-    const phaseSlottingFees = sliders.implementationPhase >= 2 ? slottingFees : 0;
-    const phasePromotionalAllowances = sliders.implementationPhase >= 2 ? promotionalAllowances : 0;
-    const phaseSalesRepCommissions = sliders.implementationPhase >= 2 ? salesRepCommissions : 0;
-    const phaseWorkingCapitalCost = workingCapitalCost * (sliders.implementationPhase / 3); // Scale with phase
+    // Phase-adjusted channel costs (minimal with self-distribution)
+    const phaseSlottingFees = sliders.implementationPhase >= 3 ? slottingFees * 0.3 : 0; // Only for major chains in Phase 3
+    const phasePromotionalAllowances = sliders.implementationPhase >= 3 ? promotionalAllowances * 0.2 : 0; // Minimal promotional support
+    const phaseSalesRepCommissions = 0; // No sales reps needed with self-distribution
+    const phaseWorkingCapitalCost = workingCapitalCost * 0.5; // Lower working capital needs with direct sales
     
     const annualExpenses = phaseUtilityExpenses + calculatedLaborExpenses + 
       phaseMaintenanceExpenses + calculatedMarketingExpenses + annualFixedCosts +
@@ -2227,6 +2227,52 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
+      {/* Self-Distribution Advantage */}
+      <div className="mt-8 bg-green-50 p-6 rounded-lg border border-green-200">
+        <h3 className="text-xl font-bold text-green-800 mb-4">🚚 Self-Distribution Advantage (NJ Plenary Winery License)</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <h4 className="font-bold text-green-700 mb-3">Cost Savings vs. Traditional Distribution</h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span>Traditional Distribution:</span>
+                <span className="text-red-600 font-medium">8-15% of revenue</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Self-Distribution:</span>
+                <span className="text-green-600 font-medium">0.5-2.5% of revenue</span>
+              </div>
+              <div className="flex justify-between border-t pt-2">
+                <span className="font-medium">Annual Savings:</span>
+                <span className="text-green-600 font-bold">
+                  ${Math.round(results.annualRevenue * 0.08 - results.distributionCosts).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-4 rounded-lg shadow-sm">
+            <h4 className="font-bold text-green-700 mb-3">Additional Benefits</h4>
+            <ul className="text-sm text-green-700 space-y-1">
+              <li>• Direct customer relationships</li>
+              <li>• Better profit margins (no distributor markup)</li>
+              <li>• Faster payment cycles</li>
+              <li>• Control over product placement</li>
+              <li>• Immediate market feedback</li>
+              <li>• Flexible pricing strategies</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="mt-4 bg-green-100 p-3 rounded-lg">
+          <p className="text-sm text-green-800">
+            <strong>NJ Plenary Winery License:</strong> Allows self-distribution of up to 50,000 gallons annually for just $100/year. 
+            This eliminates distributor fees (typically 28-35% markup), sales rep commissions (3-8%), and most slotting fees.
+          </p>
+        </div>
+      </div>
+
       {/* Regulatory & Packaging Costs */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Regulatory & Packaging</h3>
@@ -2284,19 +2330,29 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Distribution Cost: {sliders.distributionCostPercent}% of revenue
+              Self-Distribution Cost: {sliders.distributionCostPercent}% of revenue
+              <InfoBox title="Self-Distribution Costs">
+                <p>With NJ Plenary Winery license, you can self-distribute up to 50,000 gallons.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Vehicle fuel and maintenance</li>
+                  <li>Delivery time and labor</li>
+                  <li>Insurance and permits ($100/year)</li>
+                  <li>Much lower than traditional distribution (8-15%)</li>
+                </ul>
+              </InfoBox>
             </label>
             <input
               type="range"
-              min="5"
-              max="30"
-              step="1"
+              min="0.5"
+              max="5"
+              step="0.1"
               name="distributionCostPercent"
               value={sliders.distributionCostPercent}
               onChange={handleSliderChange}
               className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
             <p className="text-sm text-gray-500 mt-1">Annual cost: ${results.distributionCosts.toLocaleString()}</p>
+            <p className="text-xs text-green-600 mt-1">Savings vs traditional distribution: ${Math.round(results.annualRevenue * 0.08 - results.distributionCosts).toLocaleString()}/year</p>
           </div>
         </div>
       </div>
@@ -2760,6 +2816,34 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                  <strong>Note:</strong> Heavy DIY approach - you're doing website, social media, content creation yourself. 
                  These are just out-of-pocket costs for tools, materials, and advertising.
                </div>
+            </div>
+            
+            <div className="mt-4 bg-green-100 p-3 rounded-lg">
+              <h5 className="font-medium text-green-800 mb-2">🚚 Self-Distribution Savings Analysis:</h5>
+              <div className="grid grid-cols-3 gap-4 text-xs">
+                <div>
+                  <h6 className="font-medium">Phase 1 Savings</h6>
+                  <div>Traditional: ${Math.round(results.annualRevenue * 0.08).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(results.annualRevenue * 0.005).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(results.annualRevenue * 0.075).toLocaleString()}</div>
+                </div>
+                <div>
+                  <h6 className="font-medium">Phase 2 Savings</h6>
+                  <div>Traditional: ${Math.round(143000 * 0.10).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(143000 * 0.015).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(143000 * 0.085).toLocaleString()}</div>
+                </div>
+                <div>
+                  <h6 className="font-medium">Phase 3 Savings</h6>
+                  <div>Traditional: ${Math.round(276000 * 0.12).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(276000 * 0.025).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(276000 * 0.095).toLocaleString()}</div>
+                </div>
+              </div>
+              <div className="mt-2 text-xs text-green-700">
+                <strong>Key Advantage:</strong> NJ Plenary Winery license allows self-distribution up to 50,000 gallons for just $100/year. 
+                This eliminates distributor markups (28-35%), sales rep commissions (3-8%), and most channel fees.
+              </div>
             </div>
          </div>
       </div>
