@@ -150,6 +150,26 @@ const DEFAULT_VALUES = {
   phase3TaproomDays: 312, // 6 days/week open
   phase3DistributionAccounts: 75, // Regional distribution NJ/PA/NY
   phase3CapitalInvestment: 125000, // Taproom expansion, full automation
+  
+  // Marketing Strategy Parameters
+  marketingBudgetPercent: 8, // percentage of revenue for marketing
+  brandingInvestment: 15000, // initial branding and design investment
+  digitalMarketingPercent: 35, // percentage of marketing budget for digital
+  eventMarketingPercent: 25, // percentage for events and tastings
+  tradingMarketingPercent: 20, // percentage for trade marketing (shelf placement, etc.)
+  prMarketingPercent: 20, // percentage for PR and content marketing
+  
+  // Marketing Effectiveness Metrics
+  customerAcquisitionCost: 25, // cost to acquire new customer
+  customerLifetimeValue: 180, // average customer lifetime value
+  brandAwarenessTarget: 15, // target brand awareness percentage in local market
+  taproomConversionRate: 35, // percentage of visitors who make purchase
+  
+  // Health & Heritage Positioning
+  healthPositioningFocus: true, // emphasize health benefits vs other alcohol
+  heritageAppleFocus: true, // emphasize heritage apple varieties
+  organicCertification: true, // highlight organic practices
+  dryNotSweetPositioning: true, // position against overly sweet mass market ciders
 }
 
 interface BusinessCalculatorProps {
@@ -195,6 +215,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     monthlyLaborHours: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     automationSavings: 0,
     laborExpenses: 0, // Add this property to fix the type error
+    marketingExpenses: 0, // Add this property for calculated marketing expenses
   })
   
   // Calculate financial outcomes whenever sliders change
@@ -350,8 +371,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     // Calculate total expenses including new channel-specific costs
     const calculatedLaborExpenses = sliders.laborHourlyRate * 
       (sliders.orchardAcres * 500) * (1 - sliders.automationLevel / 100) // 500 hours per acre annually
+    const calculatedMarketingExpenses = annualRevenue * (sliders.marketingBudgetPercent / 100)
     const annualExpenses = sliders.utilityExpenses + calculatedLaborExpenses + 
-      sliders.maintenanceExpenses + sliders.marketingExpenses + annualFixedCosts +
+      sliders.maintenanceExpenses + calculatedMarketingExpenses + annualFixedCosts +
       packagingCosts + exciseTax + licensingCosts + distributionCosts +
       slottingFees + promotionalAllowances + salesRepCommissions + workingCapitalCost
     
@@ -442,6 +464,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       monthlyLaborHours: monthlyLaborHours,
       automationSavings: Math.round(automationSavings),
       laborExpenses: Math.round(calculatedLaborExpenses), // Store calculated labor expense
+      marketingExpenses: Math.round(calculatedMarketingExpenses), // Store calculated marketing expense
     }
     
     setResults(updatedResults)
@@ -510,7 +533,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           sliders.utilityExpenses,
           results.laborExpenses,
           sliders.maintenanceExpenses,
-          sliders.marketingExpenses,
+          results.marketingExpenses,
           // Calculate total channel costs
           Math.round(sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers + 
                     results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100),
@@ -1742,6 +1765,312 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
+      {/* Marketing Strategy */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Marketing Strategy & Brand Positioning</h3>
+        
+        {/* Core Brand Positioning */}
+        <div className="mb-8 bg-white p-6 rounded-lg shadow">
+          <h4 className="text-lg font-bold text-gray-800 mb-4">Core Brand Positioning</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div className="border border-green-200 rounded-lg p-4 bg-green-50">
+                <h5 className="font-medium text-green-800 mb-2">🍎 Heritage Apple Story</h5>
+                <p className="text-sm text-green-700">
+                  "Crafted from heritage apple varieties that have been grown in this region for generations. 
+                  Each sip connects you to the authentic flavors that built America's cider tradition."
+                </p>
+                <ul className="text-xs text-green-600 mt-2 space-y-1">
+                  <li>• Emphasize historical apple varieties</li>
+                  <li>• Connect to local agricultural heritage</li>
+                  <li>• Differentiate from mass-produced ciders</li>
+                </ul>
+              </div>
+              
+              <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
+                <h5 className="font-medium text-blue-800 mb-2">🌱 Organic & Sustainable</h5>
+                <p className="text-sm text-blue-700">
+                  "Organically grown, sustainably farmed. Our apples are cultivated without synthetic pesticides, 
+                  creating pure, clean ciders that are better for you and the environment."
+                </p>
+                <ul className="text-xs text-blue-600 mt-2 space-y-1">
+                  <li>• Highlight organic certification</li>
+                  <li>• Emphasize environmental stewardship</li>
+                  <li>• Appeal to health-conscious consumers</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="border border-purple-200 rounded-lg p-4 bg-purple-50">
+                <h5 className="font-medium text-purple-800 mb-2">🍷 Dry & Sophisticated</h5>
+                <p className="text-sm text-purple-700">
+                  "Not your typical sweet cider. Our dry, complex ciders offer wine-like sophistication 
+                  with the refreshing character of premium apples. For those who appreciate nuanced flavors."
+                </p>
+                <ul className="text-xs text-purple-600 mt-2 space-y-1">
+                  <li>• Position against overly sweet mass market</li>
+                  <li>• Target sophisticated palates</li>
+                  <li>• Emphasize complexity and craftsmanship</li>
+                </ul>
+              </div>
+              
+              <div className="border border-orange-200 rounded-lg p-4 bg-orange-50">
+                <h5 className="font-medium text-orange-800 mb-2">💪 Health Benefits</h5>
+                <p className="text-sm text-orange-700">
+                  "Naturally gluten-free with antioxidants from real apples. Lower in alcohol than wine, 
+                  with probiotics from natural fermentation. A healthier choice for mindful drinkers."
+                </p>
+                <ul className="text-xs text-orange-600 mt-2 space-y-1">
+                  <li>• Gluten-free alternative to beer</li>
+                  <li>• Lower alcohol than wine/spirits</li>
+                  <li>• Natural antioxidants and probiotics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Phase-Specific Marketing Strategy */}
+        <div className="mb-8 bg-white p-6 rounded-lg shadow">
+          <h4 className="text-lg font-bold text-gray-800 mb-4">Phase-Specific Marketing Strategy</h4>
+          
+          {sliders.implementationPhase === 1 && (
+            <div className="space-y-4">
+              <h5 className="font-medium text-blue-600">Phase 1: Brand Building & Local Awareness</h5>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Grassroots Marketing</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Monthly barn events with tastings</li>
+                    <li>• Farmers market presence (24 events/year)</li>
+                    <li>• Local food blogger outreach</li>
+                    <li>• Community event sponsorships</li>
+                    <li>• Word-of-mouth referral program</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Digital Foundation</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Professional website with story</li>
+                    <li>• Instagram showcasing farm life</li>
+                    <li>• Facebook for event promotion</li>
+                    <li>• Google My Business optimization</li>
+                    <li>• Email newsletter signup</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">PR & Storytelling</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Local newspaper features</li>
+                    <li>• Heritage apple education content</li>
+                    <li>• Farm-to-glass story videos</li>
+                    <li>• Organic certification PR</li>
+                    <li>• Founder story development</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {sliders.implementationPhase === 2 && (
+            <div className="space-y-4">
+              <h5 className="font-medium text-blue-600">Phase 2: Market Expansion & Distribution Support</h5>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Trade Marketing</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• In-store tastings and demos</li>
+                    <li>• Point-of-sale materials</li>
+                    <li>• Bartender education programs</li>
+                    <li>• Menu placement incentives</li>
+                    <li>• Seasonal promotional campaigns</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Digital Growth</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Targeted social media advertising</li>
+                    <li>• Influencer partnerships</li>
+                    <li>• SEO content marketing</li>
+                    <li>• Email marketing automation</li>
+                    <li>• Online ordering system</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Experience Marketing</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Regular taproom events</li>
+                    <li>• Cider education classes</li>
+                    <li>• Food pairing experiences</li>
+                    <li>• Harvest participation events</li>
+                    <li>• Private group bookings</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {sliders.implementationPhase === 3 && (
+            <div className="space-y-4">
+              <h5 className="font-medium text-blue-600">Phase 3: Regional Brand Leadership</h5>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Regional Expansion</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Multi-state distribution support</li>
+                    <li>• Regional trade show presence</li>
+                    <li>• Distributor relationship management</li>
+                    <li>• Chain account development</li>
+                    <li>• Regional media campaigns</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Premium Positioning</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Premium packaging design</li>
+                    <li>• Limited edition releases</li>
+                    <li>• Awards and competition entries</li>
+                    <li>• Sommelier education programs</li>
+                    <li>• High-end restaurant placement</li>
+                  </ul>
+                </div>
+                <div className="border border-gray-200 rounded-lg p-4">
+                  <h6 className="font-medium text-gray-800">Destination Marketing</h6>
+                  <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                    <li>• Tourism board partnerships</li>
+                    <li>• Agritourism experiences</li>
+                    <li>• Wedding and event venue</li>
+                    <li>• Cider trail participation</li>
+                    <li>• Regional food festivals</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        
+        {/* Marketing Budget Allocation */}
+        <div className="mb-8 bg-white p-6 rounded-lg shadow">
+          <h4 className="text-lg font-bold text-gray-800 mb-4">Marketing Budget Allocation</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Marketing Budget: {sliders.marketingBudgetPercent}% of Revenue
+              </label>
+              <input
+                type="range"
+                min="5"
+                max="15"
+                step="1"
+                name="marketingBudgetPercent"
+                value={sliders.marketingBudgetPercent}
+                onChange={handleSliderChange}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              />
+              <p className="text-sm text-gray-500 mt-1">
+                Annual budget: ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100).toLocaleString()}
+              </p>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Digital Marketing</span>
+                <span className="text-sm text-gray-600">{sliders.digitalMarketingPercent}%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Events & Tastings</span>
+                <span className="text-sm text-gray-600">{sliders.eventMarketingPercent}%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Trade Marketing</span>
+                <span className="text-sm text-gray-600">{sliders.tradingMarketingPercent}%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">PR & Content</span>
+                <span className="text-sm text-gray-600">{sliders.prMarketingPercent}%</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <h6 className="font-medium text-blue-800">Digital Marketing</h6>
+              <p className="text-lg font-bold text-blue-900">
+                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.digitalMarketingPercent / 100).toLocaleString()}
+              </p>
+              <p className="text-xs text-blue-600">Social media, SEO, email</p>
+            </div>
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h6 className="font-medium text-green-800">Events & Tastings</h6>
+              <p className="text-lg font-bold text-green-900">
+                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.eventMarketingPercent / 100).toLocaleString()}
+              </p>
+              <p className="text-xs text-green-600">Farmers markets, demos</p>
+            </div>
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h6 className="font-medium text-purple-800">Trade Marketing</h6>
+              <p className="text-lg font-bold text-purple-900">
+                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.tradingMarketingPercent / 100).toLocaleString()}
+              </p>
+              <p className="text-xs text-purple-600">POS, incentives, training</p>
+            </div>
+            <div className="bg-orange-50 p-4 rounded-lg">
+              <h6 className="font-medium text-orange-800">PR & Content</h6>
+              <p className="text-lg font-bold text-orange-900">
+                ${Math.round(results.annualRevenue * sliders.marketingBudgetPercent / 100 * sliders.prMarketingPercent / 100).toLocaleString()}
+              </p>
+              <p className="text-xs text-orange-600">Stories, media, content</p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Key Marketing Tactics for Sales Velocity */}
+        <div className="bg-white p-6 rounded-lg shadow">
+          <h4 className="text-lg font-bold text-gray-800 mb-4">Key Tactics for Sales Velocity</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="border border-amber-200 rounded-lg p-4 bg-amber-50">
+              <h5 className="font-medium text-amber-800 mb-3">🏪 Shelf Velocity Drivers</h5>
+              <ul className="text-sm text-amber-700 space-y-2">
+                <li><strong>Eye-catching packaging:</strong> Heritage-inspired design that stands out</li>
+                <li><strong>Shelf talkers:</strong> "Dry, not sweet" messaging at point of sale</li>
+                <li><strong>Staff education:</strong> Train store staff on taste profile differences</li>
+                <li><strong>Cross-merchandising:</strong> Place near craft beer, not sweet ciders</li>
+                <li><strong>Sampling programs:</strong> Let taste drive the sale</li>
+                <li><strong>Seasonal displays:</strong> Harvest themes, local pride positioning</li>
+              </ul>
+            </div>
+            
+            <div className="border border-teal-200 rounded-lg p-4 bg-teal-50">
+              <h5 className="font-medium text-teal-800 mb-3">🍺 Bar & Restaurant Flow</h5>
+              <ul className="text-sm text-teal-700 space-y-2">
+                <li><strong>Bartender incentives:</strong> Spiffs for recommending our cider</li>
+                <li><strong>Menu positioning:</strong> In craft beer section, not wine/cocktails</li>
+                <li><strong>Glassware program:</strong> Proper glassware enhances experience</li>
+                <li><strong>Food pairing suggestions:</strong> Specific menu item pairings</li>
+                <li><strong>Happy hour features:</strong> Special pricing during key hours</li>
+                <li><strong>Tap handle design:</strong> Heritage apple imagery, local pride</li>
+              </ul>
+            </div>
+            
+            <div className="border border-green-200 rounded-lg p-4 bg-green-50">
+              <h5 className="font-medium text-green-800 mb-3">🏡 Taproom Traffic Drivers</h5>
+              <ul className="text-sm text-green-700 space-y-2">
+                <li><strong>Educational experiences:</strong> Cider vs beer/wine tastings</li>
+                <li><strong>Instagram moments:</strong> Scenic views, harvest activities</li>
+                <li><strong>Local partnerships:</strong> Food trucks, live music, artisans</li>
+                <li><strong>Seasonal events:</strong> Harvest festivals, apple picking</li>
+                <li><strong>Corporate groups:</strong> Team building, private events</li>
+                <li><strong>Loyalty program:</strong> Rewards for repeat visits and referrals</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Channel-Specific Costs */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Channel-Specific Costs</h3>
@@ -1974,18 +2303,15 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Annual Marketing: ${sliders.marketingExpenses.toLocaleString()}
+              Annual Marketing: ${results.marketingExpenses.toLocaleString()}
             </label>
-            <input
-              type="range"
-              min="10000"
-              max="30000"
-              step="1000"
-              name="marketingExpenses"
-              value={sliders.marketingExpenses}
-              onChange={handleSliderChange}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-            />
+            <div className="w-full h-2 bg-gray-200 rounded-lg">
+              <div 
+                className="h-2 bg-purple-400 rounded-lg" 
+                style={{width: '100%'}}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-500 mt-1">Calculated from Marketing Strategy section ({sliders.marketingBudgetPercent}% of revenue)</p>
           </div>
         </div>
       </div>
