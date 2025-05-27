@@ -801,8 +801,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-blue-200">
             <h4 className="text-sm text-gray-500">Hard Cider Production</h4>
-            <p className="text-2xl font-bold">{results.ciderGallons.toLocaleString()} gallons</p>
-            <p className="text-sm text-gray-500">{Math.round(results.totalCanEquivalent).toLocaleString()} 16oz cans</p>
+            <p className="text-2xl font-bold">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * (1-sliders.wasteSpoilage/100)).toLocaleString()} gallons</p>
+            <p className="text-sm text-gray-500">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.cansPerGallon * (1-sliders.wasteSpoilage/100)).toLocaleString()} 16oz cans</p>
+            <p className="text-xs text-gray-400 mt-1">After {sliders.productionEfficiency}% efficiency & {sliders.wasteSpoilage}% waste</p>
             <button 
               onClick={() => {
                 document.getElementById('ciderDetailsModal')?.classList.remove('hidden');
@@ -964,32 +965,35 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     <div className="font-medium">Cider Percentage</div>
                     <div className="col-span-2">{sliders.ciderYield}% of harvest</div>
                     
-                    <div className="font-medium">Bushels for Cider</div>
+                    <div className="font-medium">Production Efficiency</div>
+                    <div className="col-span-2">{sliders.productionEfficiency}%</div>
+                    
+                    <div className="font-medium">Effective Bushels for Cider</div>
                     <div className="col-span-2 font-bold">
-                      {Math.round(results.totalBushels * (sliders.ciderYield/100)).toLocaleString()} bushels
+                      {Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100)).toLocaleString()} bushels
                     </div>
                   </div>
                   <div className="mt-2 text-xs text-gray-500">
-                    Formula: Total Bushels × Cider Percentage = Bushels for Cider
+                    Formula: Total Bushels × Cider Percentage × Production Efficiency = Effective Bushels for Cider
                   </div>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-medium text-gray-800 mb-2">Step 2: Convert Bushels to Cider Gallons</h4>
                   <div className="grid grid-cols-3 gap-2 text-sm">
-                    <div className="font-medium">Bushels for Cider</div>
-                    <div className="col-span-2">{Math.round(results.totalBushels * (sliders.ciderYield/100)).toLocaleString()} bushels</div>
+                    <div className="font-medium">Effective Bushels for Cider</div>
+                    <div className="col-span-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100)).toLocaleString()} bushels</div>
                     
                     <div className="font-medium">Conversion Rate</div>
                     <div className="col-span-2">{sliders.gallonsPerBushel} gallons per bushel</div>
                     
                     <div className="font-medium">Theoretical Gallons</div>
                     <div className="col-span-2 font-bold">
-                      {results.ciderGallons.toLocaleString()} gallons
+                      {Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel).toLocaleString()} gallons
                     </div>
                   </div>
                   <div className="mt-2 text-xs text-gray-500">
-                    Formula: Bushels for Cider × Gallons per Bushel = Theoretical Gallons
+                    Formula: Effective Bushels for Cider × Gallons per Bushel = Theoretical Gallons
                   </div>
                 </div>
                 
@@ -1652,14 +1656,14 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               <tr className="bg-white border-b">
                 <td className="px-4 py-2 font-medium">Cider (Gallons)</td>
                 <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * sliders.gallonsPerBushel).toLocaleString()}</td>
-                <td className="px-4 py-2">{results.ciderGallons.toLocaleString()}</td>
-                <td className="px-4 py-2">{Math.round(results.ciderGallons * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
               </tr>
               <tr className="bg-white">
                 <td className="px-4 py-2 font-medium">16oz Cans</td>
                 <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * sliders.gallonsPerBushel * sliders.cansPerGallon).toLocaleString()}</td>
-                <td className="px-4 py-2">{results.totalCanEquivalent.toLocaleString()}</td>
-                <td className="px-4 py-2">{Math.round(results.totalCanEquivalent * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.cansPerGallon).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.cansPerGallon * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
               </tr>
             </tbody>
           </table>
