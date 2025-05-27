@@ -1482,11 +1482,18 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <p className="text-sm text-gray-600">Cider Cost per Gallon</p>
                 <p className="text-lg font-bold text-gray-800">
                   ${(() => {
-                    // Calculate cider-specific costs (production + packaging + excise + portion of overhead)
-                    const ciderSpecificCosts = results.packagingCosts + results.exciseTax + 
-                      (results.laborExpenses * 0.4) + // 40% of labor for cider production
-                      (results.annualFixedCosts * 0.3); // 30% of fixed costs allocated to cider
-                    return (ciderSpecificCosts / Math.max(results.ciderGallons, 1)).toFixed(2);
+                    // Calculate cider-specific costs based on revenue proportion
+                    const ciderRevenue = results.directSalesRevenue + results.wholesaleRevenue;
+                    const ciderRevenuePercent = ciderRevenue / Math.max(results.annualRevenue, 1);
+                    
+                    // Direct cider costs
+                    const directCiderCosts = results.packagingCosts + results.exciseTax;
+                    
+                    // Allocated overhead based on revenue proportion (more realistic)
+                    const allocatedOverhead = (results.laborExpenses + results.annualFixedCosts + results.marketingExpenses) * ciderRevenuePercent;
+                    
+                    const totalCiderCosts = directCiderCosts + allocatedOverhead;
+                    return (totalCiderCosts / Math.max(results.ciderGallons, 1)).toFixed(2);
                   })()}
                 </p>
               </div>
@@ -1498,12 +1505,15 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 <p className="text-sm text-gray-600">Apple Cost per Bushel</p>
                 <p className="text-lg font-bold text-gray-800">
                   ${(() => {
-                    // Calculate apple-specific costs (orchard labor + portion of overhead)
-                    const appleSpecificCosts = (results.laborExpenses * 0.6) + // 60% of labor for apple production
-                      (results.annualFixedCosts * 0.7) + // 70% of fixed costs allocated to apple operations
-                      results.marketingExpenses + results.distributionCosts;
+                    // Calculate apple-specific costs based on revenue proportion
+                    const ciderRevenue = results.directSalesRevenue + results.wholesaleRevenue;
+                    const appleRevenuePercent = 1 - (ciderRevenue / Math.max(results.annualRevenue, 1));
+                    
+                    // Allocated overhead based on revenue proportion
+                    const allocatedOverhead = (results.laborExpenses + results.annualFixedCosts + results.marketingExpenses + results.distributionCosts) * appleRevenuePercent;
+                    
                     const effectiveBushels = results.totalBushels * (sliders.productionEfficiency/100);
-                    return (appleSpecificCosts / Math.max(effectiveBushels, 1)).toFixed(2);
+                    return (allocatedOverhead / Math.max(effectiveBushels, 1)).toFixed(2);
                   })()}
                 </p>
               </div>
