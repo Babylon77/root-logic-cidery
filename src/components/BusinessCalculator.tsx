@@ -82,15 +82,15 @@ const DEFAULT_VALUES = {
   canPrice: 4, // per 16oz can
   cansPerGallon: 8, // 16oz cans per gallon (8 pints)
   gallonsPerBushel: 3.1, // gallons of cider per bushel
-  packagingCostPerGallon: 3.50, // bottles, cans, labels, etc.
+  packagingCostPerGallon: 2.75, // bottles, cans, labels, etc. (reduced)
   exciseTaxPerGallon: 1.07, // federal excise tax on hard cider
   licensingCosts: 3500, // annual licensing fees
-  distributionCostPercent: 15, // percentage of revenue for distribution costs
+  distributionCostPercent: 8, // percentage of revenue for distribution costs (reduced for small cidery)
   directSalesPercent: 40, // percentage of sales direct to consumer
   abnbNights: 0, // nights per year - initially zero
   abnbRate: 250, // per night
   utilityExpenses: 12000, // annual
-  laborExpenses: 85000, // annual (will be calculated from labor analysis)
+  laborExpenses: 65000, // annual base labor (reduced to avoid double-counting with calculated labor)
   maintenanceExpenses: 15000, // annual
   marketingExpenses: 18000, // annual
   equipmentCost: 165000, // Total for production and packaging equipment
@@ -117,15 +117,15 @@ const DEFAULT_VALUES = {
   retailWholesalePrice: 12, // per gallon wholesale to retailers
   restaurantWholesalePrice: 10, // per gallon wholesale to restaurants/bars
   
-  // Channel-specific costs
-  slottingFeesPerSKU: 2000, // annual slotting fees per product per major retailer
-  numberOfSKUs: 3, // number of different products
-  numberOfRetailers: 5, // number of retail accounts
-  promotionalAllowancePercent: 15, // promotional allowances as % of wholesale revenue
-  salesRepCommissionPercent: 5, // sales rep commission on wholesale sales
+  // Channel-specific costs (adjusted to more realistic levels for small cidery)
+  slottingFeesPerSKU: 500, // annual slotting fees per product per major retailer (reduced)
+  numberOfSKUs: 2, // number of different products (reduced)
+  numberOfRetailers: 3, // number of retail accounts (reduced)
+  promotionalAllowancePercent: 8, // promotional allowances as % of wholesale revenue (reduced)
+  salesRepCommissionPercent: 3, // sales rep commission on wholesale sales (reduced)
   retailerMarginPercent: 35, // retailer markup
   distributorMarginPercent: 28, // distributor markup
-  workingCapitalPercent: 8, // working capital as % of revenue (inventory, A/R financing)
+  workingCapitalPercent: 4, // working capital as % of revenue (reduced from 8% to 4%)
 }
 
 interface BusinessCalculatorProps {
