@@ -106,6 +106,26 @@ const DEFAULT_VALUES = {
   salesAdminPercent: 15, // percentage of total labor
   laborHourlyRate: 18, // average hourly rate for farm labor
   automationLevel: 40, // percentage of automation vs manual labor
+  
+  // New Sales Mix Model
+  taproomSalesPercent: 35, // percentage sold direct in taproom (highest margin)
+  retailSalesPercent: 45, // percentage sold through liquor stores/grocery (medium margin)
+  restaurantBarSalesPercent: 20, // percentage sold to restaurants/bars (lowest margin)
+  
+  // Channel-specific pricing
+  taproomPintPrice: 6, // per pint in taproom
+  retailWholesalePrice: 12, // per gallon wholesale to retailers
+  restaurantWholesalePrice: 10, // per gallon wholesale to restaurants/bars
+  
+  // Channel-specific costs
+  slottingFeesPerSKU: 2000, // annual slotting fees per product per major retailer
+  numberOfSKUs: 3, // number of different products
+  numberOfRetailers: 5, // number of retail accounts
+  promotionalAllowancePercent: 15, // promotional allowances as % of wholesale revenue
+  salesRepCommissionPercent: 5, // sales rep commission on wholesale sales
+  retailerMarginPercent: 35, // retailer markup
+  distributorMarginPercent: 28, // distributor markup
+  workingCapitalPercent: 8, // working capital as % of revenue (inventory, A/R financing)
 }
 
 interface BusinessCalculatorProps {
@@ -213,21 +233,26 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const soldCiderGallons = netCiderGallons * (sliders.salesEfficiency / 100)
     const soldCans = netCans * (sliders.salesEfficiency / 100)
     
-    // Calculate direct sales vs wholesale
-    const directSalesGallons = soldCiderGallons * (sliders.directSalesPercent / 100)
-    const wholesaleGallons = soldCiderGallons - directSalesGallons
+    // Calculate sales by channel
+    const taproomGallons = soldCiderGallons * (sliders.taproomSalesPercent / 100)
+    const retailGallons = soldCiderGallons * (sliders.retailSalesPercent / 100)
+    const restaurantGallons = soldCiderGallons * (sliders.restaurantBarSalesPercent / 100)
     
-    // Calculate revenue from direct sales (higher margin)
+    // Calculate revenue by channel
     const pintsPerGallon = 8
-    const directSalesRevenue = directSalesGallons * pintsPerGallon * sliders.pintPrice
-    
-    // Calculate revenue from wholesale (kegs, lower margin)
-    const gallonsPerKeg = 5.16  // 1/6 barrel keg
-    const kegs = wholesaleGallons / gallonsPerKeg
-    const wholesaleRevenue = kegs * sliders.kegPrice
+    const taproomRevenue = taproomGallons * pintsPerGallon * sliders.taproomPintPrice
+    const retailRevenue = retailGallons * sliders.retailWholesalePrice
+    const restaurantRevenue = restaurantGallons * sliders.restaurantWholesalePrice
     
     // Total cider revenue
-    const ciderRevenue = directSalesRevenue + wholesaleRevenue
+    const ciderRevenue = taproomRevenue + retailRevenue + restaurantRevenue
+    
+    // Calculate channel-specific costs
+    const slottingFees = sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers
+    const wholesaleRevenue = retailRevenue + restaurantRevenue
+    const promotionalAllowances = wholesaleRevenue * (sliders.promotionalAllowancePercent / 100)
+    const salesRepCommissions = wholesaleRevenue * (sliders.salesRepCommissionPercent / 100)
+    const workingCapitalCost = ciderRevenue * (sliders.workingCapitalPercent / 100) * 0.06 // assume 6% interest rate
     
     // 2. Fresh apple sales (assuming $1.50 per pound average for remaining apples)
     const freshApplePounds = effectiveAppleYield * (1 - sliders.ciderYield / 100) * (sliders.salesEfficiency / 100)
@@ -248,12 +273,13 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     const licensingCosts = sliders.licensingCosts
     const distributionCosts = annualRevenue * (sliders.distributionCostPercent / 100)
     
-    // Calculate total expenses
+    // Calculate total expenses including new channel-specific costs
     const calculatedLaborExpenses = sliders.laborHourlyRate * 
       (sliders.orchardAcres * 500) * (1 - sliders.automationLevel / 100) // 500 hours per acre annually
     const annualExpenses = sliders.utilityExpenses + calculatedLaborExpenses + 
       sliders.maintenanceExpenses + sliders.marketingExpenses + annualFixedCosts +
-      packagingCosts + exciseTax + licensingCosts + distributionCosts
+      packagingCosts + exciseTax + licensingCosts + distributionCosts +
+      slottingFees + promotionalAllowances + salesRepCommissions + workingCapitalCost
     
     // Calculate profit and ROI
     const annualProfit = annualRevenue - annualExpenses
@@ -324,7 +350,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       costPerPint: Math.round(costPerPint * 100) / 100,
       revenuePerPint: Math.round(revenuePerPint * 100) / 100,
       profitPerPint: Math.round(profitPerPint * 100) / 100,
-      directSalesRevenue: Math.round(directSalesRevenue),
+      directSalesRevenue: Math.round(taproomRevenue),
       wholesaleRevenue: Math.round(wholesaleRevenue),
       distributionCosts: Math.round(distributionCosts),
       equipmentDepreciation: Math.round(equipmentDepreciation),
@@ -363,12 +389,13 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
 
   // Revenue breakdown chart data
   const revenueData = {
-    labels: ['Direct Cider Sales', 'Wholesale Cider', 'Fresh Apple Sales', 'Other Products'],
+    labels: ['Taproom Sales', 'Retail Wholesale', 'Restaurant/Bar Sales', 'Fresh Apple Sales', 'Other Products'],
     datasets: [
       {
         data: [
-          results.directSalesRevenue,
-          results.wholesaleRevenue,
+          results.directSalesRevenue, // This is now taproom revenue
+          Math.round(results.wholesaleRevenue * (sliders.retailSalesPercent / (sliders.retailSalesPercent + sliders.restaurantBarSalesPercent))), // Retail portion
+          Math.round(results.wholesaleRevenue * (sliders.restaurantBarSalesPercent / (sliders.retailSalesPercent + sliders.restaurantBarSalesPercent))), // Restaurant portion
           // Fix fresh apple sales calculation to match the same pattern used in main calculator
           Math.round(results.totalBushels * (1 - sliders.ciderYield / 100) * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100) * sliders.applesPerBushel * 0.25),
           // Make sure other products revenue is exactly 15% of the two above
@@ -376,14 +403,16 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             Math.round(results.totalBushels * (1 - sliders.ciderYield / 100) * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100) * sliders.applesPerBushel * 0.25)) * 0.15
         ],
         backgroundColor: [
-          'rgba(255, 159, 64, 0.6)', // amber for direct sales
-          'rgba(20, 184, 166, 0.6)', // teal for wholesale
+          'rgba(255, 159, 64, 0.6)', // amber for taproom
+          'rgba(20, 184, 166, 0.6)', // teal for retail
+          'rgba(52, 152, 219, 0.6)', // blue for restaurant/bar
           'rgba(153, 102, 255, 0.6)', // purple for fresh apples
           'rgba(75, 192, 192, 0.6)'   // turquoise for other products
         ],
         borderColor: [
           'rgba(255, 159, 64, 1)',
           'rgba(20, 184, 166, 1)',
+          'rgba(52, 152, 219, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(75, 192, 192, 1)'
         ],
@@ -394,7 +423,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
 
   // Expenses breakdown chart data
   const expensesData = {
-    labels: ['Mortgage', 'Taxes & Insurance', 'Packaging', 'Excise Tax', 'Licensing', 'Distribution', 'Utilities', 'Labor', 'Maintenance', 'Marketing'],
+    labels: ['Mortgage', 'Taxes & Insurance', 'Packaging', 'Excise Tax', 'Licensing', 'Distribution', 'Utilities', 'Labor', 'Maintenance', 'Marketing', 'Channel Costs', 'Working Capital'],
     datasets: [
       {
         data: [
@@ -407,7 +436,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           sliders.utilityExpenses,
           results.laborExpenses,
           sliders.maintenanceExpenses,
-          sliders.marketingExpenses
+          sliders.marketingExpenses,
+          // Calculate total channel costs
+          Math.round(sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers + 
+                    results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100),
+          Math.round(results.annualRevenue * sliders.workingCapitalPercent / 100 * 0.06)
         ],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',   // red
@@ -419,7 +452,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           'rgba(199, 210, 254, 0.6)',  // light purple
           'rgba(165, 243, 252, 0.6)',  // light cyan
           'rgba(187, 247, 208, 0.6)',  // light green
-          'rgba(254, 202, 202, 0.6)'   // light red
+          'rgba(254, 202, 202, 0.6)',  // light red
+          'rgba(255, 193, 7, 0.6)',    // amber for channel costs
+          'rgba(156, 39, 176, 0.6)'    // deep purple for working capital
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -431,7 +466,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           'rgba(199, 210, 254, 1)',
           'rgba(165, 243, 252, 1)',
           'rgba(187, 247, 208, 1)',
-          'rgba(254, 202, 202, 1)'
+          'rgba(254, 202, 202, 1)',
+          'rgba(255, 193, 7, 1)',
+          'rgba(156, 39, 176, 1)'
         ],
         borderWidth: 1,
       },
@@ -1340,27 +1377,210 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* Distribution & Pricing */}
+      {/* Sales Mix & Distribution */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
-        <h3 className="text-xl font-bold text-gray-800 mb-4">Distribution & Pricing</h3>
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Sales Mix & Distribution Channels</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Taproom Sales: {sliders.taproomSalesPercent}%
+              <InfoBox title="Taproom Sales">
+                <p>Direct-to-consumer sales in your tasting room.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Highest profit margin (~$6/pint)</li>
+                  <li>No distributor or retailer markup</li>
+                  <li>Direct customer relationship</li>
+                  <li>Limited by physical capacity</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="20"
+              max="60"
+              step="5"
+              name="taproomSalesPercent"
+              value={sliders.taproomSalesPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Retail Sales: {sliders.retailSalesPercent}%
+              <InfoBox title="Retail Sales">
+                <p>Sales through liquor stores, grocery stores, and bottle shops.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Medium profit margin (~$12/gallon wholesale)</li>
+                  <li>Retailer takes 35% markup</li>
+                  <li>Requires slotting fees and promotional support</li>
+                  <li>Broader market reach</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="20"
+              max="60"
+              step="5"
+              name="retailSalesPercent"
+              value={sliders.retailSalesPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Restaurant/Bar Sales: {sliders.restaurantBarSalesPercent}%
+              <InfoBox title="Restaurant/Bar Sales">
+                <p>Sales to restaurants, bars, and on-premise accounts.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Lowest profit margin (~$10/gallon wholesale)</li>
+                  <li>Venue takes 200-300% markup</li>
+                  <li>Requires sales rep support</li>
+                  <li>Brand exposure and trial</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="10"
+              max="40"
+              step="5"
+              name="restaurantBarSalesPercent"
+              value={sliders.restaurantBarSalesPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-amber-200">
-            <h4 className="text-sm text-gray-500">Direct Sales Revenue</h4>
+            <h4 className="text-sm text-gray-500">Taproom Revenue</h4>
             <p className="text-2xl font-bold">${results.directSalesRevenue.toLocaleString()}</p>
-            <p className="text-sm text-gray-500">({Math.round(sliders.directSalesPercent)}% of cider sales)</p>
+            <p className="text-sm text-gray-500">({Math.round(sliders.taproomSalesPercent)}% of cider sales)</p>
           </div>
           
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-teal-200">
             <h4 className="text-sm text-gray-500">Wholesale Revenue</h4>
             <p className="text-2xl font-bold">${results.wholesaleRevenue.toLocaleString()}</p>
-            <p className="text-sm text-gray-500">({Math.round(100 - sliders.directSalesPercent)}% of cider sales)</p>
+            <p className="text-sm text-gray-500">({Math.round(sliders.retailSalesPercent + sliders.restaurantBarSalesPercent)}% of cider sales)</p>
           </div>
           
           <div className="bg-white shadow-md rounded-lg p-6 border-l-4 border-cyan-200">
             <h4 className="text-sm text-gray-500">Per-Pint Economics</h4>
             <p className="text-lg font-bold">Cost: ${results.costPerPint.toFixed(2)} | Revenue: ${results.revenuePerPint.toFixed(2)}</p>
             <p className="text-sm text-gray-500">Profit per pint: ${results.profitPerPint.toFixed(2)}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Channel-Specific Costs */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Channel-Specific Costs</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Slotting Fees per SKU: ${sliders.slottingFeesPerSKU.toLocaleString()}
+              <InfoBox title="Slotting Fees">
+                <p>Fees paid to retailers for shelf space placement.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>$500-5000 per SKU per major retailer</li>
+                  <li>Required for grocery and liquor store placement</li>
+                  <li>Annual or one-time fees</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="500"
+              max="5000"
+              step="250"
+              name="slottingFeesPerSKU"
+              value={sliders.slottingFeesPerSKU}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <p className="text-sm text-gray-500 mt-1">
+              Total: ${(sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers).toLocaleString()}
+            </p>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Promotional Allowances: {sliders.promotionalAllowancePercent}%
+              <InfoBox title="Promotional Allowances">
+                <p>Marketing support paid to retailers and distributors.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>10-20% of wholesale revenue</li>
+                  <li>Covers in-store displays, advertising</li>
+                  <li>Required for competitive placement</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="5"
+              max="25"
+              step="1"
+              name="promotionalAllowancePercent"
+              value={sliders.promotionalAllowancePercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Sales Rep Commission: {sliders.salesRepCommissionPercent}%
+              <InfoBox title="Sales Rep Commission">
+                <p>Commission paid to sales representatives.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>3-8% of wholesale sales</li>
+                  <li>Required for restaurant/bar sales</li>
+                  <li>May include distributor rep fees</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="2"
+              max="10"
+              step="0.5"
+              name="salesRepCommissionPercent"
+              value={sliders.salesRepCommissionPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Working Capital: {sliders.workingCapitalPercent}% of revenue
+              <InfoBox title="Working Capital">
+                <p>Cost of financing inventory and accounts receivable.</p>
+                <ul className="list-disc pl-4 mt-1 space-y-1">
+                  <li>Inventory financing costs</li>
+                  <li>30-60 day payment terms</li>
+                  <li>Assumes 6% interest rate</li>
+                </ul>
+              </InfoBox>
+            </label>
+            <input
+              type="range"
+              min="3"
+              max="15"
+              step="1"
+              name="workingCapitalPercent"
+              value={sliders.workingCapitalPercent}
+              onChange={handleSliderChange}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
           </div>
         </div>
       </div>
