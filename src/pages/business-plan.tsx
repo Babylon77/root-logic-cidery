@@ -281,23 +281,66 @@ export default function BusinessPlan() {
             <div>
               <h2 className="section-title">Heritage Orchard Management</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Our 50-acre property includes approximately 18 acres dedicated to heritage apple production with around 1,570 trees. About 70% of these trees are mature, with the remainder in various stages of growth. We specialize in American colonial and cider-specific heritage varieties, with our flagship varieties being <strong>Harrison</strong> and <strong>Virginia Hewes Crab</strong>, complemented by 20 additional heritage varieties including:
+                Our 50-acre property features a diverse heritage orchard with over 1,400 trees and plants, all organically managed. The orchard specializes in rare American and English cider apples and perry pears, essential for producing our complex, high-quality ciders. The last two seasons (2023-2024) have each yielded 28 bins of fruit.
               </p>
-              <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-                <li className="mb-2"><strong>Harrison</strong> - "The King of Cider Apples" from colonial New Jersey</li>
-                <li className="mb-2"><strong>Virginia Hewes Crab</strong> - Thomas Jefferson's favorite cider apple</li>
-                <li className="mb-2">Redfield - Deep red flesh for unique rosé ciders</li>
-                <li className="mb-2">Kingston Black - English heritage bittersweet</li>
-                <li className="mb-2">Dabinett - Premium Somerset bittersweet</li>
-                <li className="mb-2">Roxbury Russet - America's oldest named apple variety</li>
-                <li className="mb-2">Esopus Spitzenburg - Thomas Jefferson's table apple</li>
-                <li className="mb-2">Golden Russet - American heritage with complex tannins</li>
-                <li className="mb-2">Wickson Crab - Intense flavor for blending</li>
-                <li>Porter's Perfection - English bittersharp heritage</li>
-              </ul>
-              <p className="text-lg text-gray-600">
-                We employ traditional, sustainable orchard management techniques including integrated pest management, natural soil amendments, and water conservation practices. Our heritage approach preserves colonial-era growing methods while incorporating modern organic practices. Our apiary not only produces artisanal honey but provides essential pollination services, ensuring the genetic diversity and quality of our rare heritage varieties.
+              <p className="text-lg text-gray-600 mb-6">
+                Beyond cider production, the orchard includes a variety of berries, stone fruits, and nuts, contributing to our farm's biodiversity and range of artisanal products.
               </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Cider Apples (891 Trees)</h3>
+                  <ul className="list-disc pl-6 text-gray-600 space-y-1">
+                    <li><strong>Harrisons:</strong> 276</li>
+                    <li><strong>Virginia Hews Crab:</strong> 184</li>
+                    <li>Black Twig: 47</li>
+                    <li>Dabinet: 40</li>
+                    <li>Winesap (Original): 37</li>
+                    <li>Smiths Cider: 33</li>
+                    <li>Redfield: 30</li>
+                    <li>Roxbury Russet: 30</li>
+                    <li>Yates: 30</li>
+                    <li>Grimes Golden: 28</li>
+                    <li>Campfield: 27</li>
+                    <li>Newtown Pippin: 26</li>
+                    <li>Wickson Crab: 22</li>
+                    <li>Franklin Cider Apple: 21</li>
+                    <li>Black Limbertwig: 18</li>
+                    <li>Yellow Bellflower: 13</li>
+                    <li>Espos Spitzenberg: 12</li>
+                    <li>Golden Russet: 11</li>
+                    <li>Arkansas Black: 7</li>
+                    <li>Galville Blanc d'Hiver: 7</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-4">Perry Pears (409 Trees)</h3>
+                  <ul className="list-disc pl-6 text-gray-600 space-y-1">
+                    <li>Yellow Huffcap: 87</li>
+                    <li>Barnet: 53</li>
+                    <li>Gin: 40</li>
+                    <li>Hendre Huffcap: 40</li>
+                    <li>Thorne: 36</li>
+                    <li>Butt: 34</li>
+                    <li>Brandy: 30</li>
+                    <li>Theilersbirne: 25</li>
+                    <li>Romanian: 22</li>
+                    <li>Winnals Longdon: 20</li>
+                    <li>Blakeny Red: 12</li>
+                    <li>Normanischen: 6</li>
+                    <li>Barland: 2</li>
+                    <li>Endicot: 2</li>
+                  </ul>
+                  <h3 className="text-xl font-bold text-gray-800 mt-6 mb-4">Other Fruits & Nuts</h3>
+                  <ul className="list-disc pl-6 text-gray-600 space-y-1">
+                    <li>Blueberries: 80</li>
+                    <li>Raspberries: 30</li>
+                    <li>Blackberries: 30</li>
+                    <li>Peaches/Plums/Nectarines: 30</li>
+                    <li>Cherries: 15</li>
+                    <li>Nut Trees: 8</li>
+                  </ul>
+                </div>
+              </div>
             </div>
             <div className="relative h-[400px]">
               <OptimizedImage
