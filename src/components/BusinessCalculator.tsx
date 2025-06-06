@@ -167,7 +167,7 @@ const DEFAULT_VALUES = {
   phase3CapitalInvestment: 45000, // bright tank for carbonation/bottling, 2x 1000L SS fermentors
   
   // Phase 4 (Years 8+): Mature Operations & Brand Dominance
-  phase4CiderGallons: 5000, // full scale production
+  phase4CiderGallons: 9000, // full scale production
   phase4AppleSalesPercent: 10, // most apples go to high-value cider
   phase4TastroomDays: 200, // destination tasting room
   phase4DistributionAccounts: 50, // strong regional distribution

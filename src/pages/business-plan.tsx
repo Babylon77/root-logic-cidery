@@ -869,6 +869,33 @@ export default function BusinessPlan() {
                   </div>
                 </div>
               </div>
+
+              <div className="bg-white p-8 rounded-lg shadow-lg border-l-4 border-orange-500">
+                <h4 className="text-xl font-bold text-orange-800 mb-4">Phase 4: Brand Dominance & Expansion (Years 8+)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Focus Areas</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Achieve full production (9,000 gallons)</li>
+                      <li>• Expand distribution to 50+ regional accounts</li>
+                      <li>• Solidify tasting room as a primary destination</li>
+                      <li>• Develop national online sales/shipping capabilities</li>
+                      <li>• Launch brand ambassador and cider club programs</li>
+                      <li>• Focus on high-margin, direct-to-consumer sales</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-gray-900 mb-3">Budget: $15,000+ (Aggressive Expansion)</h5>
+                    <ul className="text-gray-600 space-y-1 text-sm">
+                      <li>• Professional PR & Media Relations: $4,000</li>
+                      <li>• National Digital Advertising: $5,000</li>
+                      <li>• Major Event Sponsorships: $3,500</li>
+                      <li>• Trade Marketing for Key Accounts: $2,500</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -998,6 +1025,44 @@ export default function BusinessPlan() {
                   </div>
                 </div>
               </div>
+
+              {/* Phase 4 */}
+              <div className="relative pl-8 md:pl-0">
+                <div className="md:grid md:grid-cols-5 md:gap-8">
+                  <div className="md:col-span-2 md:text-right md:pr-8">
+                    <h3 className="text-2xl font-bold text-gray-900">Phase 4: Brand Dominance</h3>
+                    <p className="text-gray-500">Years 8+</p>
+                    <div className="mt-2 text-sm text-orange-600">
+                      <p>9,000 gallons production</p>
+                      <p>10% apple sales</p>
+                      <p>Destination tasting room</p>
+                    </div>
+                  </div>
+                  <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 mt-3 md:mt-1">
+                    <div className="h-8 w-8 rounded-full bg-green-800 border-4 border-white flex items-center justify-center">
+                      <span className="text-white font-bold">4</span>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3 pt-3 md:pt-0 md:pl-8">
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                      <h4 className="font-bold text-gray-900 mb-3">Regional Dominance & Expansion</h4>
+                      <ul className="list-disc pl-5 text-gray-600 space-y-2">
+                        <li>Scale cider production to 9,000 gallons annually</li>
+                        <li>Operate tasting room as a key regional destination (200+ days/year)</li>
+                        <li>Secure 50+ wholesale accounts for strong regional presence</li>
+                        <li>Transition to selling only 10% of apples to focus on cider revenue</li>
+                        <li>Invest in automation and efficiency for scaled production</li>
+                        <li>Launch national direct-to-consumer shipping program</li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-orange-50 rounded-lg">
+                        <p className="text-sm text-orange-800">
+                          <strong>Investment:</strong> $60,000 capital | <strong>Focus:</strong> Maximizing brand value and regional market share
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -1012,6 +1077,7 @@ export default function BusinessPlan() {
                     <th className="text-center py-3 px-4 font-bold text-green-700">Phase 1</th>
                     <th className="text-center py-3 px-4 font-bold text-blue-700">Phase 2</th>
                     <th className="text-center py-3 px-4 font-bold text-purple-700">Phase 3</th>
+                    <th className="text-center py-3 px-4 font-bold text-orange-700">Phase 4</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-600">
@@ -1020,36 +1086,42 @@ export default function BusinessPlan() {
                     <td className="text-center py-3 px-4">750 gallons</td>
                     <td className="text-center py-3 px-4">2,500 gallons</td>
                     <td className="text-center py-3 px-4">6,000 gallons</td>
+                    <td className="text-center py-3 px-4">9,000 gallons</td>
                   </tr>
                   <tr className="border-b border-gray-200">
                     <td className="py-3 px-4 font-medium">Apple Sales</td>
                     <td className="text-center py-3 px-4">85% of harvest</td>
                     <td className="text-center py-3 px-4">70% of harvest</td>
                     <td className="text-center py-3 px-4">40% of harvest</td>
+                    <td className="text-center py-3 px-4">10% of harvest</td>
                   </tr>
                   <tr className="border-b border-gray-200">
                     <td className="py-3 px-4 font-medium">Taproom Operations</td>
                     <td className="text-center py-3 px-4">Monthly events</td>
                     <td className="text-center py-3 px-4">104 days/year</td>
                     <td className="text-center py-3 px-4">312 days/year</td>
+                    <td className="text-center py-3 px-4">200+ days/year</td>
                   </tr>
                   <tr className="border-b border-gray-200">
                     <td className="py-3 px-4 font-medium">Wholesale Accounts</td>
                     <td className="text-center py-3 px-4">0</td>
                     <td className="text-center py-3 px-4">15 accounts</td>
                     <td className="text-center py-3 px-4">75+ accounts</td>
+                    <td className="text-center py-3 px-4">50+ accounts</td>
                   </tr>
                   <tr className="border-b border-gray-200">
                     <td className="py-3 px-4 font-medium">Capital Investment</td>
                     <td className="text-center py-3 px-4">$45,000</td>
                     <td className="text-center py-3 px-4">$85,000</td>
                     <td className="text-center py-3 px-4">$125,000</td>
+                    <td className="text-center py-3 px-4">$60,000</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-medium">Primary Focus</td>
                     <td className="text-center py-3 px-4">Brand building</td>
                     <td className="text-center py-3 px-4">Market expansion</td>
                     <td className="text-center py-3 px-4">Regional leadership</td>
+                    <td className="text-center py-3 px-4">Brand dominance</td>
                   </tr>
                 </tbody>
               </table>
