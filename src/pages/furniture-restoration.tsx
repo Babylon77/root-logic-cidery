@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import OptimizedImage from '../components/OptimizedImage'
+import Layout from '../components/Layout'
 
 const FurnitureRestorationPage = () => {
   return (
-    <>
+    <Layout>
       <Head>
         <title>Furniture Restoration Business Plan | Restored Roots</title>
         <meta
@@ -306,7 +307,7 @@ const FurnitureRestorationPage = () => {
         </div>
       </main>
 
-    </>
+    </Layout>
   )
 }
 
