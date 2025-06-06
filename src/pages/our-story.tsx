@@ -28,7 +28,7 @@ export default function OurStory() {
             <div>
               <h2 className="section-title">Our Vision</h2>
               <p className="text-lg text-gray-600 mb-6">
-                The story of Root Logic begins in 2025, when Jason and Laney will purchase this established 12+-acre orchard in Wantage, New Jersey. We're thrilled to become the new stewards of this special property that already boasts over 1000 apple trees, with 200+ heritage varieties perfectly suited to craft cider production.
+                The story of Colonial Cidery and Orchard begins in 2025, when Jason and Laney will purchase this established 50-acre farm featuring an 18-acre heritage apple orchard in Wantage, New Jersey. We're thrilled to become the new stewards of this special property that already boasts over 1,570 apple trees, with 20+ heritage varieties perfectly suited to premium cider production.
               </p>
               <p className="text-lg text-gray-600">
                 For our family, this farm represents a new chapter—a place where our children Caius, Macklin, and Elliana can connect with the land while we build on the solid foundation established by the previous owners. Together, we'll continue the legacy of sustainable farming while bringing our own unique vision to this thriving orchard.
@@ -61,7 +61,7 @@ export default function OurStory() {
             <div className="order-1 md:order-2">
               <h2 className="section-title">Our Mission</h2>
               <p className="text-lg text-gray-600 mb-6">
-                At Root Logic, our mission will be to honor the land's heritage while bringing fresh ideas to sustainable agriculture. We believe in working with nature rather than against it, which is why we're committed to maintaining the organic growing methods and biodiversity throughout the property.
+                At Colonial Cidery and Orchard, our mission will be to honor the land's heritage while bringing fresh ideas to sustainable agriculture. We believe in working with nature rather than against it, which is why we're committed to maintaining the organic growing methods and biodiversity throughout the property.
               </p>
               <p className="text-lg text-gray-600">
                 We'll take pride in producing exceptional artisanal ciders that reflect the unique terroir of our orchard, while sharing the joys of farm life with visitors through educational tours, tastings, and farm stays. Our goal is not just to make great products, but to create meaningful connections between people, food, and the land.
@@ -166,7 +166,7 @@ export default function OurStory() {
               <div className="md:col-span-9">
                 <h4 className="text-xl font-bold text-gray-900 mb-2">The New Beginning</h4>
                 <p className="text-gray-600">
-                  Jason and Laney will purchase the established 25-acre orchard in Wantage, NJ, complete with 500+ apple trees and existing cider production facilities. We'll begin the transition while learning from the previous owners.
+                  Jason and Laney will purchase the established 50-acre farm with an 18-acre heritage orchard in Wantage, NJ, complete with 1,570+ apple trees and existing cider production facilities. We'll begin the transition while learning from the previous owners.
                 </p>
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function OurStory() {
               <div className="md:col-span-9">
                 <h4 className="text-xl font-bold text-gray-900 mb-2">Looking Forward</h4>
                 <p className="text-gray-600">
-                  Our vision is to have established Root Logic as a beloved destination that honors its heritage while bringing innovative approaches to sustainable agriculture, artisanal cider production, and community engagement.
+                  Our vision is to have established Colonial Cidery and Orchard as a beloved destination that honors its heritage while bringing innovative approaches to sustainable agriculture, artisanal cider production, and community engagement.
                 </p>
               </div>
             </div>

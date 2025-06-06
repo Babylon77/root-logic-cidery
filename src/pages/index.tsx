@@ -22,24 +22,24 @@ export default function Home() {
 
   return (
     <Layout 
-      title="Root Logic Cidery - Craft Hard Cider from Heritage Apples"
-      description="Craft hard cider made from organic heritage apple varieties grown in the heart of Sussex County, New Jersey."
+      title="Colonial Cidery and Orchard - Heritage Apple Ciders"
+      description="Premium heritage apple ciders made with Harrison and Virginia Hewes Crab apples. Organic, naturally fermented with no additives. Our signature Rose of ciders blends Harrison and Redfield apples."
     >
       {/* Hero Section */}
       <section className="relative h-[70vh] hero-overlay">
         <OptimizedImage
           src="/images/Apple Drone.jpg"
-          alt="Aerial view of Root Logic"
+          alt="Aerial view of Colonial Cidery and Orchard"
           fill
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white max-w-4xl px-4">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Root Logic</h1>
-            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">Artisanal Cider & Sustainable Farming</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Colonial Cidery & Orchard</h1>
+            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">Heritage Apple Ciders & Traditional Farming</p>
             <Link href="/explore" className="btn-primary">
-              Explore Our Farm
+              Discover Our Heritage
             </Link>
           </div>
         </div>
@@ -51,16 +51,16 @@ export default function Home() {
           <div className="accent-divider w-24 mx-auto mb-12"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Story</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Heritage Story</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Welcome to Root Logic, a family-owned orchard nestled in the scenic hills of Wantage, New Jersey. For over three decades, Jason and Laney have been cultivating heritage apple varieties and producing award-winning craft ciders using sustainable farming practices.
+                Welcome to Colonial Cidery and Orchard, where we revive America's cider heritage in the scenic hills of Wantage, New Jersey. Our heritage ciders feature Harrison and Virginia Hewes Crab apples as the foundation, expertly blended with other heritage varieties including our signature "Rose of Ciders" — a unique blend of Harrison and Redfield apples.
               </p>
               <p className="text-lg text-gray-600">
-                Our 25-acre farm is home to over 500 apple trees, an integrated apiary for honey production, and thoughtfully designed spaces where visitors can experience the rhythms of farm life and the joys of artisanal food production.
+                Every bottle we craft is organic, naturally fermented with no additives, focusing on quality and heritage rather than mass production.
               </p>
               <div className="mt-8">
                 <Link href="/our-story" className="inline-block text-leaf-green font-semibold hover:text-green-700 transition-colors">
-                  Learn More <span aria-hidden="true">→</span>
+                  Learn Our Heritage <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function Home() {
               <div className="absolute inset-y-0 -right-6 w-6 bg-leaf-green"></div>
               <OptimizedImage
                 src="/images/Heritage Apples.jpg"
-                alt="Our apple orchard"
+                alt="Heritage apples including Harrison and Virginia Hewes Crab"
                 fill
                 className="object-cover accent-box"
               />
@@ -80,8 +80,8 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">Experience Root Logic</h2>
-          <p className="text-xl text-gray-500 text-center mb-12 max-w-3xl mx-auto">Discover our sustainable orchard, artisanal cider production, and farm stays</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">Experience Colonial Heritage</h2>
+          <p className="text-xl text-gray-500 text-center mb-12 max-w-3xl mx-auto">Discover our heritage apple orchard, traditional cider making, and historic farm experiences</p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="feature-card">
@@ -92,13 +92,13 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Craft Cider</h3>
+                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Heritage Ciders</h3>
                 <p className="text-gray-600 text-center mb-6">
-                  Our artisanal ciders are crafted from heritage apple varieties and infused with honey from our own apiary, creating unique flavor profiles you won't find anywhere else.
+                  Our premium ciders feature Harrison and Virginia Hewes Crab apple bases, blended with heritage varieties. Our signature Rose of ciders combines Harrison and Redfield apples for a unique flavor profile.
                 </p>
                 <div className="text-center">
                   <Link href="/products" className="text-leaf-green font-medium hover:text-green-700 transition-colors">
-                    View Our Products →
+                    View Our Ciders →
                   </Link>
                 </div>
               </div>
@@ -112,9 +112,9 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Farm Stays</h3>
+                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Historic Farm Stays</h3>
                 <p className="text-gray-600 text-center mb-6">
-                  Experience the tranquility of orchard life with a stay in our renovated farmhouse or cozy barn loft. Wake up to stunning views and farm-fresh breakfasts.
+                  Experience colonial farm life in our restored historic farmhouse. Wake up to heritage apple orchards and learn about traditional American cider making.
                 </p>
                 <div className="text-center">
                   <Link href="/stay" className="text-leaf-green font-medium hover:text-green-700 transition-colors">
@@ -132,13 +132,13 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Farm Tours</h3>
+                <h3 className="text-xl font-bold text-gray-900 text-center mb-4">Heritage Tours</h3>
                 <p className="text-gray-600 text-center mb-6">
-                  Join us for guided tours of our orchard, cider production facility, and apiary. Learn about sustainable farming practices and the art of cider-making.
+                  Join us for educational tours of our heritage apple orchard and traditional cider production. Learn about Harrison, Virginia Hewes Crab, and other historic American apple varieties.
                 </p>
                 <div className="text-center">
                   <Link href="/explore" className="text-leaf-green font-medium hover:text-green-700 transition-colors">
-                    Explore the Farm →
+                    Explore Our Heritage →
                   </Link>
                 </div>
               </div>
@@ -155,40 +155,40 @@ export default function Home() {
               <div className="absolute inset-y-0 -left-6 w-6 bg-apple-red"></div>
               <OptimizedImage
                 src="/images/cider.jpg"
-                alt="Our cider production"
+                alt="Premium heritage cider bottles"
                 fill
                 className="object-cover accent-box"
               />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Products</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Premium Products</h2>
               <p className="text-lg text-gray-600 mb-6">
-                From our signature hard ciders to sweet apple cider, honey, and specialty preserves, every product we create reflects our commitment to quality and sustainability.
+                Every product we create reflects our commitment to heritage apple varieties, organic farming, and traditional cider making. Our ciders are naturally fermented with no additives and priced competitively with fine wines.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center space-x-3 text-gray-600">
                   <span className="h-5 w-5 rounded-full bg-leaf-green flex-shrink-0"></span>
-                  <span>Heritage Apple Hard Ciders</span>
+                  <span>Heritage Apple Ciders (Harrison & Virginia Hewes Crab base)</span>
                 </li>
                 <li className="flex items-center space-x-3 text-gray-600">
                   <span className="h-5 w-5 rounded-full bg-leaf-green flex-shrink-0"></span>
-                  <span>Fresh-Pressed Sweet Cider</span>
+                  <span>Rose of Ciders (Harrison & Redfield blend)</span>
                 </li>
                 <li className="flex items-center space-x-3 text-gray-600">
                   <span className="h-5 w-5 rounded-full bg-leaf-green flex-shrink-0"></span>
-                  <span>Raw and Infused Honey</span>
+                  <span>500ml & 750ml Premium Bottles ($15-22)</span>
                 </li>
                 <li className="flex items-center space-x-3 text-gray-600">
                   <span className="h-5 w-5 rounded-full bg-leaf-green flex-shrink-0"></span>
-                  <span>Apple Cider Vinegar</span>
+                  <span>Organic, Naturally Fermented, No Additives</span>
                 </li>
                 <li className="flex items-center space-x-3 text-gray-600">
                   <span className="h-5 w-5 rounded-full bg-leaf-green flex-shrink-0"></span>
-                  <span>Seasonal Fruit Preserves</span>
+                  <span>Limited Release Heritage Varieties</span>
                 </li>
               </ul>
               <Link href="/products" className="inline-block text-leaf-green font-semibold hover:text-green-700 transition-colors">
-                See Our Products <span aria-hidden="true">→</span>
+                See Our Ciders <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -200,16 +200,16 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10">
           <OptimizedImage
             src="/images/Cider Tree.jpg"
-            alt="Apple orchard background"
+            alt="Heritage apple orchard background"
             fill
             className="object-cover"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Visit Root Logic</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Visit Colonial Cidery & Orchard</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Come experience the beauty and bounty of our sustainable orchard. Taste our craft ciders, stroll through our apple trees, and connect with the land.
+              Come experience America's cider heritage in our historic orchard. Taste our premium heritage ciders, walk among Harrison and Virginia Hewes Crab apple trees, and discover traditional cider making.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
               <Link href="/contact" className="btn-primary">

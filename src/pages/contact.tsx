@@ -21,7 +21,7 @@ export default function Contact() {
       <section className="relative h-[40vh] md:h-[50vh]">
         <OptimizedImage
           src="/images/farm ariel.webp"
-          alt="Root Logic in winter"
+          alt="Colonial Cidery and Orchard in winter"
           fill
           className="object-cover"
           priority
@@ -192,7 +192,7 @@ export default function Contact() {
               className="object-cover rounded-lg"
             />
             <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white p-4 md:p-6 rounded-lg shadow-lg">
-              <h3 className="font-bold text-lg mb-2">Root Logic</h3>
+              <h3 className="font-bold text-lg mb-2">Colonial Cidery and Orchard</h3>
               <p className="text-gray-700">
                 25 Clove Road<br />
                 Wantage, NJ 07461

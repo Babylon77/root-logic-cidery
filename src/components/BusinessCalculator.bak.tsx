@@ -15,10 +15,7 @@ import {
 } from 'chart.js'
 import { Bar, Pie, Line } from 'react-chartjs-2'
 
-// =========================
-// InfoBox Component
-// =========================
-
+// Add InfoBox component with proper TypeScript types
 interface InfoBoxProps {
   title: string;
   children: ReactNode;
@@ -26,6 +23,7 @@ interface InfoBoxProps {
 
 const InfoBox = ({ title, children }: InfoBoxProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  
   return (
     <div className="inline-block relative">
       <button 
@@ -50,10 +48,6 @@ const InfoBox = ({ title, children }: InfoBoxProps) => {
   )
 }
 
-// =========================
-// Chart.js Registration
-// =========================
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -66,33 +60,30 @@ ChartJS.register(
   ArcElement
 )
 
-// =========================
-// Default Values
-// =========================
-
+// Default values
 const DEFAULT_VALUES = {
   propertyValue: 1150000,
   downPayment: 20,
-  interestRate: 6.5,
+  interestRate: 6,
   loanTerm: 30,
-  propertyTax: 9000,
-  insurance: 5000,
-  orchardAcres: 18,
-  treesPerAcre: 100,
-  matureTreePercentage: 30,
+  propertyTax: 8000,
+  insurance: 3600,
+  orchardAcres: 12,
+  treesPerAcre: 131,
+  matureTreePercentage: 70,
   applesPerMatureTree: 750, // heritage varieties with proper management
   applesPerYoungTree: 180, 
   averageAppleWeightOz: 6, 
   applesPerBushel: 125, 
   ciderYield: 100, // percentage of apples for hard cider
-  ciderPrice: 60, // per gallon equivalent (higher due to premium bottle pricing)
+  ciderPrice: 38, // per gallon equivalent (higher due to premium bottle pricing)
   bottlePrice500ml: 15, // 500ml bottles at $15-18
   bottlePrice750ml: 18, // 750ml bottles at $18-22 (average $18)
-  bottlesPerGallon: 5, // 750ml bottles per gallon (25.3 oz each)
+  bottlesPerGallon: 8, // 500ml bottles per gallon (16.9 oz each)
   gallonsPerBushel: 3.1, // gallons of cider per bushel
-  packagingCostPerBottle: 3.0, // premium glass bottles, labels, corks
+  packagingCostPerBottle: 3.50, // premium glass bottles, labels, corks
   exciseTaxPerGallon: 1.07, // federal excise tax on hard cider
-  licensingCosts: 1200, // annual licensing fees
+  licensingCosts: 3600, // annual licensing fees
   distributionCostPercent: 3, // higher percentage due to premium positioning
   directSalesPercent: 70, // focus on direct sales for premium positioning
   abnbNights: 0, // nights per year - initially zero
@@ -122,12 +113,12 @@ const DEFAULT_VALUES = {
   automationLevel: 30, // less automation, more handcraft approach
   
   // Premium Bottle Sales Model (no draft, no cans)
-  tastroomSalesPercent: 30, // high percentage direct sales for premium margin
+  tastroomSalesPercent: 60, // high percentage direct sales for premium margin
   retailSalesPercent: 35, // premium wine shops and specialty stores
-  restaurantBarSalesPercent: 35, // minimal restaurant sales, focus on wine bars
+  restaurantBarSalesPercent: 5, // minimal restaurant sales, focus on wine bars
   
   // Premium Pricing Strategy
-  applePricePerBushel: 25, // premium heritage varieties command higher prices
+  applePricePerBushel: 30, // premium heritage varieties command higher prices
   tastroomBottlePrice: 20, // premium tasting room price (750ml)
   retailBottlePrice: 18, // average bottle price (750ml)
   restaurantBottlePrice: 16, // wholesale price to restaurants (750ml)
@@ -148,34 +139,27 @@ const DEFAULT_VALUES = {
   // Phase 1 (Year 1): Premium Brand Building
   phase1CiderGallons: 400, // start very small with premium focus
   phase1AppleSalesPercent: 90, // sell most apples initially for cash flow
-  phase1TastroomEvents: 6, // Focused on fall harvest and spring bottling and apple blossom events
+  phase1TastroomEvents: 24, // bi-weekly events focusing on education
   phase1FarmersMarkets: 12, // monthly premium farmers markets
   phase1CapitalInvestment: 8000, // minimal additional equipment (already have most cider equipment)
   
   // Phase 2 (Years 2-4): Premium Market Expansion  
   phase2CiderGallons: 1200, // controlled growth maintaining premium pricing
   phase2AppleSalesPercent: 85, // still selling majority of apples
-  phase2TastroomDays: 100, // 2 days/week open for tastings
+  phase2TastroomDays: 156, // 3 days/week open for tastings
   phase2DistributionAccounts: 8, // carefully selected premium accounts
   phase2CapitalInvestment: 15000, // tasting room improvements, additional bottling capacity
   
   // Phase 3 (Years 5+): Premium Market Leadership
   phase3CiderGallons: 2500, // moderate volume with premium margins
   phase3AppleSalesPercent: 80, // continue apple sales for revenue diversity
-  phase3TastroomDays: 150, // 3 days/week open
+  phase3TastroomDays: 260, // 5 days/week open
   phase3DistributionAccounts: 25, // regional premium distribution
   phase3CapitalInvestment: 45000, // bright tank for carbonation/bottling, 2x 1000L SS fermentors
   
-  // Phase 4 (Years 8+): Mature Operations & Brand Dominance
-  phase4CiderGallons: 5000, // full scale production
-  phase4AppleSalesPercent: 10, // most apples go to high-value cider
-  phase4TastroomDays: 200, // destination tasting room
-  phase4DistributionAccounts: 50, // strong regional distribution
-  phase4CapitalInvestment: 60000, // delivery vehicle, larger tanks, automation
-  
   // Marketing Strategy for Premium Positioning
-  marketingBudgetPercent: 3, // higher percentage for premium brand building
-  brandingInvestment: 10000, // significant investment in premium branding
+  marketingBudgetPercent: 5, // higher percentage for premium brand building
+  brandingInvestment: 25000, // significant investment in premium branding
   digitalMarketingPercent: 40, // higher digital focus for premium audience
   eventMarketingPercent: 30, // more events and tastings
   tradingMarketingPercent: 15, // trade marketing for premium placement
@@ -194,21 +178,14 @@ const DEFAULT_VALUES = {
   
   // Add missing UI compatibility fields
 
-  packagingCostPerGallon: 3 * 5, // calculated from bottle costs
+  packagingCostPerGallon: 28.0, // calculated from bottle costs
 }
-
-// =========================
-// Main BusinessCalculator Component
-// =========================
 
 interface BusinessCalculatorProps {
   onResultsChange?: (results: any) => void;
 }
 
 export default function BusinessCalculator({ onResultsChange }: BusinessCalculatorProps) {
-  // -------------------------
-  // State
-  // -------------------------
   const [sliders, setSliders] = useState(DEFAULT_VALUES)
   const [results, setResults] = useState({
     monthlyMortgage: 0,
@@ -261,16 +238,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     abnbRevenue: 0,
   })
   
-  // -------------------------
-  // Effects
-  // -------------------------
+  // Calculate financial outcomes whenever sliders change
   useEffect(() => {
     calculateFinancials()
   }, [sliders])
   
-  // -------------------------
-  // Financial Calculation Logic
-  // -------------------------
   const calculateFinancials = () => {
     // Define phase-specific labor multiplier
     let laborHoursMultiplier = 1.0;
@@ -284,14 +256,11 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       case 3:
         laborHoursMultiplier = 1.0; // Phase 3: full operations
         break;
-      case 4:
-        laborHoursMultiplier = 1.0; // Phase 4: full operations with optimized efficiency
-        break;
     }
     
     // Phase-adjusted utility and maintenance expenses
-    const phaseUtilityExpenses = sliders.utilityExpenses * (sliders.implementationPhase === 1 ? 0.4 : sliders.implementationPhase === 2 ? 0.7 : sliders.implementationPhase === 3 ? 1.0 : 1.0);
-    const phaseMaintenanceExpenses = sliders.maintenanceExpenses * (sliders.implementationPhase === 1 ? 0.3 : sliders.implementationPhase === 2 ? 0.7 : sliders.implementationPhase === 3 ? 1.0 : 1.0);
+    const phaseUtilityExpenses = sliders.utilityExpenses * (sliders.implementationPhase === 1 ? 0.4 : sliders.implementationPhase === 2 ? 0.7 : 1.0);
+    const phaseMaintenanceExpenses = sliders.maintenanceExpenses * (sliders.implementationPhase === 1 ? 0.3 : sliders.implementationPhase === 2 ? 0.7 : 1.0);
     const phaseLicensingCosts = sliders.licensingCosts;
     
     // Calculate total trees and apple yield
@@ -336,9 +305,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         break;
       case 3:
         phaseCapitalInvestment = sliders.phase1CapitalInvestment + sliders.phase2CapitalInvestment + sliders.phase3CapitalInvestment;
-        break;
-      case 4:
-        phaseCapitalInvestment = sliders.phase1CapitalInvestment + sliders.phase2CapitalInvestment + sliders.phase3CapitalInvestment + sliders.phase4CapitalInvestment;
         break;
       default:
         phaseCapitalInvestment = sliders.equipmentCost;
@@ -385,10 +351,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         targetCiderGallons = sliders.phase3CiderGallons;
         appleSalesPercent = sliders.phase3AppleSalesPercent;
         break;
-      case 4:
-        targetCiderGallons = sliders.phase4CiderGallons;
-        appleSalesPercent = sliders.phase4AppleSalesPercent;
-        break;
       default:
         targetCiderGallons = totalBushels * (sliders.ciderYield / 100) * (sliders.productionEfficiency / 100) * sliders.gallonsPerBushel;
         appleSalesPercent = 100 - sliders.ciderYield;
@@ -409,9 +371,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         break;
       case 3:
         phaseAppleSalesPercent = sliders.phase3AppleSalesPercent;
-        break;
-      case 4:
-        phaseAppleSalesPercent = sliders.phase4AppleSalesPercent;
         break;
       default:
         phaseAppleSalesPercent = 100 - sliders.ciderYield;
@@ -456,11 +415,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         phaseTaproomPercent = 50;
         phaseRetailPercent = 45;
         phaseRestaurantPercent = 5;
-        break;
-      case 4: // Mature, brand-dominant distribution
-        phaseTaproomPercent = 40; // Destination taproom, but larger wholesale
-        phaseRetailPercent = 50; // Strong retail presence
-        phaseRestaurantPercent = 10; // Key restaurant accounts
         break;
     }
     
@@ -514,9 +468,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         break;
       case 3:
         baseMarketingBudget = 10000; // Professional photography, expanded advertising
-        break;
-      case 4:
-        baseMarketingBudget = 15000; // Brand maintenance, digital campaigns, trade marketing
         break;
     }
     const calculatedMarketingExpenses = baseMarketingBudget;
@@ -641,9 +592,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     }
   }
   
-  // -------------------------
-  // Handlers
-  // -------------------------
+  // Handle slider changes
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setSliders(prev => ({
@@ -651,40 +600,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       [name]: parseFloat(value)
     }))
   }
-
-  // -------------------------
-  // Chart Data Preparation and Phase Values (must be before return)
-  // -------------------------
-
-  // Helper function to calculate cider gallons for any phase
-  const calculatePhaseValues = (phase: number) => {
-    const effectiveTotalBushels = results.totalBushels * (sliders.productionEfficiency / 100);
-    let phaseAppleSalesPercent = 0;
-    switch(phase) {
-      case 1:
-        phaseAppleSalesPercent = sliders.phase1AppleSalesPercent;
-        break;
-      case 2:
-        phaseAppleSalesPercent = sliders.phase2AppleSalesPercent;
-        break;
-      case 3:
-        phaseAppleSalesPercent = sliders.phase3AppleSalesPercent;
-        break;
-      case 4:
-        phaseAppleSalesPercent = sliders.phase4AppleSalesPercent;
-        break;
-    }
-    const bushelsForCider = effectiveTotalBushels - (effectiveTotalBushels * (phaseAppleSalesPercent / 100));
-    const phaseCiderGallons = bushelsForCider * sliders.gallonsPerBushel;
-    return {
-      ciderGallons: Math.round(phaseCiderGallons),
-      appleSalesPercent: phaseAppleSalesPercent
-    };
-  };
-  const phase1Values = calculatePhaseValues(1);
-  const phase2Values = calculatePhaseValues(2);
-  const phase3Values = calculatePhaseValues(3);
-  const phase4Values = calculatePhaseValues(4);
 
   // Revenue breakdown chart data
   const revenueData = {
@@ -695,15 +610,17 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           results.directSalesRevenue, // This is now taproom revenue
           Math.round(results.wholesaleRevenue * (sliders.retailSalesPercent / (sliders.retailSalesPercent + sliders.restaurantBarSalesPercent))), // Retail portion
           Math.round(results.wholesaleRevenue * (sliders.restaurantBarSalesPercent / (sliders.retailSalesPercent + sliders.restaurantBarSalesPercent))), // Restaurant portion
+          // Use the calculated fresh apple revenue from the main calculation
           results.freshAppleRevenue || 0,
+          // Other products revenue
           results.otherProductsRevenue || 0
         ],
         backgroundColor: [
-          'rgba(255, 159, 64, 0.6)',
-          'rgba(20, 184, 166, 0.6)',
-          'rgba(52, 152, 219, 0.6)',
-          'rgba(153, 102, 255, 0.6)',
-          'rgba(75, 192, 192, 0.6)'
+          'rgba(255, 159, 64, 0.6)', // amber for taproom
+          'rgba(20, 184, 166, 0.6)', // teal for retail
+          'rgba(52, 152, 219, 0.6)', // blue for restaurant/bar
+          'rgba(153, 102, 255, 0.6)', // purple for fresh apples
+          'rgba(75, 192, 192, 0.6)'   // turquoise for other products
         ],
         borderColor: [
           'rgba(255, 159, 64, 1)',
@@ -715,6 +632,177 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         borderWidth: 1,
       },
     ],
+  }
+
+  // Expenses breakdown chart data
+  const expensesData = {
+    labels: ['Mortgage', 'Taxes & Insurance', 'Packaging', 'Excise Tax', 'Licensing', 'Distribution', 'Utilities', 'Labor', 'Maintenance', 'Marketing', 'Channel Costs', 'Working Capital'],
+    datasets: [
+      {
+        data: [
+          results.monthlyMortgage * 12,
+          sliders.propertyTax + sliders.insurance,
+          results.packagingCosts,
+          results.exciseTax,
+          results.licensingCosts,
+          results.distributionCosts,
+          // Calculate phase-adjusted utility expenses
+          Math.round(sliders.utilityExpenses * (sliders.implementationPhase === 1 ? 0.4 : sliders.implementationPhase === 2 ? 0.7 : 1)),
+          results.laborExpenses,
+          // Calculate phase-adjusted maintenance expenses  
+          Math.round(sliders.maintenanceExpenses * (sliders.implementationPhase === 1 ? 0.3 : sliders.implementationPhase === 2 ? 0.7 : 1)),
+          results.marketingExpenses,
+          // Calculate phase-adjusted channel costs
+          Math.round((sliders.implementationPhase >= 2 ? sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers : 0) + 
+                    (sliders.implementationPhase >= 2 ? results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100 : 0)),
+          Math.round(results.annualRevenue * sliders.workingCapitalPercent / 100 * 0.06 * (sliders.implementationPhase / 3))
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',   // red
+          'rgba(54, 162, 235, 0.6)',   // blue
+          'rgba(255, 206, 86, 0.6)',   // yellow
+          'rgba(75, 192, 192, 0.6)',   // green
+          'rgba(153, 102, 255, 0.6)',  // purple
+          'rgba(255, 159, 64, 0.6)',   // orange
+          'rgba(199, 210, 254, 0.6)',  // light purple
+          'rgba(165, 243, 252, 0.6)',  // light cyan
+          'rgba(187, 247, 208, 0.6)',  // light green
+          'rgba(254, 202, 202, 0.6)',  // light red
+          'rgba(255, 193, 7, 0.6)',    // amber for channel costs
+          'rgba(156, 39, 176, 0.6)'    // deep purple for working capital
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(199, 210, 254, 1)',
+          'rgba(165, 243, 252, 1)',
+          'rgba(187, 247, 208, 1)',
+          'rgba(254, 202, 202, 1)',
+          'rgba(255, 193, 7, 1)',
+          'rgba(156, 39, 176, 1)'
+        ],
+        borderWidth: 1,
+      },
+    ],
+  }
+
+  // Sensitivity analysis - profit vs apple yield
+  const yieldAnalysisData = {
+    labels: ['Low Yield (-30%)', 'Moderate (-15%)', 'Expected Yield', 'Good Yield (+15%)', 'Excellent (+30%)'],
+    datasets: [{
+      label: 'Annual Profit ($)',
+      data: [
+        // Calculate profit at different yield levels - normalize to more realistic values
+        Math.min(calculateProfitWithYield(results.totalBushels * 0.7), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 0.85), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 1.15), 1000000),
+        Math.min(calculateProfitWithYield(results.totalBushels * 1.3), 1000000)
+      ],
+      backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+    }]
+  }
+
+  function calculateProfitWithYield(bushels: number) {
+    // Use the same corrected allocation logic as main calculation
+    const effectiveBushels = bushels * (sliders.productionEfficiency / 100);
+    
+    // Get phase-specific apple sales percentage
+    let phaseAppleSalesPercent = 0;
+    switch(sliders.implementationPhase) {
+      case 1:
+        phaseAppleSalesPercent = sliders.phase1AppleSalesPercent;
+        break;
+      case 2:
+        phaseAppleSalesPercent = sliders.phase2AppleSalesPercent;
+        break;
+      case 3:
+        phaseAppleSalesPercent = sliders.phase3AppleSalesPercent;
+        break;
+      default:
+        phaseAppleSalesPercent = 100 - sliders.ciderYield;
+    }
+    
+    // Calculate allocation
+    const freshAppleBushels = effectiveBushels * (phaseAppleSalesPercent / 100) * (sliders.salesEfficiency / 100);
+    const bushelsUsedForCider = effectiveBushels - (effectiveBushels * (phaseAppleSalesPercent / 100));
+    
+    // Calculate cider production
+    const ciderGallonsProduced = bushelsUsedForCider * sliders.gallonsPerBushel;
+    
+    // Account for waste/spoilage
+    const netCiderGallons = ciderGallonsProduced * (1 - sliders.wasteSpoilage / 100)
+    
+    // Account for sales efficiency
+    const soldCiderGallons = netCiderGallons * (sliders.salesEfficiency / 100)
+    
+    // Calculate bottles produced
+    const soldBottles = soldCiderGallons * sliders.bottlesPerGallon
+    
+    // Calculate revenue by channel using bottle pricing with phase-specific mix
+    let phaseTaproomPercent, phaseRetailPercent, phaseRestaurantPercent;
+    switch(sliders.implementationPhase) {
+      case 1:
+        phaseTaproomPercent = 70; phaseRetailPercent = 25; phaseRestaurantPercent = 5;
+        break;
+      case 2:
+        phaseTaproomPercent = 60; phaseRetailPercent = 35; phaseRestaurantPercent = 5;
+        break;
+      case 3:
+        phaseTaproomPercent = 50; phaseRetailPercent = 45; phaseRestaurantPercent = 5;
+        break;
+      default:
+        phaseTaproomPercent = sliders.tastroomSalesPercent;
+        phaseRetailPercent = sliders.retailSalesPercent;
+        phaseRestaurantPercent = sliders.restaurantBarSalesPercent;
+    }
+    
+    const tastroomBottles = soldBottles * (phaseTaproomPercent / 100)
+    const retailBottles = soldBottles * (phaseRetailPercent / 100)
+    const restaurantBottles = soldBottles * (phaseRestaurantPercent / 100)
+    
+    const tastroomRevenue = tastroomBottles * sliders.tastroomBottlePrice
+    const retailRevenue = retailBottles * sliders.retailBottlePrice
+    const restaurantRevenue = restaurantBottles * sliders.restaurantBottlePrice
+    
+    // Total cider revenue
+    const ciderRevenue = tastroomRevenue + retailRevenue + restaurantRevenue
+    
+    // Fresh apple revenue
+    const freshAppleRevenue = freshAppleBushels * sliders.applePricePerBushel
+    
+    // Add Airbnb revenue (fixed)
+    const abnbRevenue = sliders.abnbNights * sliders.abnbRate
+    
+    // Other products revenue (15% of apple products revenue)
+    const otherProductsRevenue = (ciderRevenue + freshAppleRevenue) * 0.15
+    
+    // Total revenue
+    const totalRevenue = ciderRevenue + freshAppleRevenue + abnbRevenue + otherProductsRevenue
+    
+    // Calculate specific expenses that vary with production
+    const packagingCosts = soldCiderGallons * sliders.packagingCostPerGallon
+    const exciseTax = soldCiderGallons * sliders.exciseTaxPerGallon
+    const distributionCosts = totalRevenue * (sliders.distributionCostPercent / 100)
+    
+    // Variable expenses (those that change with production)
+    const variableExpenses = packagingCosts + exciseTax + distributionCosts
+    
+    // Fixed expenses (those that don't change with production)
+    const fixedExpenses = results.annualFixedCosts + sliders.utilityExpenses + 
+                         results.laborExpenses + sliders.maintenanceExpenses + 
+                         sliders.marketingExpenses + sliders.licensingCosts
+    
+    // Total expenses
+    const totalExpenses = fixedExpenses + variableExpenses
+    
+    return Math.round(totalRevenue - totalExpenses)
   }
 
   // Labor breakdown chart data
@@ -729,10 +817,10 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           results.salesAdminHours,
         ],
         backgroundColor: [
-          'rgba(46, 204, 113, 0.6)',
-          'rgba(241, 196, 15, 0.6)',
-          'rgba(52, 152, 219, 0.6)',
-          'rgba(155, 89, 182, 0.6)'
+          'rgba(46, 204, 113, 0.6)', // green for farm operations
+          'rgba(241, 196, 15, 0.6)', // yellow for harvest
+          'rgba(52, 152, 219, 0.6)', // blue for production
+          'rgba(155, 89, 182, 0.6)'  // purple for sales/admin
         ],
         borderColor: [
           'rgba(46, 204, 113, 1)',
@@ -752,7 +840,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       {
         label: 'Labor Hours',
         data: results.monthlyLaborHours,
-      borderColor: 'rgba(75, 192, 192, 1)',
+        borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         tension: 0.3,
         fill: true
@@ -760,13 +848,12 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
     ],
   }
 
-  // Sensitivity analysis - profit vs apple yield
-  function calculateProfitWithYield(bushels: number) {
-    // ... existing logic ...
-    // (copy the function body from earlier in the file)
-    const effectiveBushels = bushels * (sliders.productionEfficiency / 100);
+  // Helper function to calculate cider gallons for any phase
+  const calculatePhaseValues = (phase: number) => {
+    const effectiveTotalBushels = results.totalBushels * (sliders.productionEfficiency / 100);
+    
     let phaseAppleSalesPercent = 0;
-    switch(sliders.implementationPhase) {
+    switch(phase) {
       case 1:
         phaseAppleSalesPercent = sliders.phase1AppleSalesPercent;
         break;
@@ -776,95 +863,80 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
       case 3:
         phaseAppleSalesPercent = sliders.phase3AppleSalesPercent;
         break;
-      case 4:
-        phaseAppleSalesPercent = sliders.phase4AppleSalesPercent;
-        break;
-      default:
-        phaseAppleSalesPercent = 100 - sliders.ciderYield;
     }
-    const freshAppleBushels = effectiveBushels * (phaseAppleSalesPercent / 100) * (sliders.salesEfficiency / 100);
-    const bushelsUsedForCider = effectiveBushels - (effectiveBushels * (phaseAppleSalesPercent / 100));
-    const ciderGallonsProduced = bushelsUsedForCider * sliders.gallonsPerBushel;
-    const netCiderGallons = ciderGallonsProduced * (1 - sliders.wasteSpoilage / 100)
-    const soldCiderGallons = netCiderGallons * (sliders.salesEfficiency / 100)
-    const soldBottles = soldCiderGallons * sliders.bottlesPerGallon
-    let phaseTaproomPercent, phaseRetailPercent, phaseRestaurantPercent;
-    switch(sliders.implementationPhase) {
-      case 1:
-        phaseTaproomPercent = 70; phaseRetailPercent = 25; phaseRestaurantPercent = 5;
-        break;
-      case 2:
-        phaseTaproomPercent = 60; phaseRetailPercent = 35; phaseRestaurantPercent = 5;
-        break;
-      case 3:
-        phaseTaproomPercent = 50; phaseRetailPercent = 45; phaseRestaurantPercent = 5;
-        break;
-      case 4:
-        phaseTaproomPercent = 40; phaseRetailPercent = 50; phaseRestaurantPercent = 10;
-        break;
-      default:
-        phaseTaproomPercent = sliders.tastroomSalesPercent;
-        phaseRetailPercent = sliders.retailSalesPercent;
-        phaseRestaurantPercent = sliders.restaurantBarSalesPercent;
-    }
-    const tastroomBottles = soldBottles * (phaseTaproomPercent / 100)
-    const retailBottles = soldBottles * (phaseRetailPercent / 100)
-    const restaurantBottles = soldBottles * (phaseRestaurantPercent / 100)
-    const tastroomRevenue = tastroomBottles * sliders.tastroomBottlePrice
-    const retailRevenue = retailBottles * sliders.retailBottlePrice
-    const restaurantRevenue = restaurantBottles * sliders.restaurantBottlePrice
-    const ciderRevenue = tastroomRevenue + retailRevenue + restaurantRevenue
-    const freshAppleRevenue = freshAppleBushels * sliders.applePricePerBushel
-    const abnbRevenue = sliders.abnbNights * sliders.abnbRate
-    const otherProductsRevenue = (ciderRevenue + freshAppleRevenue) * 0.15
-    const totalRevenue = ciderRevenue + freshAppleRevenue + abnbRevenue + otherProductsRevenue
-    const packagingCosts = soldCiderGallons * sliders.packagingCostPerGallon
-    const exciseTax = soldCiderGallons * sliders.exciseTaxPerGallon
-    const distributionCosts = totalRevenue * (sliders.distributionCostPercent / 100)
-    const variableExpenses = packagingCosts + exciseTax + distributionCosts
-    const fixedExpenses = results.annualFixedCosts + sliders.utilityExpenses + 
-                         results.laborExpenses + sliders.maintenanceExpenses + 
-                         sliders.marketingExpenses + sliders.licensingCosts
-    const totalExpenses = fixedExpenses + variableExpenses
-    return Math.round(totalRevenue - totalExpenses)
-  }
+    
+    const bushelsForCider = effectiveTotalBushels - (effectiveTotalBushels * (phaseAppleSalesPercent / 100));
+    const phaseCiderGallons = bushelsForCider * sliders.gallonsPerBushel;
+    
+    return {
+      ciderGallons: Math.round(phaseCiderGallons),
+      appleSalesPercent: phaseAppleSalesPercent
+    };
+  };
 
-  const yieldAnalysisData = {
-    labels: ['Low Yield (-30%)', 'Moderate (-15%)', 'Expected Yield', 'Good Yield (+15%)', 'Excellent (+30%)'],
-    datasets: [{
-      label: 'Annual Profit ($)',
-        data: [
-        Math.min(calculateProfitWithYield(results.totalBushels * 0.7), 1000000),
-        Math.min(calculateProfitWithYield(results.totalBushels * 0.85), 1000000),
-        Math.min(calculateProfitWithYield(results.totalBushels), 1000000),
-        Math.min(calculateProfitWithYield(results.totalBushels * 1.15), 1000000),
-        Math.min(calculateProfitWithYield(results.totalBushels * 1.3), 1000000)
-      ],
-      backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1
-    }]
-  }
+  // Calculate values for all phases
+  const phase1Values = calculatePhaseValues(1);
+  const phase2Values = calculatePhaseValues(2);
+  const phase3Values = calculatePhaseValues(3);
 
-  // =========================
-  // Render
-  // =========================
+  // Calculate labor costs based on labor analysis inputs
+  // Use a more realistic base calculation - typical orchard needs ~500 hours per acre annually
+  const baseHoursPerAcre = 500; // Industry average for apple orchards with cider production
+  const totalPotentialHours = sliders.orchardAcres * baseHoursPerAcre;
+  const totalLaborHours = totalPotentialHours * (1 - sliders.automationLevel / 100);
+  
+  // Calculate the labor expenses from hours
+  const calculatedLaborExpenses = totalLaborHours * sliders.laborHourlyRate;
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-7xl mx-auto">
-      {/* --- Title and Description --- */}
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Financial Model</h1>
+      <h1 className="text-3xl font-bold text-gray-900 mb-2">Apple Farm Cidery Business Plan</h1>
       <p className="text-gray-600 mb-8">Interactive financial modeling for a heritage apple farm and craft cidery operation</p>
       
-      {/* --- Implementation Phase Selection --- */}
+      {/* Business Overview Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
+          <h3 className="text-lg font-bold text-green-800 mb-2">Orchard Capacity</h3>
+          <p className="text-3xl font-bold text-green-900">{results.totalTrees}</p>
+          <p className="text-sm text-green-700">trees on {sliders.orchardAcres} acres</p>
+          <p className="text-xs text-green-600 mt-1">{results.totalBushels.toLocaleString()} bushels potential</p>
+        </div>
+        
+        <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-lg border border-amber-200">
+          <h3 className="text-lg font-bold text-amber-800 mb-2">Phase {sliders.implementationPhase} Production</h3>
+          <p className="text-3xl font-bold text-amber-900">{results.ciderGallons.toLocaleString()}</p>
+          <p className="text-sm text-amber-700">gallons cider annually</p>
+          <p className="text-xs text-amber-600 mt-1">{Math.round(results.ciderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles equivalent</p>
+        </div>
+        
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
+          <h3 className="text-lg font-bold text-blue-800 mb-2">Annual Revenue</h3>
+          <p className="text-3xl font-bold text-blue-900">${results.annualRevenue.toLocaleString()}</p>
+          <p className="text-sm text-blue-700">total revenue</p>
+          <p className="text-xs text-blue-600 mt-1">${Math.round(results.annualRevenue/12).toLocaleString()}/month average</p>
+        </div>
+        
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
+          <h3 className="text-lg font-bold text-purple-800 mb-2">Annual Profit</h3>
+          <p className={`text-3xl font-bold ${results.annualProfit >= 0 ? 'text-purple-900' : 'text-red-600'}`}>
+            ${results.annualProfit.toLocaleString()}
+          </p>
+          <p className="text-sm text-purple-700">{results.roi}% ROI</p>
+          <p className="text-xs text-purple-600 mt-1">
+            {((results.annualProfit / results.annualRevenue) * 100).toFixed(1)}% margin
+          </p>
+        </div>
+      </div>
+
+      {/* Implementation Phase Selection */}
       <div className="bg-gray-50 p-6 rounded-lg mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Implementation Strategy</h2>
         <p className="text-gray-600 mb-6">Choose your current business phase to see phase-specific financial projections</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <button
             onClick={() => setSliders(prev => ({...prev, implementationPhase: 1}))}
-            className={`p-6 rounded-lg border-2 text-left transition-all h-full ${
+            className={`p-6 rounded-lg border-2 text-left transition-all ${
               sliders.implementationPhase === 1 
                 ? 'border-blue-500 bg-blue-50 shadow-md' 
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -876,7 +948,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             </div>
             <h4 className="font-medium text-gray-700 mb-2">Brand Building & Market Entry</h4>
             <ul className="text-sm text-gray-600 space-y-1">
-              <li>• {(sliders.phase1CiderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles production</li>
+              <li>• {phase1Values.ciderGallons.toLocaleString()} gallons cider production</li>
               <li>• {sliders.phase1AppleSalesPercent}% apple sales to cideries</li>
               <li>• Monthly barn events & farmers markets</li>
               <li>• ${sliders.phase1CapitalInvestment.toLocaleString()} equipment financing</li>
@@ -885,7 +957,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           
           <button
             onClick={() => setSliders(prev => ({...prev, implementationPhase: 2}))}
-            className={`p-6 rounded-lg border-2 text-left transition-all h-full ${
+            className={`p-6 rounded-lg border-2 text-left transition-all ${
               sliders.implementationPhase === 2 
                 ? 'border-blue-500 bg-blue-50 shadow-md' 
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -897,7 +969,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             </div>
             <h4 className="font-medium text-gray-700 mb-2">Expansion & Distribution</h4>
             <ul className="text-sm text-gray-600 space-y-1">
-              <li>• {(sliders.phase2CiderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles production</li>
+              <li>• {phase2Values.ciderGallons.toLocaleString()} gallons cider production</li>
               <li>• {sliders.phase2AppleSalesPercent}% apple sales</li>
               <li>• Regular taproom + local distribution</li>
               <li>• ${sliders.phase2CapitalInvestment.toLocaleString()} equipment financing</li>
@@ -906,7 +978,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           
           <button
             onClick={() => setSliders(prev => ({...prev, implementationPhase: 3}))}
-            className={`p-6 rounded-lg border-2 text-left transition-all h-full ${
+            className={`p-6 rounded-lg border-2 text-left transition-all ${
               sliders.implementationPhase === 3 
                 ? 'border-blue-500 bg-blue-50 shadow-md' 
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
@@ -918,31 +990,10 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
             </div>
             <h4 className="font-medium text-gray-700 mb-2">Full Operations & Regional Growth</h4>
             <ul className="text-sm text-gray-600 space-y-1">
-              <li>• {(sliders.phase3CiderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles production</li>
+              <li>• {phase3Values.ciderGallons.toLocaleString()} gallons cider production</li>
               <li>• {sliders.phase3AppleSalesPercent}% apple sales</li>
               <li>• Full taproom + regional distribution</li>
               <li>• ${sliders.phase3CapitalInvestment.toLocaleString()} equipment financing</li>
-            </ul>
-          </button>
-
-          <button
-            onClick={() => setSliders(prev => ({...prev, implementationPhase: 4}))}
-            className={`p-6 rounded-lg border-2 text-left transition-all h-full ${
-              sliders.implementationPhase === 4 
-                ? 'border-blue-500 bg-blue-50 shadow-md' 
-                : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
-            }`}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-bold text-gray-800">Phase 4</h3>
-              <span className="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">Years 8+</span>
-            </div>
-            <h4 className="font-medium text-gray-700 mb-2">Mature Operations</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• {(sliders.phase4CiderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles production</li>
-              <li>• {sliders.phase4AppleSalesPercent}% apple sales</li>
-              <li>• Strong regional distribution</li>
-              <li>• ${sliders.phase4CapitalInvestment.toLocaleString()} equipment financing</li>
             </ul>
           </button>
         </div>
@@ -1021,68 +1072,10 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               </div>
             </div>
           )}
-
-          {sliders.implementationPhase === 4 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h5 className="font-medium text-gray-700 mb-2">Revenue Focus</h5>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Full scale cider production (5,000+ gallons)</li>
-                  <li>• Minimal apple sales (10%) for maximum value-add</li>
-                  <li>• Brand dominance in regional wholesale (50+ accounts)</li>
-                  <li>• Destination tasting room with high-margin direct sales</li>
-                </ul>
-              </div>
-              <div>
-                <h5 className="font-medium text-gray-700 mb-2">Cost Management</h5>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Investment in efficiency & automation ($60k capital loan)</li>
-                  <li>• Optimized labor with skilled staff</li>
-                  <li>• Sustained marketing budget ($15k) for brand defense</li>
-                  <li>• Economies of scale in purchasing and distribution</li>
-                </ul>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
-      {/* --- Business Overview Cards --- */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
-          <h3 className="text-lg font-bold text-green-800 mb-2">Orchard Capacity</h3>
-          <p className="text-3xl font-bold text-green-900">{results.totalTrees}</p>
-          <p className="text-sm text-green-700">trees on {sliders.orchardAcres} acres</p>
-          <p className="text-xs text-green-600 mt-1">{results.totalBushels.toLocaleString()} bushels potential</p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-lg border border-amber-200">
-          <h3 className="text-lg font-bold text-amber-800 mb-2">Phase {sliders.implementationPhase} Production</h3>
-          <p className="text-3xl font-bold text-amber-900">{results.ciderGallons.toLocaleString()}</p>
-          <p className="text-sm text-amber-700">gallons cider annually</p>
-          <p className="text-xs text-amber-600 mt-1">{Math.round(results.ciderGallons * sliders.bottlesPerGallon).toLocaleString()} bottles equivalent</p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
-          <h3 className="text-lg font-bold text-blue-800 mb-2">Annual Revenue</h3>
-          <p className="text-3xl font-bold text-blue-900">${results.annualRevenue.toLocaleString()}</p>
-          <p className="text-sm text-blue-700">total revenue</p>
-          <p className="text-xs text-blue-600 mt-1">${Math.round(results.annualRevenue/12).toLocaleString()}/month average</p>
-        </div>
-        
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border border-purple-200">
-          <h3 className="text-lg font-bold text-purple-800 mb-2">Annual Profit</h3>
-          <p className={`text-3xl font-bold ${results.annualProfit >= 0 ? 'text-purple-900' : 'text-red-600'}`}>
-            ${results.annualProfit.toLocaleString()}
-          </p>
-          <p className="text-sm text-purple-700">{results.roi}% ROI</p>
-          <p className="text-xs text-purple-600 mt-1">
-            {((results.annualProfit / results.annualRevenue) * 100).toFixed(1)}% margin
-          </p>
-        </div>
-      </div>
-
-      {/* --- Key Business Parameters --- */}
+      {/* Key Business Parameters */}
       <div className="bg-gray-50 p-6 rounded-lg mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Business Parameters</h2>
         
@@ -1271,7 +1264,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                   {sliders.implementationPhase === 1 && ` $${sliders.phase1CapitalInvestment.toLocaleString()} financed`}
                   {sliders.implementationPhase === 2 && ` $${(sliders.phase1CapitalInvestment + sliders.phase2CapitalInvestment).toLocaleString()} financed`}
                   {sliders.implementationPhase === 3 && ` $${(sliders.phase1CapitalInvestment + sliders.phase2CapitalInvestment + sliders.phase3CapitalInvestment).toLocaleString()} financed`}
-                  {sliders.implementationPhase === 4 && ` $${(sliders.phase1CapitalInvestment + sliders.phase2CapitalInvestment + sliders.phase3CapitalInvestment + sliders.phase4CapitalInvestment).toLocaleString()} financed`}
                   <br />
                   <span className="font-medium">Annual Payment:</span> ${Math.round(results.annualCapitalPayments || 0).toLocaleString()}
                 </div>
@@ -1292,7 +1284,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                   <input
                     type="range"
                     min="8"
-                    max="25"
+                    max="20"
                     step="0.5"
                     name="orchardAcres"
                     value={sliders.orchardAcres}
@@ -1307,8 +1299,8 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                   </label>
                   <input
                     type="range"
-                    min="10"
-                    max="100"
+                    min="50"
+                    max="90"
                     step="5"
                     name="matureTreePercentage"
                     value={sliders.matureTreePercentage}
@@ -1333,9 +1325,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 </label>
                 <input
                   type="range"
-                  min="10"
-                  max="100"
-                  step="5"
+                  min="70"
+                  max="95"
+                  step="1"
                   name="productionEfficiency"
                   value={sliders.productionEfficiency}
                   onChange={handleSliderChange}
@@ -1361,7 +1353,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                 </label>
                 <input
                   type="range"
-                  min="10"
+                  min="50"
                   max="100"
                   step="1"
                   name="salesEfficiency"
@@ -1378,7 +1370,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* --- Pricing Controls --- */}
+      {/* Pricing Controls */}
       <div className="bg-gray-50 p-6 rounded-lg mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Pricing Strategy</h2>
         
@@ -1396,24 +1388,24 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     <li>Premium varieties command higher prices</li>
                     <li>Organic certification adds value</li>
                     <li>Local craft cideries pay premium</li>
-                    <li>Range: $15 - $35 per bushel</li>
+                    <li>Range: $18.75 - $31.25 per bushel</li>
                   </ul>
                 </InfoBox>
               </label>
               <input
                 type="range"
-                min="15"
-                max="35"
-                step="1"
+                min="18.75"
+                max="31.25"
+                step="0.25"
                 name="applePricePerBushel"
                 value={sliders.applePricePerBushel}
                 onChange={handleSliderChange}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
               <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>$15</span>
+                <span>$18.75 (-25%)</span>
                 <span>Base: $25</span>
-                <span>$35</span>
+                <span>$31.25 (+25%)</span>
               </div>
             </div>
           </div>
@@ -1529,7 +1521,127 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* --- Expense Flow Analysis --- */}
+      {/* Financial Results */}
+      <div className="bg-gray-50 p-6 rounded-lg mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Results</h2>
+        
+        {/* Revenue & Profit Summary */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-lg font-bold text-gray-800 mb-4">Revenue Breakdown</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Cider Sales</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Apple Sales</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${results.freshAppleRevenue.toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Other Products</span>
+                <span className="text-sm font-bold text-green-600">
+                  ${Math.round((results.directSalesRevenue + results.wholesaleRevenue) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-2 flex justify-between items-center">
+                <span className="font-bold text-gray-800">Total Revenue</span>
+                <span className="font-bold text-green-600">${results.annualRevenue.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-lg font-bold text-gray-800 mb-4">Expense Breakdown</h3>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Fixed Costs</span>
+                <span className="text-sm font-bold text-red-600">${results.annualFixedCosts.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Labor</span>
+                <span className="text-sm font-bold text-red-600">${results.laborExpenses.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Marketing</span>
+                <span className="text-sm font-bold text-red-600">${results.marketingExpenses.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Packaging & Production</span>
+                <span className="text-sm font-bold text-red-600">${Math.round(results.packagingCosts + results.exciseTax).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Utilities & Maintenance</span>
+                <span className="text-sm font-bold text-red-600">
+                  ${Math.round(
+                    (sliders.implementationPhase === 1 ? sliders.utilityExpenses * 0.4 : 
+                     sliders.implementationPhase === 2 ? sliders.utilityExpenses * 0.7 : 
+                     sliders.utilityExpenses) +
+                    (sliders.implementationPhase === 1 ? sliders.maintenanceExpenses * 0.3 : 
+                     sliders.implementationPhase === 2 ? sliders.maintenanceExpenses * 0.7 : 
+                     sliders.maintenanceExpenses)
+                  ).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium text-gray-700">Distribution & Channel Costs</span>
+                <span className="text-sm font-bold text-red-600">
+                  ${Math.round(results.distributionCosts + 
+                    (sliders.implementationPhase >= 2 ? sliders.slottingFeesPerSKU * sliders.numberOfSKUs * sliders.numberOfRetailers : 0) + 
+                    (sliders.implementationPhase >= 2 ? results.wholesaleRevenue * (sliders.promotionalAllowancePercent + sliders.salesRepCommissionPercent) / 100 : 0)
+                  ).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-2 flex justify-between items-center">
+                <span className="font-bold text-gray-800">Total Expenses</span>
+                <span className="font-bold text-red-600">${results.annualExpenses.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Profit Metrics */}
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">Net Profit</h4>
+              <p className={`text-2xl font-bold ${results.annualProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${results.annualProfit.toLocaleString()}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                {((results.annualProfit / results.annualRevenue) * 100).toFixed(1)}% margin
+              </p>
+            </div>
+            <div className="text-center">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">Monthly Cash Flow</h4>
+              <p className={`text-2xl font-bold ${results.annualProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${Math.round(results.annualProfit / 12).toLocaleString()}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">Average per month</p>
+            </div>
+            <div className="text-center">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">Return on Investment</h4>
+              <p className={`text-2xl font-bold ${results.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                {results.roi}%
+              </p>
+              <p className="text-xs text-gray-500 mt-1">Annual ROI</p>
+            </div>
+            <div className="text-center">
+              <h4 className="text-sm font-medium text-gray-500 mb-2">Per Bottle Profit</h4>
+              <p className={`text-2xl font-bold ${results.profitPerBottle >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                ${results.profitPerBottle.toFixed(2)}
+              </p>
+              <p className="text-xs text-gray-500 mt-1">Profit per bottle sold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+              {/* Detailed Expense Flow Analysis */}
         <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Expense Flow Analysis</h3>
           
@@ -1627,17 +1739,6 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
                     <li>• Some channel costs for major retail chains</li>
                   </ul>
                 </div>
-
-                <div className="border border-gray-200 rounded-lg p-4">
-                  <h5 className="font-medium text-gray-800 mb-2">Phase 4 (Current: {sliders.implementationPhase === 4 ? 'Active' : 'Inactive'})</h5>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Utilities: 100% of full capacity (${sliders.utilityExpenses.toLocaleString()})</li>
-                    <li>• Maintenance: 100% of full capacity (${sliders.maintenanceExpenses.toLocaleString()})</li>
-                    <li>• Labor: 100% efficiency with optimized staff</li>
-                    <li>• Distribution: 3.0% (efficient regional logistics)</li>
-                    <li>• Optimized channel costs for key accounts</li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -1705,7 +1806,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           </div>
         </div>
 
-      {/* --- Labor Analysis --- */}
+      {/* Detailed Analysis Sections */}
+      
+      {/* Labor Analysis */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Labor Analysis</h3>
         
@@ -1940,7 +2043,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           </div>
         </div>
 
-        {/* --- Automation Analysis --- */}
+        {/* Automation Analysis */}
         <div className="mt-6 bg-white p-6 rounded-lg shadow">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Automation Analysis</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1983,7 +2086,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* --- Advanced Parameters - Collapsible --- */}
+
+
+      {/* Advanced Parameters - Collapsible */}
       <div className="bg-gray-50 p-6 rounded-lg mb-8">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-bold text-gray-900">Advanced Parameters</h2>
@@ -2105,7 +2210,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* --- Self-Distribution Advantage --- */}
+      {/* Self-Distribution Advantage */}
       <div className="mt-8 bg-green-50 p-6 rounded-lg border border-green-200">
         <h3 className="text-xl font-bold text-green-800 mb-4">🚚 Self-Distribution Advantage (NJ Plenary Winery License)</h3>
         
@@ -2151,7 +2256,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* --- Regulatory & Packaging Costs --- */}
+      {/* Regulatory & Packaging Costs */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Regulatory & Packaging</h3>
         
@@ -2235,7 +2340,9 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* --- Operating Expenses - MOVED DOWN --- */}
+
+
+      {/* Operating Expenses - MOVED DOWN */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Operating Expenses</h3>
         
@@ -2324,7 +2431,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* --- Phase-Specific Financial Summary --- */}
+      {/* Phase-Specific Financial Summary */}
       <div className="mt-8 bg-gray-50 p-6 rounded-lg">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Phase {sliders.implementationPhase} Financial Summary</h3>
         
@@ -2501,7 +2608,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
           </div>
         </div>
 
-        {/* --- Phase Progression Insights --- */}
+        {/* Phase Progression Insights */}
         <div className="mt-6 bg-blue-50 p-6 rounded-lg">
           <h4 className="text-lg font-bold text-blue-800 mb-4">Phase Strategy Insights</h4>
           
@@ -2547,24 +2654,361 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
               </p>
             </div>
           )}
-
-          {sliders.implementationPhase === 4 && (
-            <div className="space-y-3">
-              <p className="text-sm text-blue-700">
-                <strong>Focus:</strong> Full scale cider production with minimal apple sales for maximum value-add.
-              </p>
-              <p className="text-sm text-blue-700">
-                <strong>Key Metrics:</strong> {phase4Values.ciderGallons.toLocaleString()} gallons cider production with minimal apple sales for maximum value-add.
-              </p>
-              <p className="text-sm text-blue-700">
-                <strong>Optimization:</strong> Focus on maximizing efficiency and brand dominance.
-              </p>
         </div>
-          )}
+      </div>
+      
+      {/* Detailed Financial Analysis - DEBUG MODE */}
+      <div className="mt-8 bg-red-50 p-6 rounded-lg border border-red-200">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-xl font-bold text-red-800">🔍 Detailed Financial Analysis (Debug Mode)</h3>
+          <button
+            onClick={() => {
+              const section = document.getElementById('debugMode');
+              if (section) {
+                section.classList.toggle('hidden');
+              }
+            }}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
+          >
+            Toggle Debug Details
+          </button>
+        </div>
+        
+        <div id="debugMode" className="hidden">
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Phase 1 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 1 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                                 <span className="font-mono">
+                   {sliders.implementationPhase === 1 ? 
+                     `$${Math.round(results.directSalesRevenue + results.wholesaleRevenue).toLocaleString()}` : 
+                     `$${Math.round(750 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.6 * sliders.tastroomBottlePrice + 0.3 * sliders.retailBottlePrice + 0.1 * sliders.restaurantBottlePrice)).toLocaleString()}`
+                   }
+                </span>
+              </div>
+                             <div className="flex justify-between">
+                 <span>Apple Revenue:</span>
+                 <span className="font-mono">
+                   ${Math.round(results.totalBushels * 0.85 * 0.85 * 0.9 * sliders.applePricePerBushel).toLocaleString()}
+                 </span>
+               </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                                     ${Math.round(750 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.6 * sliders.tastroomBottlePrice + 0.3 * sliders.retailBottlePrice + 0.1 * sliders.restaurantBottlePrice) + 
+                     results.totalBushels * 0.85 * 0.85 * 0.9 * sliders.applePricePerBushel + 
+                     (750 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.6 * sliders.tastroomBottlePrice + 0.3 * sliders.retailBottlePrice + 0.1 * sliders.restaurantBottlePrice) + results.totalBushels * 0.85 * 0.85 * 0.9 * sliders.applePricePerBushel) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                                         -$3,000
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (60%):</span>
+                  <span className="font-mono text-red-600">
+                                         -${Math.round(results.totalBushels * 500 * 0.65 * 0.6 * 12).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Fixed Costs:</span>
+                  <span className="font-mono text-red-600">-${results.annualFixedCosts.toLocaleString()}</span>
+                </div>
+              </div>
             </div>
           </div>
           
-      {/* --- Results --- */}
+          {/* Phase 2 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 2 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                <span className="font-mono">
+                                     ${Math.round(2000 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.45 * sliders.tastroomBottlePrice + 0.4 * sliders.retailBottlePrice + 0.15 * sliders.restaurantBottlePrice)).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Apple Revenue:</span>
+                <span className="font-mono">
+                                     ${Math.round((results.totalBushels * 0.85 - 2000/3.1) * 1.0 * 0.9 * 28).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                                     ${Math.round(2000 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.45 * sliders.tastroomBottlePrice + 0.4 * sliders.retailBottlePrice + 0.15 * sliders.restaurantBottlePrice) + 
+                     (results.totalBushels * 0.85 - 2000/3.1) * 1.0 * 0.9 * sliders.applePricePerBushel + 
+                     (2000 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.45 * sliders.tastroomBottlePrice + 0.4 * sliders.retailBottlePrice + 0.15 * sliders.restaurantBottlePrice) + (results.totalBushels * 0.85 - 2000/3.1) * 1.0 * 0.9 * sliders.applePricePerBushel) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                                         -$6,000
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (80%):</span>
+                  <span className="font-mono text-red-600">
+                                         -${Math.round(results.totalBushels * 500 * 0.75 * 0.6 * 12).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Channel Costs:</span>
+                  <span className="font-mono text-red-600">
+                                         -${Math.round(500 * 2 * 3 + (2000 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.4 * sliders.retailBottlePrice + 0.15 * sliders.restaurantBottlePrice)) * (8 + 3) / 100).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Phase 3 Calculation */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h4 className="font-bold text-gray-800 mb-3">Phase 3 Breakdown</h4>
+            <div className="text-xs space-y-1">
+              <div className="flex justify-between">
+                <span>Cider Revenue:</span>
+                <span className="font-mono">
+                                     ${Math.round(4500 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.35 * sliders.tastroomBottlePrice + 0.45 * sliders.retailBottlePrice + 0.2 * sliders.restaurantBottlePrice)).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Apple Revenue:</span>
+                <span className="font-mono">
+                                     ${Math.round((results.totalBushels * 0.85 - 4500/3.1) * 1.0 * 0.9 * 28).toLocaleString()}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Total Revenue:</span>
+                <span className="font-mono font-bold">
+                                     ${Math.round(4500 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.35 * sliders.tastroomBottlePrice + 0.45 * sliders.retailBottlePrice + 0.2 * sliders.restaurantBottlePrice) + 
+                     (results.totalBushels * 0.85 - 4500/3.1) * 1.0 * 0.9 * sliders.applePricePerBushel + 
+                     (4500 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.35 * sliders.tastroomBottlePrice + 0.45 * sliders.retailBottlePrice + 0.2 * sliders.restaurantBottlePrice) + (results.totalBushels * 0.85 - 4500/3.1) * 1.0 * 0.9 * sliders.applePricePerBushel) * 0.15).toLocaleString()}
+                </span>
+              </div>
+              <div className="border-t pt-1 mt-2">
+                <div className="flex justify-between">
+                  <span>Marketing (8%):</span>
+                  <span className="font-mono text-red-600">
+                                         -$10,000
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Labor (100%):</span>
+                  <span className="font-mono text-red-600">
+                                         -${Math.round(results.totalBushels * 500 * 0.85 * 0.6 * 12).toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Channel Costs:</span>
+                  <span className="font-mono text-red-600">
+                                         -${Math.round(500 * 2 * 3 + (4500 * 0.95 * 0.9 * sliders.bottlesPerGallon * (0.45 * sliders.retailBottlePrice + 0.2 * sliders.restaurantBottlePrice)) * (8 + 3) / 100).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+                 <div className="mt-6 bg-yellow-100 p-4 rounded-lg">
+           <h4 className="font-bold text-yellow-800 mb-2">📊 Revenue Analysis by Phase:</h4>
+                       <div className="grid grid-cols-3 gap-4 text-xs">
+              <div>
+                <h5 className="font-medium">Phase 1</h5>
+                <div>Cider: 750 gal × $46 avg = $35k</div>
+                <div>Apples: ~1,400 bu × 85% × ${sliders.applePricePerBushel} = ${Math.round(1400 * 0.85 * sliders.applePricePerBushel / 1000)}k</div>
+                <div><strong>Total: ~$68k + 15% other = $78k</strong></div>
+              </div>
+              <div>
+                <h5 className="font-medium">Phase 2</h5>
+                <div>Cider: 2,000 gal × $50 avg = $100k</div>
+                <div>Apples: ~850 bu × 100% × ${sliders.applePricePerBushel} = ${Math.round(850 * 1.0 * sliders.applePricePerBushel / 1000)}k</div>
+                <div><strong>Total: ~$124k + 15% other = $143k</strong></div>
+              </div>
+              <div>
+                <h5 className="font-medium">Phase 3</h5>
+                <div>Cider: 4,500 gal × $52 avg = $234k</div>
+                <div>Apples: ~200 bu × 100% × ${sliders.applePricePerBushel} = ${Math.round(200 * 1.0 * sliders.applePricePerBushel / 1000)}k</div>
+                <div><strong>Total: ~$240k + 15% other = $276k</strong></div>
+              </div>
+            </div>
+                       <div className="mt-3 text-sm text-yellow-700">
+              <strong>Key Insight:</strong> Revenue should increase dramatically as we shift from apple sales to higher-value cider production. 
+              The value-add from processing apples into cider should more than compensate for reduced apple sales volume.
+            </div>
+            
+            <div className="mt-4 bg-blue-100 p-3 rounded-lg">
+              <h5 className="font-medium text-blue-800 mb-2">🍎 Apple Allocation Analysis:</h5>
+              <div className="grid grid-cols-3 gap-4 text-xs">
+                <div>
+                  <h6 className="font-medium">Phase 1</h6>
+                  <div>Total bushels: {Math.round(results.totalBushels * 0.85)}</div>
+                  <div>For cider: {Math.round(750 / 3.1)} bushels</div>
+                  <div>For sale: {Math.round((results.totalBushels * 0.85 - 750/3.1) * 0.85)} bushels</div>
+                  <div>Unused: {Math.round((results.totalBushels * 0.85 - 750/3.1) * 0.15)} bushels</div>
+                </div>
+                                 <div>
+                   <h6 className="font-medium">Phase 2</h6>
+                   <div>Total bushels: {Math.round(results.totalBushels * 0.85)}</div>
+                   <div>For cider: {Math.round(2000 / 3.1)} bushels</div>
+                   <div>For sale: {Math.round((results.totalBushels * 0.85 - 2000/3.1) * 1.0)} bushels</div>
+                   <div>Unused: 0 bushels ✅</div>
+                 </div>
+                 <div>
+                   <h6 className="font-medium">Phase 3</h6>
+                   <div>Total bushels: {Math.round(results.totalBushels * 0.85)}</div>
+                   <div>For cider: {Math.round(4500 / 3.1)} bushels</div>
+                   <div>For sale: {Math.round((results.totalBushels * 0.85 - 4500/3.1) * 1.0)} bushels</div>
+                   <div>Unused: 0 bushels ✅</div>
+                 </div>
+              </div>
+                             <div className="mt-2 text-xs text-blue-700">
+                 <strong>Fixed:</strong> Now selling ALL remaining apples in every phase for maximum revenue!
+               </div>
+             </div>
+             
+             <div className="mt-4 bg-green-100 p-3 rounded-lg">
+               <h5 className="font-medium text-green-800 mb-2">💰 Lean Marketing Budget Breakdown:</h5>
+               <div className="grid grid-cols-3 gap-4 text-xs">
+                 <div>
+                   <h6 className="font-medium">Phase 1 ($3k)</h6>
+                   <div>• Website setup: $800</div>
+                   <div>• Business cards/signage: $400</div>
+                   <div>• Farmers market fees: $600</div>
+                   <div>• Social media tools: $300</div>
+                   <div>• Photography/content: $500</div>
+                   <div>• Misc/events: $400</div>
+                 </div>
+                 <div>
+                   <h6 className="font-medium">Phase 2 ($6k)</h6>
+                   <div>• Phase 1 costs: $3k</div>
+                   <div>• Paid social ads: $1,200</div>
+                   <div>• Professional signage: $800</div>
+                   <div>• Event sponsorships: $600</div>
+                   <div>• Print materials: $400</div>
+                 </div>
+                 <div>
+                   <h6 className="font-medium">Phase 3 ($10k)</h6>
+                   <div>• Phase 2 costs: $6k</div>
+                   <div>• Professional photos: $1,500</div>
+                   <div>• Expanded advertising: $1,500</div>
+                   <div>• Trade show/events: $1,000</div>
+                 </div>
+               </div>
+               <div className="mt-2 text-xs text-green-700">
+                 <strong>Note:</strong> Heavy DIY approach - you're doing website, social media, content creation yourself. 
+                 These are just out-of-pocket costs for tools, materials, and advertising.
+               </div>
+            </div>
+            
+            <div className="mt-4 bg-green-100 p-3 rounded-lg">
+              <h5 className="font-medium text-green-800 mb-2">🚚 Self-Distribution Savings Analysis:</h5>
+              <div className="grid grid-cols-3 gap-4 text-xs">
+                <div>
+                  <h6 className="font-medium">Phase 1 Savings</h6>
+                  <div>Traditional: ${Math.round(results.annualRevenue * 0.08).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(results.annualRevenue * 0.005).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(results.annualRevenue * 0.075).toLocaleString()}</div>
+                </div>
+                <div>
+                  <h6 className="font-medium">Phase 2 Savings</h6>
+                  <div>Traditional: ${Math.round(143000 * 0.10).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(143000 * 0.015).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(143000 * 0.085).toLocaleString()}</div>
+                </div>
+                <div>
+                  <h6 className="font-medium">Phase 3 Savings</h6>
+                  <div>Traditional: ${Math.round(276000 * 0.12).toLocaleString()}</div>
+                  <div>Self-Dist: ${Math.round(276000 * 0.025).toLocaleString()}</div>
+                  <div className="font-bold text-green-700">Saves: ${Math.round(276000 * 0.095).toLocaleString()}</div>
+                </div>
+              </div>
+              <div className="mt-2 text-xs text-green-700">
+                <strong>Key Advantage:</strong> NJ Plenary Winery license allows self-distribution up to 50,000 gallons for just $100/year. 
+                This eliminates distributor markups (28-35%), sales rep commissions (3-8%), and most channel fees.
+                           </div>
+           </div>
+         </div>
+        </div>
+      </div>
+      
+      {/* Phase Comparison Table */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Phase Progression Comparison</h3>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th className="px-4 py-2">Metric</th>
+                <th className="px-4 py-2 text-center">Phase 1<br/>Brand Building</th>
+                <th className="px-4 py-2 text-center">Phase 2<br/>Expansion</th>
+                <th className="px-4 py-2 text-center">Phase 3<br/>Full Operations</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Cider Production</td>
+                <td className="px-4 py-2 text-center">{sliders.phase1CiderGallons} gallons</td>
+                <td className="px-4 py-2 text-center">{sliders.phase2CiderGallons} gallons</td>
+                <td className="px-4 py-2 text-center">{sliders.phase3CiderGallons} gallons</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Apple Sales</td>
+                <td className="px-4 py-2 text-center">{sliders.phase1AppleSalesPercent}% @ $45/bu</td>
+                <td className="px-4 py-2 text-center">{sliders.phase2AppleSalesPercent}% @ $35/bu</td>
+                <td className="px-4 py-2 text-center">{sliders.phase3AppleSalesPercent}% @ $25/bu</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Taproom Focus</td>
+                <td className="px-4 py-2 text-center">60% of cider sales</td>
+                <td className="px-4 py-2 text-center">45% of cider sales</td>
+                <td className="px-4 py-2 text-center">35% of cider sales</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Capital Investment</td>
+                <td className="px-4 py-2 text-center">${sliders.phase1CapitalInvestment.toLocaleString()}</td>
+                <td className="px-4 py-2 text-center">${sliders.phase2CapitalInvestment.toLocaleString()}</td>
+                <td className="px-4 py-2 text-center">${sliders.phase3CapitalInvestment.toLocaleString()}</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Operating Intensity</td>
+                <td className="px-4 py-2 text-center">Low (60% labor)</td>
+                <td className="px-4 py-2 text-center">Medium (80% labor)</td>
+                <td className="px-4 py-2 text-center">High (100% labor)</td>
+              </tr>
+              <tr className="bg-gray-100 font-medium">
+                <td className="px-4 py-2">Expected Profit Trend</td>
+                <td className="px-4 py-2 text-center text-green-600">High apple margins</td>
+                <td className="px-4 py-2 text-center text-blue-600">Balanced growth</td>
+                <td className="px-4 py-2 text-center text-purple-600">Premium cider focus</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div className="mt-4 bg-yellow-50 p-4 rounded-lg">
+          <h4 className="font-medium text-yellow-800 mb-2">💡 Progression Strategy</h4>
+          <p className="text-sm text-yellow-700">
+            The model is designed so profits should <strong>increase</strong> with each phase by: 
+            (1) maintaining profitable apple sales longer, (2) optimizing cider sales mix toward higher-margin channels, 
+            and (3) achieving economies of scale. If Phase 2 or 3 show lower profits, consider adjusting production targets 
+            or pricing to maintain the upward trajectory.
+          </p>
+        </div>
+      </div>
+      
+      {/* Results */}
       <div className="mt-8">
         <h3 className="text-xl font-bold text-gray-800 mb-4">Financial Results</h3>
         
@@ -2601,7 +3045,7 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
       
-      {/* --- Key Performance Charts --- */}
+      {/* Key Performance Charts */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">        
         <div className="bg-white p-6 rounded-lg shadow">
           <h3 className="text-lg font-bold text-gray-800 mb-4">Profit Sensitivity to Apple Yield</h3>
@@ -2684,196 +3128,99 @@ export default function BusinessCalculator({ onResultsChange }: BusinessCalculat
         </div>
       </div>
 
-      {/* --- Production Cost Breakdown --- */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-12">Production Cost Analysis</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Equipment & Infrastructure Costs */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Equipment & Infrastructure</h3>
-              <div className="space-y-6">
-                <div className="border-b border-gray-200 pb-4">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3">Farm Equipment</h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Tractor (35-50 HP)</span>
-                      <span className="font-medium">$25,000 - $35,000</span>
+      {/* Add new dynamic Production Capacity table after the production efficiency section */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Production Capacity</h3>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th className="px-4 py-2">Category</th>
+                <th className="px-4 py-2">Raw Production</th>
+                <th className="px-4 py-2">After Efficiency</th>
+                <th className="px-4 py-2">Final Sellable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Apples</td>
+                <td className="px-4 py-2">{results.totalApples.toLocaleString()} apples</td>
+                <td className="px-4 py-2">{Math.round(results.totalApples * (sliders.productionEfficiency/100)).toLocaleString()} apples</td>
+                <td className="px-4 py-2">{Math.round(results.totalApples * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100)).toLocaleString()} apples</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Bushels</td>
+                <td className="px-4 py-2">{results.totalBushels.toLocaleString()} bushels</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.productionEfficiency/100)).toLocaleString()} bushels</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.productionEfficiency/100) * (sliders.salesEfficiency/100)).toLocaleString()} bushels</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Cider (Gallons)</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * sliders.gallonsPerBushel).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
+              </tr>
+              <tr className="bg-white">
+                <td className="px-4 py-2 font-medium">Bottles (500/750ml)</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * sliders.gallonsPerBushel * sliders.bottlesPerGallon).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.bottlesPerGallon).toLocaleString()}</td>
+                <td className="px-4 py-2">{Math.round(results.totalBushels * (sliders.ciderYield/100) * (sliders.productionEfficiency/100) * sliders.gallonsPerBushel * sliders.bottlesPerGallon * (1-sliders.wasteSpoilage/100) * (sliders.salesEfficiency/100)).toLocaleString()}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Mower attachment</span>
-                      <span className="font-medium">$3,000 - $5,000</span>
       </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Sprayer equipment</span>
-                      <span className="font-medium">$5,000 - $8,000</span>
+
+      {/* Add a Startup Costs and Investments table before the results section */}
+      <div className="mt-8 bg-gray-50 p-6 rounded-lg">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">Startup Costs & Major Investments</h3>
+        
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-gray-700">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th className="px-4 py-2">Investment Category</th>
+                <th className="px-4 py-2">Initial Cost</th>
+                <th className="px-4 py-2">Annual Impact</th>
+                <th className="px-4 py-2">Lifespan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Property Purchase</td>
+                <td className="px-4 py-2">${sliders.propertyValue.toLocaleString()}</td>
+                <td className="px-4 py-2">${Math.round(results.monthlyMortgage * 12).toLocaleString()} (mortgage)</td>
+                <td className="px-4 py-2">{sliders.loanTerm} years</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Down Payment</td>
+                <td className="px-4 py-2">${Math.round(sliders.propertyValue * (sliders.downPayment/100)).toLocaleString()}</td>
+                <td className="px-4 py-2">N/A</td>
+                <td className="px-4 py-2">N/A</td>
+              </tr>
+              <tr className="bg-white border-b">
+                <td className="px-4 py-2 font-medium">Equipment Investment</td>
+                <td className="px-4 py-2">${sliders.equipmentCost.toLocaleString()}</td>
+                <td className="px-4 py-2">${Math.round(sliders.equipmentCost / sliders.equipmentLifespan).toLocaleString()} (depreciation)</td>
+                <td className="px-4 py-2">{sliders.equipmentLifespan} years</td>
+              </tr>
+              <tr className="bg-white">
+                <td className="px-4 py-2 font-medium">Additional Capital</td>
+                <td className="px-4 py-2">${sliders.additionalCapitalExpenses.toLocaleString()}</td>
+                <td className="px-4 py-2">${Math.round(sliders.additionalCapitalExpenses / sliders.additionalCapitalLifespan).toLocaleString()} (amortization)</td>
+                <td className="px-4 py-2">{sliders.additionalCapitalLifespan} years</td>
+              </tr>
+              <tr className="bg-gray-100 font-medium">
+                <td className="px-4 py-2">Total Initial Investment</td>
+                <td className="px-4 py-2">${(Math.round(sliders.propertyValue * (sliders.downPayment/100)) + sliders.equipmentCost + sliders.additionalCapitalExpenses).toLocaleString()}</td>
+                <td className="px-4 py-2">${Math.round(results.annualFixedCosts - sliders.insurance - sliders.propertyTax).toLocaleString()} (annual)</td>
+                <td className="px-4 py-2">Varied</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Orchard tools & attachments</span>
-                      <span className="font-medium">$5,000 - $10,000</span>
       </div>
-                    <div className="flex justify-between font-semibold border-t pt-2">
-                      <span>Total Farm Equipment</span>
-                      <span>$38,000 - $58,000</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-b border-gray-200 pb-4">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3">Phase-Specific Cider Equipment</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 1: Basic Setup</h5>
-                      <div className="text-sm text-gray-600 ml-4">
-                        <div>• Minimal additions ($8,000)</div>
-                        <div>• You already have most equipment needed!</div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 2: Tasting Room</h5>
-                      <div className="text-sm text-gray-600 ml-4">
-                        <div>• Tasting room improvements ($15,000)</div>
-                        <div>• Additional bottling capacity</div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 3: Scale Up</h5>
-                      <div className="text-sm text-gray-600 ml-4">
-                        <div>• Bright tank for carbonation/bottling ($25,000)</div>
-                        <div>• 2x 1000L SS fermentors ($20,000)</div>
-                        <div>• Total Phase 3 investment: $45,000</div>
-                      </div>
-                    </div>
-                     <div>
-                       <h5 className="font-medium text-gray-700">Phase 4: Mature Operations</h5>
-                       <div className="text-sm text-gray-600 ml-4">
-                         <div>• Delivery vehicle, larger tanks ($60,000)</div>
-                         <div>• Automation and skilled staff ($15,000)</div>
-                         <div>• Total Phase 4 investment: $75,000</div>
-                       </div>
-                     </div>
-                  </div>
-                </div>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-green-800 mb-2">Equipment Advantage</h4>
-                  <p className="text-sm text-green-700">
-                    Since you already own most cider production equipment, your capital requirements are significantly lower than typical startup cideries. This gives you a major competitive advantage in cash flow and ROI.
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Operating Cost Breakdown */}
-            <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Annual Operating Costs</h3>
-              <div className="space-y-6">
-                <div className="border-b border-gray-200 pb-4">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3">Fixed Costs</h4>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Mortgage payment</span>
-                      <span className="font-medium">$78,060/year</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Property taxes</span>
-                      <span className="font-medium">$8,000/year</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Insurance</span>
-                      <span className="font-medium">$3,600/year</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Equipment depreciation</span>
-                      <span className="font-medium">$3,000/year</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-b border-gray-200 pb-4">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-3">Variable Costs by Phase</h4>
-                  <div className="space-y-3">
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 1 (Small Scale)</h5>
-                      <div className="text-sm space-y-1 ml-4">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Labor (part-time)</span>
-                          <span>$6,300/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Utilities</span>
-                          <span>$2,400/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Maintenance</span>
-                          <span>$1,200/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Marketing</span>
-                          <span>$3,000/year</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 2 (Expansion)</h5>
-                      <div className="text-sm space-y-1 ml-4">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Labor (expanded)</span>
-                          <span>$8,400/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Utilities</span>
-                          <span>$4,200/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Marketing</span>
-                          <span>$6,000/year</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h5 className="font-medium text-gray-700">Phase 3 (Full Operations)</h5>
-                      <div className="text-sm space-y-1 ml-4">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Labor (full-time)</span>
-                          <span>$10,500/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Utilities</span>
-                          <span>$6,000/year</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Marketing</span>
-                          <span>$10,000/year</span>
-                        </div>
-                      </div>
-                    </div>
-                     <div>
-                       <h5 className="font-medium text-gray-700">Phase 4 (Mature Operations)</h5>
-                       <div className="text-sm space-y-1 ml-4">
-                         <div className="flex justify-between">
-                           <span className="text-gray-600">Labor (full-time)</span>
-                           <span>$15,000/year</span>
-                         </div>
-                         <div className="flex justify-between">
-                           <span className="text-gray-600">Utilities</span>
-                           <span>$7,500/year</span>
-                         </div>
-                         <div className="flex justify-between">
-                           <span className="text-gray-600">Marketing</span>
-                           <span>$15,000/year</span>
-                         </div>
-                       </div>
-                     </div>
-                  </div>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-blue-800 mb-2">Cost Structure Advantage</h4>
-                  <p className="text-sm text-blue-700">
-                    Your production costs are kept low through: (1) existing equipment ownership, (2) family-operated lean structure, (3) premium pricing strategy, and (4) direct sales focus that eliminates distributor markups.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 } 

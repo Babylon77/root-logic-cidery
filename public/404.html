@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Root Logic Cidery</title>
+  <title>Colonial Cidery and Orchard</title>
   <script>
     // GitHub Pages 404 redirect script
     // Single Page App hack for GitHub Pages
@@ -15,13 +15,13 @@
         return;
       }
       
-      const basePath = '/root-logic-cidery';
+      const basePath = '/colonial-cidery-orchard';
       const path = window.location.pathname;
       const segments = path.split('/').filter(Boolean);
       
-      // If the path starts with the repo name (e.g. '/root-logic-cidery/about')
+      // If the path starts with the repo name (e.g. '/colonial-cidery-orchard/about')
       // redirect to the SPA with correct route
-      if (segments.length > 0 && segments[0] === 'root-logic-cidery') {
+      if (segments.length > 0 && segments[0] === 'colonial-cidery-orchard') {
         // Preserve route after the repo name
         const route = '/' + segments.slice(1).join('/');
         

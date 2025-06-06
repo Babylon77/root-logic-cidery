@@ -5,14 +5,14 @@ import OptimizedImage from '../components/OptimizedImage'
 export default function History() {
   return (
     <Layout
-      title="Our History - Colonial Cider to Root Logic"
-      description="The story of our orchard's transformation from Colonial Cider to Root Logic Cidery."
+      title="Our History - Heritage Apple Cider Tradition"
+      description="The story of our orchard's rich heritage and our commitment to preserving the Colonial cider-making tradition."
     >
       {/* Hero Section */}
       <section className="relative h-[40vh] hero-overlay">
         <OptimizedImage
           src="/images/Cider Tree.jpg"
-          alt="Historic view of Colonial Cider Farm"
+          alt="Historic view of Colonial Cidery and Orchard"
           fill
           className="object-cover"
           priority
@@ -20,7 +20,7 @@ export default function History() {
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center text-white max-w-4xl px-4">
             <h1 className="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg">Our History</h1>
-            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">The Evolution from Colonial Cider to Root Logic</p>
+            <p className="text-xl md:text-2xl mb-8 drop-shadow-md">Preserving the Heritage Apple Cider Tradition</p>
           </div>
         </div>
       </section>
@@ -31,17 +31,17 @@ export default function History() {
           <div className="accent-divider w-24 mx-auto mb-12"></div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">The Colonial Cider Legacy</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">A Colonial Legacy Reborn</h2>
               
               <p className="text-lg text-gray-600 mb-6">
-                Before becoming Root Logic Cidery, this 50-acre farm in Wantage, New Jersey was known as Colonial Cider. 
+                Colonial Cidery and Orchard proudly carries forward the heritage apple cider tradition on this 50-acre farm in Wantage, New Jersey. 
                 The property's history dates back to the 1700s, with the farmhouse itself originally built in 1740.
               </p>
               
               <p className="text-lg text-gray-600 mb-6">
                 In 2001, a visionary farmer purchased what was then a run-down and dilapidated property. Over the next 24 years, 
                 he meticulously transformed the land into a thriving agricultural venture dedicated to heritage apples and 
-                artisanal cider production.
+                artisanal cider production, operating as Colonial Cider.
               </p>
 
               <div className="my-12 aspect-video relative">
@@ -94,21 +94,21 @@ export default function History() {
                 </ul>
               </div>
 
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">The Transition to Root Logic</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Continuing the Heritage</h3>
               <p className="text-lg text-gray-600 mb-6">
                 After bringing Colonial Cider to the cusp of profitability through years of hard work and dedication, 
                 the previous owner decided to pass the torch. The farm was ready for its next chapter, which led to 
-                the birth of Root Logic Cidery under new ownership.
+                its rebirth as Colonial Cidery and Orchard under new ownership.
               </p>
               
               <p className="text-lg text-gray-600 mb-6">
-                While we've rebranded as Root Logic, we remain deeply committed to honoring the legacy of Colonial Cider 
-                and the incredible foundation that was established here. We continue to embrace organic farming practices, 
-                heritage apple varieties, and sustainable agriculture as we build upon this remarkable history.
+                As Colonial Cidery and Orchard, we remain deeply committed to honoring the incredible foundation that was established here. 
+                We continue to embrace organic farming practices, heritage apple varieties, and sustainable agriculture while focusing 
+                exclusively on premium bottle ciders made from Harrison, Virginia Hewes Crab, and other colonial-era apple varieties.
               </p>
 
               <p className="text-lg text-gray-600 mb-6">
-                As an organic heritage apple orchard, Root Logic is eligible for various agricultural grants and funding 
+                As an organic heritage apple orchard, Colonial Cidery and Orchard is eligible for various agricultural grants and funding 
                 opportunities. Learn more about our <Link href="/business-plan#grants-funding" className="text-leaf-green font-semibold hover:underline">
                 funding strategy and available grants</Link> that support sustainable cideries.
               </p>
@@ -159,7 +159,7 @@ export default function History() {
                 <div className="relative h-[300px] md:h-[400px] mb-8">
                   <OptimizedImage
                     src="/images/cider room.webp"
-                    alt="Cider production at Colonial Cider"
+                    alt="Cider production at Colonial Cidery and Orchard"
                     fill
                     className="object-cover rounded-lg"
                   />
@@ -184,7 +184,7 @@ export default function History() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Experience Our Heritage</h2>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Visit Root Logic today to experience the continuation of a proud agricultural tradition.
+            Visit Colonial Cidery and Orchard today to experience the continuation of a proud agricultural tradition.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link href="/explore" className="btn-primary">

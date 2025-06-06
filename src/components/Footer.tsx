@@ -9,16 +9,16 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center mb-4">
               <OptimizedImage
-                src="/images/Root Logic 1.png"
-                alt="Root Logic Logo"
-                width={40}
-                height={40}
-                className="h-10 w-auto"
+                                  src="/images/Colonial_Cider.png"
+                alt="Colonial Cidery Logo"
+                                                    width={80}
+                  height={80}
+                  className="h-20 w-auto"
               />
-              <span className="ml-3 text-xl font-bold text-leaf-green">Root Logic</span>
+              <span className="ml-3 text-xl font-bold text-leaf-green">Colonial Cidery</span>
             </Link>
             <p className="text-sm text-gray-600">
-              Sustainable farming, heritage apples, and artisanal cider production in Wantage, New Jersey.
+              Heritage apple ciders, traditional farming, and organic production in Wantage, New Jersey.
             </p>
           </div>
           
@@ -85,7 +85,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-200 mt-12 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Root Logic. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Colonial Cidery and Orchard. All rights reserved.</p>
         </div>
       </div>
     </footer>

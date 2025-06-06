@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content="Root Logic - Where Tradition Meets Innovation" />
+        <meta name="description" content="Colonial Cidery and Orchard - Heritage Apple Ciders & Traditional Farming" />
         {/* This script only runs on GitHub Pages and fixes all paths */}
         <script src="/fix-github-paths.js" />
       </Head>

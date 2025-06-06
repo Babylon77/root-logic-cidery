@@ -14,13 +14,13 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <OptimizedImage
-                src="/images/Root Logic 1.png"
-                alt="Root Logic Logo"
-                width={40}
-                height={40}
-                className="h-8 w-auto"
+                src="/images/Colonial_Cider.png"
+                alt="Colonial Cidery and Orchard Logo"
+                                                    width={80}
+                  height={80}
+                  className="h-16 w-auto"
               />
-              <span className="ml-2 text-xl font-semibold text-leaf-green">Root Logic</span>
+              <span className="ml-2 text-xl font-semibold text-leaf-green">Colonial Cidery</span>
             </Link>
           </div>
 
@@ -46,6 +46,9 @@ export default function Navigation() {
             </Link>
             <Link href="/business-plan" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
               Business Plan
+            </Link>
+            <Link href="/furniture-restoration" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
+              Furniture Restoration
             </Link>
             <Link href="/contact" className="text-gray-800 hover:text-leaf-green px-3 py-2 text-sm font-medium">
               Contact
@@ -111,6 +114,9 @@ export default function Navigation() {
           </Link>
           <Link href="/business-plan" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
             Business Plan
+          </Link>
+          <Link href="/furniture-restoration" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
+            Furniture Restoration
           </Link>
           <Link href="/contact" className="block text-gray-800 hover:text-leaf-green hover:bg-gray-50 px-3 py-2 text-base font-medium">
             Contact

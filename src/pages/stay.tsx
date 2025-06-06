@@ -16,8 +16,8 @@ export default function Stay() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Stay With Us</h1>
-            <p className="text-xl md:text-2xl">Experience farm life firsthand</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Long-Term Farm Living</h1>
+            <p className="text-xl md:text-2xl">Make Colonial Cidery your home</p>
           </div>
         </div>
       </section>
@@ -25,7 +25,7 @@ export default function Stay() {
       {/* Accommodations Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-16">Our Accommodations</h2>
+          <h2 className="section-title text-center mb-16">Long-Term Rental Opportunities</h2>
 
           {/* Farmhouse */}
           <div className="mb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -38,23 +38,24 @@ export default function Stay() {
               />
             </div>
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">The Farmhouse</h3>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">The Heritage Farmhouse</h3>
               <p className="text-lg text-gray-600 mb-6">
-                Stay in our beautifully restored 19th-century farmhouse, offering modern amenities while preserving its historic charm. With 3 bedrooms and 2 bathrooms, it's perfect for families or small groups wanting to experience farm life.
+                Live in our beautifully restored 19th-century farmhouse, offering modern amenities while preserving its historic charm. With 3 bedrooms and 2 bathrooms, it's perfect for individuals, couples, or families seeking a peaceful rural lifestyle surrounded by heritage apple orchards.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                The farmhouse features a fully equipped kitchen, spacious living area, and a private porch overlooking the orchard—perfect for enjoying your morning coffee or evening cider.
+                This long-term rental includes a fully equipped kitchen, spacious living areas, and a private porch with peaceful rural views. Tenants enjoy full access to our 18-acre heritage orchard for walks, picnics, and experiencing farm life—the perfect home base for those who value sustainable living and rural tranquility.
               </p>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-                <li className="mb-2">3 bedrooms (sleeps up to 6 guests)</li>
-                <li className="mb-2">2 full bathrooms</li>
-                <li className="mb-2">Fully equipped kitchen</li>
+                <li className="mb-2">3 bedrooms, 2 full bathrooms</li>
+                <li className="mb-2">Fully equipped modern kitchen</li>
                 <li className="mb-2">Wood-burning fireplace</li>
-                <li>Private orchard views</li>
+                <li className="mb-2">Private porch with rural views</li>
+                <li className="mb-2">Laundry facilities included</li>
+                <li>Minimum 6-month lease terms</li>
               </ul>
               <div className="mt-8">
-                <Link href="https://www.airbnb.com" className="btn-primary" target="_blank" rel="noopener noreferrer">
-                  Book on Airbnb
+                <Link href="/contact" className="btn-primary">
+                  Inquire About Availability
                 </Link>
               </div>
             </div>
@@ -62,27 +63,27 @@ export default function Stay() {
         </div>
       </section>
       
-      {/* Complimentary Offerings */}
+      {/* Tenant Benefits */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-12">Guest Amenities</h2>
+          <h2 className="section-title text-center mb-12">Life at Colonial Cidery</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Walking Paths</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Farm Access</h3>
               <p className="text-gray-600">
-                Explore our property on self-guided walking paths that wind through the orchard, along scenic viewpoints, and through peaceful woodland areas. Perfect for morning strolls or evening walks.
+                Enjoy full access to our 50-acre property with walking paths through the heritage orchard, wildflower meadows, and peaceful woodland areas. Experience the changing seasons in a beautiful rural setting.
               </p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Farm Fresh Offerings</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Farm-Fresh Living</h3>
               <p className="text-gray-600">
-                Guests enjoy complimentary tastings of our artisanal cider, homemade jams, and seasonal fruits when available. Experience the true farm-to-table difference with products made right here on our property.
+                Long-term tenants receive seasonal access to fresh produce from our gardens, eggs from our free-range chickens, honey from our apiaries, and discounts on our heritage ciders and farm products.
               </p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Cider Tastings</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Rural Community</h3>
               <p className="text-gray-600">
-                Sample our range of artisanal ciders while learning about the production process from orchard to glass. Each stay includes a complimentary tasting flight of our signature ciders.
+                Become part of our sustainable farming community. Participate in seasonal activities, learn about heritage apple cultivation, and enjoy the peace and tranquility of rural New Jersey living.
               </p>
             </div>
           </div>
@@ -106,7 +107,7 @@ export default function Stay() {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Outdoor Recreation</h3>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
                 <li className="mb-2">
-                  <span className="font-medium">Mountain Creek</span> - Just a short 15-minute drive for year-round mountain activities, including skiing, snowboarding, and mountain biking.
+                  <span className="font-medium">Mountain Creek</span> - Just a 25-minute drive for year-round mountain activities, including skiing, snowboarding, and mountain biking.
                 </li>
                 <li className="mb-2">
                   <span className="font-medium">High Point State Park</span> - Offering spectacular views, hiking trails, and swimming in season, only 10 minutes away.
@@ -134,24 +135,27 @@ export default function Stay() {
                   <span className="font-medium">Cherry Ridge Shooting Range</span> - Located directly across the street, perfect for sport shooting enthusiasts.
                 </li>
                 <li className="mb-2">
-                  <span className="font-medium">Warwick Valley Winery & Distillery</span> - Award-winning wines and spirits just 15 minutes away.
+                  <span className="font-medium">Warwick Valley Winery & Distillery</span> - Award-winning wines and spirits just 20 minutes away.
                 </li>
                 <li className="mb-2">
                   <span className="font-medium">Farmers Markets</span> - Several local farmers markets offering fresh produce, artisanal foods, and crafts.
                 </li>
+                <li className="mb-2">
+                  <span className="font-medium">Port Jervis & Delaware River</span> - Historic downtown Port Jervis and scenic Delaware River access, perfect for boating, fishing, and riverside recreation, just 20 minutes away.
+                </li>
                 <li>
-                  <span className="font-medium">Craft Beverage Trail</span> - Root Logic is part of the growing Hudson Valley craft beverage scene with several breweries, wineries, and distilleries nearby.
+                  <span className="font-medium">Craft Beverage Trail</span> - Colonial Cidery is part of the growing Hudson Valley craft beverage scene with several breweries, wineries, and distilleries nearby.
                 </li>
               </ul>
             </div>
           </div>
           <div className="mt-12 bg-gray-50 rounded-lg p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Plan Your Perfect Trip</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Your New Home Base</h3>
             <p className="text-lg text-gray-600 mb-6">
-              Our farmhouse offers the perfect base for exploring all that Sussex County and the surrounding area has to offer. Whether you're looking for outdoor adventure, culinary experiences, or just a peaceful retreat, you'll find it all within easy reach of Root Logic.
+              Our heritage farmhouse offers the perfect home base for those seeking a rural lifestyle while remaining within reach of modern conveniences. Sussex County provides an ideal balance of natural beauty, outdoor recreation, and community amenities.
             </p>
             <p className="text-lg text-gray-600">
-              Ask us for personalized recommendations based on your interests when you book your stay. We're happy to help you create an unforgettable farm experience.
+              Contact us to discuss lease terms, availability, and what makes Colonial Cidery the perfect place to call home. We're looking for tenants who appreciate sustainable living, rural tranquility, and being part of our farming community.
             </p>
           </div>
         </div>

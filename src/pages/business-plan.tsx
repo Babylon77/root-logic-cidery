@@ -6,20 +6,20 @@ import BusinessDashboard from '../components/BusinessDashboard'
 
 export default function BusinessPlan() {
   const [calculatorResults, setCalculatorResults] = useState({
-    annualRevenue: 859260,
-    annualExpenses: 256100,
-    annualProfit: 603160,
-    roi: 109.7,
-    annualFixedCosts: 142000,
-    directSalesRevenue: 343680,
-    wholesaleRevenue: 374580,
-    laborExpenses: 85000,
-    monthlyMortgage: 5750,
-    distributionCosts: 42000,
-    packagingCosts: 25060,
-    exciseTax: 19179,
-    ciderGallons: 17900,
-    profitPerPint: 4.21
+    annualRevenue: 89580,
+    annualExpenses: 83670,
+    annualProfit: 5910,
+    roi: 2.3,
+    annualFixedCosts: 81020,
+    directSalesRevenue: 11200,
+    wholesaleRevenue: 4800,
+    laborExpenses: 6300,
+    monthlyMortgage: 6505,
+    distributionCosts: 2687,
+    packagingCosts: 1373,
+    exciseTax: 420,
+    ciderGallons: 392,
+    profitPerPint: 6.0
   })
 
   const handleResultsChange = (results: any) => {
@@ -45,24 +45,16 @@ export default function BusinessPlan() {
         </div>
       </section>
 
-      {/* Financial Dashboard */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title text-center mb-8">Financial Dashboard</h2>
-          <BusinessDashboard results={calculatorResults} />
-        </div>
-      </section>
-
       {/* Executive Summary */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Executive Summary</h2>
           <div className="bg-green-50 p-8 rounded-lg">
             <p className="text-lg text-gray-600 mb-6">
-              Root Logic is a 50-acre craft hard cider production facility located in Wantage, New Jersey. With approximately 1,570 heritage apple trees, an established apiary, and berry production, we produce premium craft hard ciders, apple cider vinegar, and seasonal food products.
+              Colonial Cidery and Orchard is a 50-acre craft hard cider production facility located in Wantage, New Jersey. With approximately 1,600 heritage cider trees, an established apiary, and berry production, we produce premium craft hard ciders, kid friendly ciders apple cider vinegar, and seasonal food products.
             </p>
             <p className="text-lg text-gray-600">
-              Our business model focuses on distribution through farmers markets, online direct-to-consumer sales, and wholesale distribution to specialty retailers and pubs. While a tasting room is part of our future growth plan, our initial focus is on establishing our brand and distribution channels for our craft hard cider products.
+              Our business model focuses on distribution through farmers markets, online direct-to-consumer sales, and personal distribution to specialty retailers and pubs. While a tasting room is part of our future growth plan, our initial focus is on establishing our brand and distribution channels for our craft hard cider products.
             </p>
           </div>
         </div>
@@ -83,17 +75,17 @@ export default function BusinessPlan() {
             <div className="order-1 md:order-2">
               <h2 className="section-title">Business Overview</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Root Logic specializes in craft hard cider production, utilizing approximately 1,570 trees of heritage apple varieties grown on our 50-acre property. Our product line includes:
+                Colonial Cidery and Orchard specializes in craft hard cider production, utilizing approximately 1,600 trees of heritage apple and Perry pear varieties grown on our 50-acre property. Our product line includes:
               </p>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
                 <li className="mb-2">Premium hard ciders (traditional, honey-infused, and berry varieties)</li>
-                <li className="mb-2">Specialty seasonal ciders</li>
+                <li className="mb-2">Specialty seasonal ciders, both hard and kid friendly</li>
                 <li className="mb-2">Artisanal apple cider vinegar</li>
                 <li className="mb-2">Raw and infused honey from our apiary</li>
-                <li>Seasonal products (preserves, apple products)</li>
+                <li>Seasonal products (preserves, apple products, and other seasonal items)</li>
               </ul>
               <p className="text-lg text-gray-600">
-                Our business stands out through our commitment to sustainable farming practices, use of heritage apple varieties, and integration of honey production. We focus on quality and authenticity in our products, targeting craft beverage enthusiasts and farm-to-table supporters.
+                Our business stands out through our commitment to sustainable farming practices, organic and biodynamic farming practices, use of heritage apple varieties, and integration of honey production. We focus on quality and authenticity in our products, targeting craft beverage enthusiasts and farm-to-table supporters.
               </p>
             </div>
           </div>
@@ -109,17 +101,17 @@ export default function BusinessPlan() {
           <div className="bg-green-50 p-8 rounded-lg mb-12">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Market Overview</h3>
             <p className="text-lg text-gray-600 mb-6">
-              The U.S. cider market was valued at over $1.32 billion in 2022 and is projected to grow at a compound annual growth rate (CAGR) of 5.0% from 2025 to 2030. Hard cider is one of the fastest-growing segments of the alcohol industry, with a 73% annual production increase from 2008 to 2014, and continued growth since.
+              The U.S. cider market was valued at over $1.30 billion in 2024 and is projected to grow at a compound annual growth rate (CAGR) of 3.5% from 2025 to 2030. The market is being driven by increasing consumer interest in flavored and craft ciders, as well as health-conscious choices favoring gluten-free and lower-alcohol beverages.  The U.S cider market is experiencing a notable shift toward organic, naturally fermented and all natural ciders, which is an outgrowth of a larger trend toward natural and organic foods and beverages.  This trend is driven by health-conscious consumers who are seeking out products free of harmful pesticides and other chemicals.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h4 className="font-bold text-gray-900 mb-2">Market Value</h4>
-                <p className="text-3xl font-bold text-green-700 mb-2">$1.32B</p>
-                <p className="text-gray-600">U.S. cider market value in 2022</p>
+                <p className="text-3xl font-bold text-green-700 mb-2">$1.3B</p>
+                <p className="text-gray-600">U.S. cider market value in 2024</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h4 className="font-bold text-gray-900 mb-2">Growth Rate</h4>
-                <p className="text-3xl font-bold text-green-700 mb-2">5.0%</p>
+                <p className="text-3xl font-bold text-green-700 mb-2">3.5%</p>
                 <p className="text-gray-600">Projected annual growth 2025-2030</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -129,7 +121,7 @@ export default function BusinessPlan() {
               </div>
             </div>
             <p className="text-lg text-gray-600">
-              In 2021, cider generated $553.6 million in chain retail sales, with total revenue exceeding $1 billion when including on-premise sales. The number of hard cider drinkers grew from 6.8 million to 24.5 million between 2008 and 2016, with younger demographics (18–29 years old) consuming nearly three times more cider than older groups.
+               The number of hard cider drinkers grew from 6.8 million to 24.5 million between 2008 and 2024. The hard cider consumer base has matured since its rapid growth in the 2010s.  Consumption is strongest among adults aged 25-44, and this group favors regional producers and clean-label products over national brands.  Overall, while mainstream cider sales have plateaued, premium, organic, and naturally fermented ciders that compliment wines and farm to table products are gaining momentum.  
             </p>
           </div>
           
@@ -140,7 +132,7 @@ export default function BusinessPlan() {
                 The Northeast, including New York, Vermont, Massachusetts, and New Hampshire, leads in premium cider penetration due to its apple-growing heritage and consumer preference for "farm-to-glass" narratives.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                New York and Vermont are particularly notable for their craft cider scenes, with producers like Eve's Cidery and Shacksbury Cider setting benchmarks for quality. Our location in Wantage, New Jersey positions us perfectly to capture this regional market.
+                New York and Vermont are particularly notable for their craft cider scenes, with producers like Eve's Cidery and Shacksbury Cider setting benchmarks for quality. Our location in Wantage, New Jersey positions us perfectly to capture this regional market, and NJ has a rich cider and apple growing heritage.
               </p>
               <div className="bg-gray-50 p-6 rounded-lg mb-6">
                 <h4 className="font-bold text-gray-900 mb-3">Seasonal Opportunities</h4>
@@ -173,7 +165,7 @@ export default function BusinessPlan() {
                   </div>
                   <div className="ml-4">
                     <h4 className="font-bold text-gray-900">Heritage Varieties</h4>
-                    <p className="text-gray-600">Growing demand for ciders made from heritage apple varieties like Dabinett and Northern Spy, with 15% year-over-year sales growth for these premium products.</p>
+                    <p className="text-gray-600">Growing demand for ciders made from heritage apple varieties like Harrison and Newtown Pippen, with 15% year-over-year sales growth for these premium products.</p>
                   </div>
                 </div>
                 
@@ -183,7 +175,7 @@ export default function BusinessPlan() {
                   </div>
                   <div className="ml-4">
                     <h4 className="font-bold text-gray-900">Local Appeal</h4>
-                    <p className="text-gray-600">Regional and local brands capture 54% of hard cider sales, as consumers value locally sourced products and authentic orchard stories.</p>
+                    <p className="text-gray-600">Regional and independent cider brands are experiencing growth, with retail sales reaching $806.7 million from July 2023 to July 2024, marking a 3.4% increase from the previous year. This trend reflects consumer interest in locally sourced products and authentic orchard stories.</p>
                   </div>
                 </div>
                 
@@ -193,7 +185,7 @@ export default function BusinessPlan() {
                   </div>
                   <div className="ml-4">
                     <h4 className="font-bold text-gray-900">Innovative Flavors</h4>
-                    <p className="text-gray-600">68% of Millennials prefer adventurous flavor profiles, including elderflower, hibiscus, or co-ferments with berries or pears.</p>
+                    <p className="text-gray-600">Gen Z and Millennials prefer adventurous flavor profiles, including elderflower, hibiscus, or co-ferments with berries or pears.</p>
                   </div>
                 </div>
               </div>
@@ -202,16 +194,16 @@ export default function BusinessPlan() {
           
           {/* Competitive Advantage */}
           <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Root Logic's Competitive Advantage</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Colonial Cidery and Orchard's Competitive Advantage</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-bold text-gray-900 mb-3">Organic Certification</h4>
+                <h4 className="font-bold text-gray-900 mb-3">Organic And Biodynamic Practices</h4>
                 <p className="text-gray-600">
-                  Our organic growing practices align perfectly with consumer health consciousness and environmental concerns, commanding premium pricing and appealing to eco-conscious consumers.
+                  Our organic and biodynamic growing practices align perfectly with consumer health consciousness and environmental concerns, commanding premium pricing and market niche.
                 </p>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h4 className="font-bold text-gray-900 mb-3">Heritage Apple Varieties</h4>
+                <h4 className="font-bold text-gray-900 mb-3">Heritage Apple and Perry Pear Varieties</h4>
                 <p className="text-gray-600">
                   Our 20+ heritage varieties allow for complex blends that balance tannin, acidity, and sweetness—qualities that craft cider consumers seek and are willing to pay premium prices for.
                 </p>
@@ -219,7 +211,7 @@ export default function BusinessPlan() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <h4 className="font-bold text-gray-900 mb-3">Northeast Location</h4>
                 <p className="text-gray-600">
-                  Our Wantage, NJ location capitalizes on the Northeast's strong cider tradition and provides access to major markets like New York City, just 60 miles away.
+                  Our Wantage, NJ location capitalizes on the Northeast's strong cider tradition and provides access to affluent Northern New Jersey and Hudson Valley markets, and even to New York City, just 60 miles away.  Colonial Cidery and Orchard is located in the heart of the Sussex County Skylands region, which is known for it's beautiful rolling hills and farms, proximity to Mountain Creek Ski Resort, High Point State Park, and the Delaware Water Gap National Recreation Area.  
                 </p>
               </div>
             </div>
@@ -235,12 +227,12 @@ export default function BusinessPlan() {
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
                 <li className="mb-2">Direct-to-consumer online sales</li>
                 <li className="mb-2">Farmers markets in the region</li>
-                <li className="mb-2">Wholesale distribution to craft beer pubs and restaurants</li>
+                <li className="mb-2">Self-Distribution to craft beer pubs and restaurants</li>
                 <li className="mb-2">Specialty food and beverage retailers</li>
                 <li>Regional festivals and events</li>
               </ul>
               <p className="text-lg text-gray-600">
-                With our location just 60 miles from New York City, we have access to a large metropolitan market of potential customers and specialty retailers.
+                With our location just 60 miles from New York City, we have access to a large metropolitan market of potential customers and specialty retailers. 
               </p>
             </div>
             
@@ -258,11 +250,11 @@ export default function BusinessPlan() {
                   </li>
                   <li className="flex items-start">
                     <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
-                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Competition:</span> Differentiating through organic certification, heritage varieties, and unique blends sets us apart.</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Competition:</span> Differentiating through organic and biodynamic practices, heritage varieties, and unique blends sets us apart.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="h-5 w-5 rounded-full bg-red-100 text-red-800 flex items-center justify-center flex-shrink-0 mt-1">!</span>
-                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Seasonal Variability:</span> We embrace the concept of "vintage quality" ciders, similar to wine vintages, as a marketing opportunity.</span>
+                    <span className="ml-3 text-gray-600"><span className="font-medium text-gray-900">Seasonal Variability:</span> We embrace the concept of "vintage quality" ciders, similar to wine vintages, as a marketing opportunity.  In particular leaning in to natural fermentation practices to create unique and interesting ciders.</span>
                   </li>
                 </ul>
               </div>
@@ -276,7 +268,7 @@ export default function BusinessPlan() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="section-title text-center mb-12">Interactive Financial Analysis</h2>
           <p className="text-lg text-gray-600 text-center mb-8">
-            Use the sliders below to explore different scenarios and understand how various factors impact the financial performance of Root Logic. Adjust property values, mortgage terms, production levels, and more to see how they affect overall profitability.
+            Use the sliders below to explore different scenarios and understand how various factors impact the financial performance of Colonial Cidery and Orchard. Adjust property values, mortgage terms, production levels, and more to see how they affect overall profitability.
           </p>
           <BusinessCalculator onResultsChange={handleResultsChange} />
         </div>
@@ -287,20 +279,24 @@ export default function BusinessPlan() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="section-title">Orchard Management</h2>
+              <h2 className="section-title">Heritage Orchard Management</h2>
               <p className="text-lg text-gray-600 mb-6">
-                Our 50-acre property includes approximately 12 acres dedicated to apple production with around 1,570 trees. About 70% of these trees are mature, with the remainder in various stages of growth. We cultivate over 20 heritage and cider-specific apple varieties, including:
+                Our 50-acre property includes approximately 18 acres dedicated to heritage apple production with around 1,570 trees. About 70% of these trees are mature, with the remainder in various stages of growth. We specialize in American colonial and cider-specific heritage varieties, with our flagship varieties being <strong>Harrison</strong> and <strong>Virginia Hewes Crab</strong>, complemented by 20 additional heritage varieties including:
               </p>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-                <li className="mb-2">Kingston Black</li>
-                <li className="mb-2">Dabinett</li>
-                <li className="mb-2">Yarlington Mill</li>
-                <li className="mb-2">Northern Spy</li>
-                <li className="mb-2">Golden Russet</li>
-                <li>Wickson Crab</li>
+                <li className="mb-2"><strong>Harrison</strong> - "The King of Cider Apples" from colonial New Jersey</li>
+                <li className="mb-2"><strong>Virginia Hewes Crab</strong> - Thomas Jefferson's favorite cider apple</li>
+                <li className="mb-2">Redfield - Deep red flesh for unique rosé ciders</li>
+                <li className="mb-2">Kingston Black - English heritage bittersweet</li>
+                <li className="mb-2">Dabinett - Premium Somerset bittersweet</li>
+                <li className="mb-2">Roxbury Russet - America's oldest named apple variety</li>
+                <li className="mb-2">Esopus Spitzenburg - Thomas Jefferson's table apple</li>
+                <li className="mb-2">Golden Russet - American heritage with complex tannins</li>
+                <li className="mb-2">Wickson Crab - Intense flavor for blending</li>
+                <li>Porter's Perfection - English bittersharp heritage</li>
               </ul>
               <p className="text-lg text-gray-600">
-                We employ sustainable orchard management techniques including integrated pest management, natural soil amendments, and water conservation practices. Our apiary not only produces honey but provides essential pollination services to the orchard.
+                We employ traditional, sustainable orchard management techniques including integrated pest management, natural soil amendments, and water conservation practices. Our heritage approach preserves colonial-era growing methods while incorporating modern organic practices. Our apiary not only produces artisanal honey but provides essential pollination services, ensuring the genetic diversity and quality of our rare heritage varieties.
               </p>
             </div>
             <div className="relative h-[400px]">
@@ -1025,7 +1021,7 @@ export default function BusinessPlan() {
           <h2 className="section-title text-center mb-12">Grants & Funding Opportunities</h2>
           <p className="text-lg text-gray-600 text-center mb-8 max-w-4xl mx-auto">
             As a sustainable agricultural business focused on heritage apple varieties and craft beverages, 
-            Root Logic is eligible for various grants and funding opportunities that support our mission
+            Colonial Cidery and Orchard is eligible for various grants and funding opportunities that support our mission
             and growth objectives.
           </p>
           
@@ -1132,10 +1128,10 @@ export default function BusinessPlan() {
           <h2 className="section-title text-center">Conclusion</h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg text-gray-600 mb-8">
-              Root Logic represents a compelling business opportunity that aligns with growing consumer demand for authentic, sustainable, and locally-produced artisanal products. By combining cider production with agritourism and direct sales, we create multiple revenue streams and a resilient business model.
+              Colonial Cidery and Orchard represents a compelling business opportunity that aligns with growing consumer demand for authentic, sustainable, and locally-produced artisanal products. By combining cider production with agritourism and direct sales, we create multiple revenue streams and a resilient business model.
             </p>
             <p className="text-lg text-gray-600">
-              With our established orchard, production facilities, and clear implementation plan, Root Logic is positioned for success in the thriving craft beverage and agritourism markets, offering attractive returns over the five-year projection period and beyond.
+              With our established orchard, production facilities, and clear implementation plan, Colonial Cidery and Orchard is positioned for success in the thriving craft beverage and agritourism markets, offering attractive returns over the five-year projection period and beyond.
             </p>
           </div>
         </div>

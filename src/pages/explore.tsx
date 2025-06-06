@@ -21,29 +21,30 @@ export default function Explore() {
         </div>
       </section>
 
-      {/* Garden Section */}
+      {/* Farm Overview Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="section-title">Our Garden</h2>
+              <h2 className="section-title">The Heart of Our Farm</h2>
               <p className="text-lg text-gray-600 mb-6">
-                At the heart of our property is our meticulously maintained organic garden. We use sustainable farming practices to cultivate a diverse range of plants that support our ecosystem and provide ingredients for our specialty ciders.
+                At the heart of our 50-acre farm is our heritage apple orchard — 18 acres of carefully tended Harrison, Virginia Hewes Crab, and other historic apple varieties. But our farm is much more than just an orchard.
               </p>
               <p className="text-lg text-gray-600 mb-6">
-                From aromatic herbs to vibrant flowers and pollinator-friendly plants, our garden is designed to work in harmony with our orchard and apiary.
+                Our diverse farm ecosystem includes fresh produce gardens, greenhouses for year-round growing, thriving honey bee colonies, expansive wildflower meadows, free-range chickens, and future plans for grass-fed and apple-fed cattle.
               </p>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-                <li className="mb-2">Over 25 varieties of herbs and edible flowers</li>
-                <li className="mb-2">Berry patches featuring raspberries, blackberries, and elderberries</li>
-                <li className="mb-2">Seasonal vegetable garden for farm-to-table experiences</li>
-                <li>Dedicated pollinator sections to support our bee population</li>
+                <li className="mb-2">18-acre heritage apple orchard with 20+ varieties</li>
+                <li className="mb-2">Fresh produce gardens and greenhouses</li>
+                <li className="mb-2">Honey bee apiaries and wildflower meadows</li>
+                <li className="mb-2">Free-range chickens and future livestock plans</li>
+                <li>Sustainable farming practices throughout</li>
               </ul>
             </div>
             <div className="relative h-[400px]">
               <OptimizedImage
                 src="/images/Honey-bee.jpg"
-                alt="Our organic garden"
+                alt="Our diverse farm ecosystem"
                 fill
                 className="object-cover rounded-lg"
               />
@@ -73,7 +74,7 @@ export default function Explore() {
                 The ground floor houses our cider production facility, while the upper level has been transformed into a cozy loft apartment available for farm stays.
               </p>
               <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-                <li className="mb-2">State-of-the-art cider production facility</li>
+                <li className="mb-2">Heritage cider production facility</li>
                 <li className="mb-2">Tasting room for guided cider samplings</li>
                 <li className="mb-2">Historic preservation with modern amenities</li>
                 <li>Versatile space for seasonal events and workshops</li>

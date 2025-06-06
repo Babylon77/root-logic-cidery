@@ -15,8 +15,8 @@ interface SiteHeadProps {
 }
 
 export default function SiteHead({ 
-  title = 'Root Logic Cidery', 
-  description = 'Organic hard ciders crafted from heritage apple varieties'
+  title = 'Colonial Cidery and Orchard', 
+  description = 'Premium heritage apple ciders made with Harrison and Virginia Hewes Crab apples. Organic, naturally fermented with no additives. 500ml and 750ml bottles priced $15-22.'
 }: SiteHeadProps) {
   const [basePath, setBasePath] = useState('');
   
